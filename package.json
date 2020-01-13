@@ -7,6 +7,8 @@
     "start:server": "node ./server.js",
     "server:watch": "npx nodemon ./server.js",
     "webpack:watch": "npx webpack --watch",
+    "styles:watch": "npx node-sass --watch ./src/public/scss/index.scss ./dist/main.css",
+    "start:dev": "npm-run-all --parallel server:watch webpack:watch styles:watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -22,7 +24,9 @@
     "@babel/preset-react": "^7.8.0",
     "babel-loader": "^8.0.6",
     "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.13.0",
     "nodemon": "^2.0.2",
+    "npm-run-all": "^4.1.5",
     "webpack": "^4.41.5",
     "webpack-cli": "^3.3.10"
   }
