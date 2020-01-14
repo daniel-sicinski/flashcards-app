@@ -5,18 +5,6 @@ export default class Cards extends Component {
   state = {
     cards: []
   };
-  // expressions = {
-  //   engWord: "doing",
-  //   polWord: "robić",
-  //   engSen: "I've been coding all morning",
-  //   polSen: "Kodowałem cały ranek"
-  // };
-  // expressions2 = {
-  //   engWord: "to read",
-  //   polWord: "czytać",
-  //   engSen: "He reads a lot",
-  //   polSen: "On dużo czyta"
-  // };
 
   componentDidMount() {
     fetch("/api/v1/cards")
