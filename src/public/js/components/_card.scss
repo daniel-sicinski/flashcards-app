@@ -1,0 +1,46 @@
+.card {
+  background-color: $color-grey-light-2;
+  box-shadow: 0 0.2rem 0.2rem rgba(0, 0, 0, 0.15);
+  padding: 1rem;
+  margin-bottom: 1rem;
+
+  &__words {
+    display: flex;
+    align-items: center;
+  }
+
+  &__eng-word {
+    font-size: 1.9rem;
+    color: $color-primary-dark;
+    margin-right: 1.5rem;
+  }
+
+  &__pol-word {
+    font-size: $default-font-size;
+    color: $color-grey-dark-2;
+    font-style: italic;
+  }
+
+  &__sentences {
+    &::before {
+      display: block;
+      content: "";
+      height: 1px;
+      background-color: #e2e2e2;
+      width: 100%;
+      padding: 0 2rem;
+      margin: 0.5rem 0;
+      border-radius: 5rem;
+    }
+  }
+
+  &__eng-sentence {
+    font-size: 1.7rem;
+  }
+
+  &__pol-sentence {
+    color: $color-grey-dark-2;
+    font-style: italic;
+    font-size: $default-font-size;
+  }
+}
