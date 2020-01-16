@@ -15,7 +15,8 @@ const initialState = {
   error: null,
   tracksToPlay: [],
   paused: false,
-  currentlyPlayedTrackRef: null
+  currentlyPlayedTrackRef: null,
+  playbackGap: 1500
 };
 
 export default (state = initialState, action) => {

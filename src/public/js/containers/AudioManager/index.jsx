@@ -23,7 +23,8 @@ class AudioManager extends Component {
   }
 
   handleTrackEnd = () => {
-    this.props.trackFinished();
+    const { trackFinished, playbackGap } = this.props;
+    setTimeout(trackFinished, playbackGap);
   };
 
   render() {
@@ -40,7 +41,8 @@ class AudioManager extends Component {
 const mapStateToProps = state => {
   return {
     currentlyPlayedTrackRef: state.audio.currentlyPlayedTrackRef,
-    tracksToPlay: state.audio.tracksToPlay
+    tracksToPlay: state.audio.tracksToPlay,
+    playbackGap: state.audio.playbackGap
   };
 };
 
