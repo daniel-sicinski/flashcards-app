@@ -48,6 +48,27 @@ app.get("/api/v1/cards", (req, res) => {
   });
 });
 
+app.get("/api/v1/audioTrack/:audioId", (req, res) => {
+  const { audioId } = req.params;
+
+  const filePathEngWord = path.resolve(
+    __dirname,
+    "assets",
+    "mp3",
+    `${audioId}.mp3`
+  );
+
+  const stat = fs.statSync(filePathEngWord);
+
+  res.writeHead(200, {
+    "Content-Type": "application/octet-stream",
+    "Content-Length": stat.size
+  });
+
+  const readStream = fs.createReadStream(filePathEngWord);
+  readStream.pipe(res);
+});
+
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "..", "dist", "index.html"));
 });
