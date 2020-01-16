@@ -82,6 +82,12 @@ export const trackFinished = () => {
   };
 };
 
+export const gapFinished = () => {
+  return {
+    type: GAP_FINISHED
+  };
+};
+
 export const stopAudio = () => {
   return {
     type: STOP_AUDIO

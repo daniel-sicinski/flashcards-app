@@ -78,6 +78,11 @@ export default (state = initialState, action) => {
     case TRACK_FINISHED:
       return {
         ...state,
+        currentlyPlayedTrackRef: null
+      };
+    case GAP_FINISHED:
+      return {
+        ...state,
         tracksToPlay: state.tracksToPlay.slice(1)
       };
     case STOP_AUDIO:
