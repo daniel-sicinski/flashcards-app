@@ -1,7 +1,13 @@
 import React, { Component } from "react";
 import Card from "../../components/Card";
+import { connect } from "react-redux";
+import {
+  stopAudio,
+  pauseTrack,
+  setTracksToPlay
+} from "../../store/actions/audioActions";
 
-export default class Cards extends Component {
+class Cards extends Component {
   state = {
     cards: []
   };
@@ -20,13 +26,35 @@ export default class Cards extends Component {
 
   renderCards() {
     return this.state.cards.map(card => {
-      const { expressions } = card;
+      const { _id } = card;
 
-      return <Card expressions={expressions} key={card._id} />;
+      return (
+        <Card
+          cardData={card}
+          key={_id}
+          onSettingTracksToPlay={this.handleSettingTracksToPlay}
+          onPauseTrack={this.handlePauseTrack}
+          onStopAudio={this.handleStopAudio}
+        />
+      );
     });
   }
+
+  handleSettingTracksToPlay = tracksToPlay => {
+    this.props.setTracksToPlay(tracksToPlay);
+  };
+
+  handlePauseTrack = () => {
+    this.props.pauseTrack();
+  };
+
+  handleStopAudio = () => {
+    this.props.stopAudio();
+  };
 
   render() {
     return <div className="cards">{this.renderCards()}</div>;
   }
 }
+
+export default connect(null, { stopAudio, pauseTrack, setTracksToPlay })(Cards);
