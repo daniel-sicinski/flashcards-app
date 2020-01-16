@@ -20,7 +20,7 @@ const initialCardData = [];
     const expressions = row.split(",");
     const audioIdIndex = index < 10 ? `000${index}` : `00${index}`;
 
-    cardData._id = index;
+    cardData._id = audioIdIndex;
     cardData.expressions = {
       engWord: expressions[0],
       polWord: expressions[1],
@@ -29,10 +29,10 @@ const initialCardData = [];
     };
 
     cardData.audioIds = {
-      engWord: "s" + audioIdIndex,
-      polWord: "p" + audioIdIndex,
-      engSen: "z" + audioIdIndex,
-      polSen: "t" + audioIdIndex
+      engWordTrackId: "s" + audioIdIndex,
+      polWordTrackId: "p" + audioIdIndex,
+      engSenTrackId: "z" + audioIdIndex,
+      polSenTrackId: "t" + audioIdIndex
     };
 
     initialCardData.push(cardData);
@@ -46,6 +46,27 @@ app.get("/api/v1/cards", (req, res) => {
       cards: initialCardData
     }
   });
+});
+
+app.get("/api/v1/audioTrack/:audioId", (req, res) => {
+  const { audioId } = req.params;
+
+  const filePathEngWord = path.resolve(
+    __dirname,
+    "assets",
+    "mp3",
+    `${audioId}.mp3`
+  );
+
+  const stat = fs.statSync(filePathEngWord);
+
+  res.writeHead(200, {
+    "Content-Type": "application/octet-stream",
+    "Content-Length": stat.size
+  });
+
+  const readStream = fs.createReadStream(filePathEngWord);
+  readStream.pipe(res);
 });
 
 app.get("*", (req, res) => {

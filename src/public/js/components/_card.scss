@@ -3,6 +3,17 @@
   box-shadow: 0 0.2rem 0.2rem rgba(0, 0, 0, 0.15);
   padding: 1rem;
   margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+
+  &__left-side {
+    flex: 4;
+  }
+
+  &__right-side {
+    flex: 1;
+    text-align: center;
+  }
 
   &__words {
     display: flex;

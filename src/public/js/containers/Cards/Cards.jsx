@@ -1,7 +1,14 @@
 import React, { Component } from "react";
 import Card from "../../components/Card";
+import { connect } from "react-redux";
+import {
+  stopAudio,
+  pauseTrack,
+  setTracksToPlay,
+  resumeTrack
+} from "../../store/actions/audioActions";
 
-export default class Cards extends Component {
+class Cards extends Component {
   state = {
     cards: []
   };
@@ -18,15 +25,62 @@ export default class Cards extends Component {
       .catch(e => console.log(e));
   }
 
+  isActive = cardId => {
+    return cardId === this.props.currentlyActiveCardId;
+  };
+
   renderCards() {
     return this.state.cards.map(card => {
-      const { expressions } = card;
+      const { _id } = card;
 
-      return <Card expressions={expressions} key={card._id} />;
+      return (
+        <Card
+          cardData={card}
+          key={_id}
+          onSettingTracksToPlay={this.handleSettingTracksToPlay}
+          onPauseTrack={this.handlePauseTrack}
+          onStopAudio={this.handleStopAudio}
+          onResumeTrack={this.handleResumeTrack}
+          isActive={this.isActive(_id)}
+          paused={this.props.paused}
+          loadingAudio={this.props.loadingAudio}
+        />
+      );
     });
   }
+
+  handleSettingTracksToPlay = tracksToPlay => {
+    this.props.setTracksToPlay(tracksToPlay);
+  };
+
+  handlePauseTrack = () => {
+    this.props.pauseTrack();
+  };
+
+  handleResumeTrack = () => {
+    this.props.resumeTrack();
+  };
+
+  handleStopAudio = () => {
+    this.props.stopAudio();
+  };
 
   render() {
     return <div className="cards">{this.renderCards()}</div>;
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    currentlyActiveCardId: state.audio.currentlyActiveCardId,
+    paused: state.audio.paused,
+    loadingAudio: state.audio.loading
+  };
+};
+
+export default connect(mapStateToProps, {
+  stopAudio,
+  pauseTrack,
+  setTracksToPlay,
+  resumeTrack
+})(Cards);
