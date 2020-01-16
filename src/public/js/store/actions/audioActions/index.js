@@ -7,7 +7,9 @@ import {
   PLAY_TRACK,
   PAUSE_TRACK,
   TRACK_FINISHED,
-  STOP_AUDIO
+  STOP_AUDIO,
+  RESUME_TRACK,
+  GAP_FINISHED
 } from "./actionNames";
 
 export const setTracksToPlay = tracksToPlay => {
@@ -65,6 +67,12 @@ export const playTrack = currentTrackRef => {
 export const pauseTrack = () => {
   return {
     type: PAUSE_TRACK
+  };
+};
+
+export const resumeTrack = () => {
+  return {
+    type: RESUME_TRACK
   };
 };
 

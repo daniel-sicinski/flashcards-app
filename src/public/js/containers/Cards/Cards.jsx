@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import {
   stopAudio,
   pauseTrack,
-  setTracksToPlay
+  setTracksToPlay,
+  resumeTrack
 } from "../../store/actions/audioActions";
 
 class Cards extends Component {
@@ -24,6 +25,10 @@ class Cards extends Component {
       .catch(e => console.log(e));
   }
 
+  isActive = cardId => {
+    return cardId === this.props.currentlyActiveCardId;
+  };
+
   renderCards() {
     return this.state.cards.map(card => {
       const { _id } = card;
@@ -35,6 +40,9 @@ class Cards extends Component {
           onSettingTracksToPlay={this.handleSettingTracksToPlay}
           onPauseTrack={this.handlePauseTrack}
           onStopAudio={this.handleStopAudio}
+          onResumeTrack={this.handleResumeTrack}
+          isActive={this.isActive(_id)}
+          paused={this.props.paused}
         />
       );
     });
@@ -48,6 +56,10 @@ class Cards extends Component {
     this.props.pauseTrack();
   };
 
+  handleResumeTrack = () => {
+    this.props.resumeTrack();
+  };
+
   handleStopAudio = () => {
     this.props.stopAudio();
   };
@@ -57,4 +69,16 @@ class Cards extends Component {
   }
 }
 
-export default connect(null, { stopAudio, pauseTrack, setTracksToPlay })(Cards);
+const mapStateToProps = state => {
+  return {
+    currentlyActiveCardId: state.audio.currentlyActiveCardId,
+    paused: state.audio.paused
+  };
+};
+
+export default connect(mapStateToProps, {
+  stopAudio,
+  pauseTrack,
+  setTracksToPlay,
+  resumeTrack
+})(Cards);

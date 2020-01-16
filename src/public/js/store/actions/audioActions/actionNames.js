@@ -5,5 +5,6 @@ export const FETCH_TRACK_SUCCESS = "FETCH_TRACK_SUCCESS";
 export const FETCH_TRACK_ERROR = "FETCH_TRACK_ERROR";
 export const PLAY_TRACK = "PLAY_TRACK";
 export const PAUSE_TRACK = "PAUSE_TRACK";
+export const RESUME_TRACK = "RESUME_TRACK";
 export const TRACK_FINISHED = "TRACK_FINISHED";
 export const STOP_AUDIO = "STOP_AUDIO";

@@ -6,7 +6,10 @@ import {
   PLAY_TRACK,
   PAUSE_TRACK,
   TRACK_FINISHED,
-  STOP_AUDIO
+  STOP_AUDIO,
+  LOAD_TRACK,
+  RESUME_TRACK,
+  GAP_FINISHED
 } from "../../actions/audioActions/actionNames";
 
 const initialState = {
@@ -16,7 +19,8 @@ const initialState = {
   tracksToPlay: [],
   paused: false,
   currentlyPlayedTrackRef: null,
-  playbackGap: 1500
+  playbackGap: 1500,
+  currentlyActiveCardId: null
 };
 
 export default (state = initialState, action) => {
@@ -25,10 +29,14 @@ export default (state = initialState, action) => {
       return {
         ...state,
         tracksToPlay: action.payload.tracksToPlay,
-        loading: false,
-        error: null,
         paused: false,
-        currentlyPlayedTrackRef: null
+        currentlyPlayedTrackRef: null,
+        currentlyActiveCardId: null
+      };
+    case LOAD_TRACK:
+      return {
+        ...state,
+        currentlyActiveCardId: state.tracksToPlay[0].slice(1)
       };
     case FETCH_TRACK_START:
       return {
@@ -48,7 +56,8 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        error: action.payload.error
+        error: action.payload.error,
+        currentlyActiveCardId: null
       };
     case PLAY_TRACK:
       return {
@@ -61,6 +70,11 @@ export default (state = initialState, action) => {
         ...state,
         paused: true
       };
+    case RESUME_TRACK:
+      return {
+        ...state,
+        paused: false
+      };
     case TRACK_FINISHED:
       return {
         ...state,
@@ -72,7 +86,8 @@ export default (state = initialState, action) => {
         loading: false,
         error: null,
         paused: false,
-        currentlyPlayedTrackRef: null
+        currentlyPlayedTrackRef: null,
+        currentlyActiveCardId: null
       };
     default:
       return state;
