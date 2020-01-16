@@ -39,7 +39,7 @@ export function* getTrack(action) {
     yield put(playTrack(requestedTrackRef));
   } else {
     try {
-      // yield put(fetchTrackStart());
+      yield put(fetchTrackStart());
 
       const audioBlob = yield call(audioRequest, trackId);
 

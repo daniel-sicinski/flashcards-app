@@ -4,6 +4,7 @@ import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import PauseIcon from "@material-ui/icons/Pause";
 import StopIcon from "@material-ui/icons/Stop";
 import ReplayIcon from "@material-ui/icons/Replay";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 export default function Card({
   cardData,
@@ -12,7 +13,8 @@ export default function Card({
   onStopAudio,
   onResumeTrack,
   isActive,
-  paused
+  paused,
+  loadingAudio
 }) {
   const { expressions, audioIds } = cardData;
   const { engWord, polWord, engSen, polSen } = expressions;
@@ -61,6 +63,16 @@ export default function Card({
     />
   );
 
+  const displayCardMenu = () => {
+    if (loadingAudio && isActive) {
+      return <CircularProgress style={{ color: "#d3b06a", fontSize: 40 }} />;
+    } else if (isActive) {
+      return showControls();
+    } else {
+      return showPlayBtn();
+    }
+  };
+
   return (
     <div className="card">
       <div className="card__left-side">
@@ -74,9 +86,7 @@ export default function Card({
           <p className="card__pol-sentence">{polSen}</p>
         </div>
       </div>
-      <div className="card__right-side">
-        {isActive ? showControls() : showPlayBtn()}
-      </div>
+      <div className="card__right-side">{displayCardMenu()}</div>
     </div>
   );
 }

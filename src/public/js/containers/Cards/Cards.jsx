@@ -43,6 +43,7 @@ class Cards extends Component {
           onResumeTrack={this.handleResumeTrack}
           isActive={this.isActive(_id)}
           paused={this.props.paused}
+          loadingAudio={this.props.loadingAudio}
         />
       );
     });
@@ -72,7 +73,8 @@ class Cards extends Component {
 const mapStateToProps = state => {
   return {
     currentlyActiveCardId: state.audio.currentlyActiveCardId,
-    paused: state.audio.paused
+    paused: state.audio.paused,
+    loadingAudio: state.audio.loading
   };
 };
 
