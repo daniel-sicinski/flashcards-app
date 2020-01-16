@@ -37,17 +37,17 @@ export default function Card({
       <>
         {paused ? (
           <ReplayIcon
-            style={{ fontSize: 30, color: "#999" }}
+            style={{ fontSize: 40, color: "#999" }}
             onClick={onResumeTrack}
           />
         ) : (
           <PauseIcon
-            style={{ fontSize: 30, color: "#999" }}
+            style={{ fontSize: 40, color: "#999" }}
             onClick={onPauseTrack}
           />
         )}
         <StopIcon
-          style={{ fontSize: 30, color: "#999" }}
+          style={{ fontSize: 40, color: "#999" }}
           onClick={onStopAudio}
         />
       </>
