@@ -1,0 +1,9 @@
+export const SET_TRACKS_TO_PLAY = "SET_TRACKS_TO_PLAY";
+export const LOAD_TRACK = "LOAD_TRACK";
+export const FETCH_TRACK_START = "FETCH_TRACK_START";
+export const FETCH_TRACK_SUCCESS = "FETCH_TRACK_SUCCESS";
+export const FETCH_TRACK_ERROR = "FETCH_TRACK_ERROR";
+export const PLAY_TRACK = "PLAY_TRACK";
+export const PAUSE_TRACK = "PAUSE_TRACK";
+export const TRACK_FINISHED = "TRACK_FINISHED";
+export const STOP_AUDIO = "STOP_AUDIO";
