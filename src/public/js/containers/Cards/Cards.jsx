@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Card from "../../components/Card";
 import { connect } from "react-redux";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import {
   stopAudio,
   pauseTrack,
@@ -9,28 +10,12 @@ import {
 } from "../../store/actions/audioActions";
 
 class Cards extends Component {
-  state = {
-    cards: []
-  };
-
-  componentDidMount() {
-    fetch("/api/v1/cards")
-      .then(res => res.json())
-      .then(res => {
-        this.setState({
-          cards: res.data.cards
-        });
-        console.log(res.data.cards);
-      })
-      .catch(e => console.log(e));
-  }
-
   isActive = cardId => {
     return cardId === this.props.currentlyActiveCardId;
   };
 
   renderCards() {
-    return this.state.cards.map(card => {
+    return this.props.cardsToDisplay.map(card => {
       const { _id } = card;
 
       return (
@@ -49,6 +34,12 @@ class Cards extends Component {
     });
   }
 
+  renderSpinner = () => (
+    <div className="cards-spinner-box">
+      <CircularProgress style={{ color: "#d3b06a" }} />
+    </div>
+  );
+
   handleSettingTracksToPlay = tracksToPlay => {
     this.props.setTracksToPlay(tracksToPlay);
   };
@@ -66,17 +57,29 @@ class Cards extends Component {
   };
 
   render() {
-    return <div className="cards">{this.renderCards()}</div>;
+    return (
+      <div className="cards">
+        {this.props.loadingCards ? this.renderSpinner() : this.renderCards()}
+      </div>
+    );
   }
 }
 
 const mapStateToProps = state => {
+  const { cardsData, cardsDisplayed } = state.cards;
   return {
     currentlyActiveCardId: state.audio.currentlyActiveCardId,
     paused: state.audio.paused,
-    loadingAudio: state.audio.loading
+    loadingAudio: state.audio.loading,
+    loadingCards: state.cards.loading,
+    // temporary
+    cardsToDisplay: convertCardsIdsToCards(cardsDisplayed, cardsData)
   };
 };
+
+function convertCardsIdsToCards(cardsIds, cardsData) {
+  return cardsIds.map(id => cardsData[id]);
+}
 
 export default connect(mapStateToProps, {
   stopAudio,
