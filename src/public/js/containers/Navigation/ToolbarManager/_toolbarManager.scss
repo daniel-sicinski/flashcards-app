@@ -1,0 +1,10 @@
+.toolbar-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: $color-grey-light-1;
+  height: 7rem;
+  padding: 1rem 3rem;
+  z-index: $toolbar-bottom-z-index;
+}
