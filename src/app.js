@@ -6,7 +6,7 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, "..", "dist")));
 
-const initialCardData = [];
+const initialCardData = {};
 
 (function generateInitialCardData() {
   csvData = fs.readFileSync(
@@ -35,7 +35,7 @@ const initialCardData = [];
       polSenTrackId: "t" + audioIdIndex
     };
 
-    initialCardData.push(cardData);
+    initialCardData[audioIdIndex] = cardData;
   });
 })();
 
