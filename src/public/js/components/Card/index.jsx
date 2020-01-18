@@ -26,6 +26,10 @@ export default function Card({
     polSenTrackId
   } = audioIds;
 
+  const cardBackGroundColor = {
+    backgroundColor: isActive ? "#f0ead5" : "#f7f7f7"
+  };
+
   const handlePlayClick = () => {
     onSettingTracksToPlay([
       engWordTrackId,
@@ -77,7 +81,7 @@ export default function Card({
   };
 
   return (
-    <div className="card">
+    <div className="card" style={cardBackGroundColor}>
       <div className="card__left-side">
         <div className="card__words">
           <span className="card__eng-word">{engWord}</span>
