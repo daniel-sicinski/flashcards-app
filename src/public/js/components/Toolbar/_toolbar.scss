@@ -1,4 +1,9 @@
 .toolbar {
   display: flex;
   justify-content: space-between;
+
+  &__icon {
+    font-size: 4.5rem !important;
+    color: $color-grey-dark-2;
+  }
 }
