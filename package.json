@@ -7,7 +7,8 @@
     "start:server": "node ./server.js",
     "server:watch": "npx nodemon ./server.js",
     "webpack:watch": "npx webpack --watch",
-    "styles:watch": "npx node-sass --watch ./src/public/scss/index.scss ./dist/main.css",
+    "styles:compile": "npx node-sass ./src/public/scss/index.scss ./dist/main.css",
+    "styles:watch": "npm run styles:compile && npm run styles:compile -- --watch",
     "start:dev": "npm-run-all --parallel server:watch webpack:watch styles:watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

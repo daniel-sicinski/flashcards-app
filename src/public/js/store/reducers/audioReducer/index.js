@@ -20,7 +20,8 @@ const initialState = {
   paused: false,
   currentlyPlayedTrackRef: null,
   playbackGap: 1500,
-  currentlyActiveCardId: null
+  currentlyActiveCardId: null,
+  isGlobalAudioPlay: false
 };
 
 export default (state = initialState, action) => {
@@ -31,7 +32,8 @@ export default (state = initialState, action) => {
         tracksToPlay: action.payload.tracksToPlay,
         paused: false,
         currentlyPlayedTrackRef: null,
-        currentlyActiveCardId: null
+        currentlyActiveCardId: null,
+        isGlobalAudioPlay: !!action.payload.isGlobalAudioPlay
       };
     case LOAD_TRACK:
       return {
@@ -57,7 +59,8 @@ export default (state = initialState, action) => {
         ...state,
         loading: false,
         error: action.payload.error,
-        currentlyActiveCardId: null
+        currentlyActiveCardId: null,
+        isGlobalAudioPlay: false
       };
     case PLAY_TRACK:
       return {
@@ -92,7 +95,8 @@ export default (state = initialState, action) => {
         error: null,
         paused: false,
         currentlyPlayedTrackRef: null,
-        currentlyActiveCardId: null
+        currentlyActiveCardId: null,
+        isGlobalAudioPlay: false
       };
     default:
       return state;

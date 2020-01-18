@@ -1,0 +1,14 @@
+.audio-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__control {
+    font-size: 40px !important;
+    margin-right: 1.5rem;
+
+    &--skip {
+      font-size: 3.5rem !important;
+    }
+  }
+}
