@@ -6,8 +6,8 @@ export default class ToolbarManager extends Component {
   render() {
     return (
       <div className="toolbar-bottom">
-        {/* <Toolbar /> */}
-        <AudioControls />
+        <Toolbar />
+        {/* <AudioControls /> */}
       </div>
     );
   }
