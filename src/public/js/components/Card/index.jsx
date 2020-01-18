@@ -14,7 +14,8 @@ export default function Card({
   onResumeTrack,
   isActive,
   paused,
-  loadingAudio
+  loadingAudio,
+  isGlobalAudioPlay
 }) {
   const { expressions, audioIds } = cardData;
   const { engWord, polWord, engSen, polSen } = expressions;
@@ -66,6 +67,8 @@ export default function Card({
   const displayCardMenu = () => {
     if (loadingAudio && isActive) {
       return <CircularProgress style={{ color: "#d3b06a", fontSize: 40 }} />;
+    } else if (isGlobalAudioPlay) {
+      return null;
     } else if (isActive) {
       return showControls();
     } else {

@@ -12,11 +12,12 @@ import {
   GAP_FINISHED
 } from "./actionNames";
 
-export const setTracksToPlay = tracksToPlay => {
+export const setTracksToPlay = (tracksToPlay, isGlobalAudioPlay) => {
   return {
     type: SET_TRACKS_TO_PLAY,
     payload: {
-      tracksToPlay
+      tracksToPlay,
+      isGlobalAudioPlay
     }
   };
 };

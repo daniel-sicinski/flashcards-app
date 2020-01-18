@@ -29,6 +29,7 @@ class Cards extends Component {
           isActive={this.isActive(_id)}
           paused={this.props.paused}
           loadingAudio={this.props.loadingAudio}
+          isGlobalAudioPlay={this.props.isGlobalAudioPlay}
         />
       );
     });
@@ -69,6 +70,7 @@ const mapStateToProps = state => {
   const { cardsData, cardsDisplayed } = state.cards;
   return {
     currentlyActiveCardId: state.audio.currentlyActiveCardId,
+    isGlobalAudioPlay: state.audio.isGlobalAudioPlay,
     paused: state.audio.paused,
     loadingAudio: state.audio.loading,
     loadingCards: state.cards.loading,
