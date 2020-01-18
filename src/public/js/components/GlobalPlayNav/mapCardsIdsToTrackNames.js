@@ -1,4 +1,4 @@
-export default mapCardsIdsToTrackNames = dispatch => (
+export default dispatch => (
   cardsData,
   cardsDisplayed,
   setTracksToPlay
