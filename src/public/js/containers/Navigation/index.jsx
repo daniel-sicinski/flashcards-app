@@ -1,9 +1,6 @@
-import React, { Component } from "react";
-import ToolbarManager from "./ToolbarManager";
-import zIndex from "@material-ui/core/styles/zIndex";
+import React from "react";
+import Toolbar from "../../components/Toolbar/ToolbarContainer";
 
-export default class Navigation extends Component {
-  render() {
-    return <ToolbarManager />;
-  }
+export default function Navigation() {
+  return <Toolbar />;
 }
