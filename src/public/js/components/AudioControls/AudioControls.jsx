@@ -11,23 +11,42 @@ export default function AudioControls({
   onPause,
   onResume,
   onStop,
-  isAudioPaused
+  isAudioPaused,
+  isAudioLoading
 }) {
+  const buttonColorStyle = {
+    color: isAudioLoading ? "#dadada" : "#999"
+  };
+
   return (
     <div className="audio-controls">
       <SkipPreviousIcon
-        onClick={onSkipPrevious}
+        onClick={isAudioLoading ? () => {} : onSkipPrevious}
         className="audio-controls__control audio-controls__control--skip"
+        style={buttonColorStyle}
       />
       {isAudioPaused ? (
-        <PlayArrowIcon onClick={onResume} className="audio-controls__control" />
+        <PlayArrowIcon
+          onClick={isAudioLoading ? () => {} : onResume}
+          className="audio-controls__control"
+          style={buttonColorStyle}
+        />
       ) : (
-        <PauseIcon onClick={onPause} className="audio-controls__control" />
+        <PauseIcon
+          onClick={isAudioLoading ? () => {} : onPause}
+          className="audio-controls__control"
+          style={buttonColorStyle}
+        />
       )}
-      <StopIcon onClick={onStop} className="audio-controls__control" />
+      <StopIcon
+        onClick={isAudioLoading ? () => {} : onStop}
+        className="audio-controls__control"
+        style={buttonColorStyle}
+      />
       <SkipNextIcon
-        onClick={onSkipNext}
+        onClick={isAudioLoading ? () => {} : onSkipNext}
         className="audio-controls__control audio-controls__control--skip"
+        style={buttonColorStyle}
       />
     </div>
   );

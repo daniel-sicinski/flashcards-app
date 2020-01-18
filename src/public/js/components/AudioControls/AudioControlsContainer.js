@@ -8,7 +8,8 @@ import {
 
 const mapStateToProps = state => {
   return {
-    isAudioPaused: state.audio.paused
+    isAudioPaused: state.audio.paused,
+    isAudioLoading: state.audio.loading
   };
 };
 
