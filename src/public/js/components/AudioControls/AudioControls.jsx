@@ -11,7 +11,7 @@ export default function AudioControls({
   onPause,
   onResume,
   onStop,
-  paused
+  isAudioPaused
 }) {
   return (
     <div className="audio-controls">
@@ -19,7 +19,7 @@ export default function AudioControls({
         onClick={onSkipPrevious}
         className="audio-controls__control audio-controls__control--skip"
       />
-      {paused ? (
+      {isAudioPaused ? (
         <PlayArrowIcon onClick={onResume} className="audio-controls__control" />
       ) : (
         <PauseIcon onClick={onPause} className="audio-controls__control" />
