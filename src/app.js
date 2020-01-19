@@ -10,7 +10,7 @@ const initialCardData = {};
 
 (function generateInitialCardData() {
   csvData = fs.readFileSync(
-    path.join(__dirname, "temp_data", "result_1_30.csv"),
+    path.join(__dirname, "temp_data", "result_1_100.csv"),
     "utf-8"
   );
   const dataRows = csvData.split("\n");
