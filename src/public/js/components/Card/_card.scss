@@ -53,4 +53,9 @@
     font-style: italic;
     font-size: $default-font-size;
   }
+
+  &__button {
+    font-size: 4rem !important;
+    color: $color-grey-dark-2;
+  }
 }
