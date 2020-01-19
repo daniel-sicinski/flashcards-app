@@ -6,7 +6,8 @@ import mapCardsIdsToTrackNames from "./mapCardsIdsToTrackNames";
 function mapStateToProps(state) {
   return {
     cardsData: state.cards.cardsData,
-    cardsDisplayed: state.cards.cardsDisplayed
+    cardsDisplayed: state.cards.cardsDisplayed,
+    selectedCardsIds: state.cards.selectedCardsIds
   };
 }
 
@@ -17,15 +18,17 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mergeProps(stateProps, dispatchProps, ownProps) {
-  const { cardsData, cardsDisplayed } = stateProps;
+  const { cardsData, cardsDisplayed, selectedCardsIds } = stateProps;
 
+  const cardIdsToPlay =
+    selectedCardsIds.length === 0 ? cardsDisplayed : selectedCardsIds;
   return {
     ...stateProps,
     ...dispatchProps,
     ...ownProps,
     playSelectedTracks: dispatchProps.mapCardsIdsToTrackNamesWithDispatch(
       cardsData,
-      cardsDisplayed,
+      cardIdsToPlay,
       setTracksToPlay
     )
   };

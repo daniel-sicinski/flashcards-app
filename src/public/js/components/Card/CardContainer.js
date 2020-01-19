@@ -6,13 +6,17 @@ import {
   setTracksToPlay,
   resumeTrack
 } from "../../store/actions/audioActions";
+import { selectCard, unselectCard } from "../../store/actions/cardsActions";
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
+  const { cardId } = ownProps;
   return {
     isAudioPaused: state.audio.paused,
-    currentlyActiveCardId: state.audio.currentlyActiveCardId,
+    isActive: cardId === state.audio.currentlyActiveCardId,
     isGlobalAudioPlay: state.audio.isGlobalAudioPlay,
-    loadingAudio: state.audio.loading
+    loadingAudio: state.audio.loading,
+    isSelectStateActive: state.cards.isSelectStateActive,
+    isCardSelected: state.cards.selectedCardsIds.includes(cardId)
   };
 };
 
@@ -23,7 +27,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     onSettingTracksToPlay: () => dispatch(setTracksToPlay(tracksToPlay)),
     onPauseTrack: () => dispatch(pauseTrack()),
     onStopAudio: () => dispatch(stopAudio()),
-    onResumeTrack: () => dispatch(resumeTrack())
+    onResumeTrack: () => dispatch(resumeTrack()),
+    onSelectCard: cardId => dispatch(selectCard(cardId)),
+    onUnselectCard: cardId => dispatch(unselectCard(cardId))
   };
 };
 
