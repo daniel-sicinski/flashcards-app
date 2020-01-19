@@ -5,25 +5,35 @@ import PauseIcon from "@material-ui/icons/Pause";
 import StopIcon from "@material-ui/icons/Stop";
 import ReplayIcon from "@material-ui/icons/Replay";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import Radio from "@material-ui/core/Radio";
 
 export default function Card({
   cardData,
+  cardId,
   onSettingTracksToPlay,
   onPauseTrack,
   onStopAudio,
   onResumeTrack,
-  currentlyActiveCardId,
   isAudioPaused,
   loadingAudio,
-  isGlobalAudioPlay
+  isGlobalAudioPlay,
+  isActive,
+  isSelectStateActive,
+  isCardSelected,
+  onSelectCard,
+  onUnselectCard
 }) {
   const { expressions } = cardData;
   const { engWord, polWord, engSen, polSen } = expressions;
 
-  const isActive = cardData._id === currentlyActiveCardId;
-
   const cardBackGroundColor = {
     backgroundColor: isActive ? "#f0ead5" : "#f7f7f7"
+  };
+
+  const handleSelectChange = () => {
+    if (!isSelectStateActive) return;
+
+    isCardSelected ? onUnselectCard(cardId) : onSelectCard(cardId);
   };
 
   const showControls = () => {
@@ -46,8 +56,20 @@ export default function Card({
     />
   );
 
+  const showRadioBtn = () => (
+    <Radio
+      checked={isCardSelected}
+      value={cardId}
+      name={cardId}
+      style={{ color: "#d3b06a" }}
+      className="card__radio-btn"
+    />
+  );
+
   const displayCardMenu = () => {
-    if (loadingAudio && isActive) {
+    if (isSelectStateActive) {
+      return showRadioBtn();
+    } else if (loadingAudio && isActive) {
       return <CircularProgress style={{ color: "#d3b06a", fontSize: 40 }} />;
     } else if (isGlobalAudioPlay) {
       return null;
@@ -59,7 +81,11 @@ export default function Card({
   };
 
   return (
-    <div className="card" style={cardBackGroundColor}>
+    <div
+      className="card"
+      style={cardBackGroundColor}
+      onClick={handleSelectChange}
+    >
       <div className="card__left-side">
         <div className="card__words">
           <span className="card__eng-word">{engWord}</span>

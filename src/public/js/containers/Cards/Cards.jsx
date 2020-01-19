@@ -8,7 +8,7 @@ class Cards extends Component {
     return this.props.cardsToDisplay.map(card => {
       const { _id } = card;
 
-      return <Card cardData={card} key={_id} />;
+      return <Card cardData={card} cardId={_id} key={_id} />;
     });
   }
 
