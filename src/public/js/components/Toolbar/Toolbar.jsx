@@ -12,9 +12,16 @@ export default function Toolbar({
   isGlobalAudioPlay,
   isSelectStateActive,
   activateSelectState,
-  disableSelectState
+  disableSelectState,
+  isNoCardsSelected
 }) {
   const [isComponentShown, setGlobalPlayNavVisibility] = useState(false);
+
+  const handleOnGlobalPlayClick = () => {
+    setGlobalPlayNavVisibility(true);
+
+    if (isSelectStateActive && isNoCardsSelected) disableSelectState();
+  };
 
   return (
     <div className="toolbar">
@@ -38,7 +45,7 @@ export default function Toolbar({
 
           <PlayCircleFilledIcon
             className="toolbar__nav-icon"
-            onClick={() => setGlobalPlayNavVisibility(true)}
+            onClick={handleOnGlobalPlayClick}
           />
           <GlobalPlayNav
             isComponentShown={isComponentShown}

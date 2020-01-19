@@ -8,7 +8,8 @@ import {
 const mapStateToProps = state => {
   return {
     isGlobalAudioPlay: state.audio.isGlobalAudioPlay,
-    isSelectStateActive: state.cards.isSelectStateActive
+    isSelectStateActive: state.cards.isSelectStateActive,
+    isNoCardsSelected: state.cards.selectedCardsIds.length === 0
   };
 };
 
