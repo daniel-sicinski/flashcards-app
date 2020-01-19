@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import PlayCircleOutlineIcon from "@material-ui/icons/PlayCircleOutline";
 import PauseIcon from "@material-ui/icons/Pause";
@@ -12,59 +12,37 @@ export default function Card({
   onPauseTrack,
   onStopAudio,
   onResumeTrack,
-  isActive,
-  paused,
+  currentlyActiveCardId,
+  isAudioPaused,
   loadingAudio,
   isGlobalAudioPlay
 }) {
-  const { expressions, audioIds } = cardData;
+  const { expressions } = cardData;
   const { engWord, polWord, engSen, polSen } = expressions;
-  const {
-    engWordTrackId,
-    polWordTrackId,
-    engSenTrackId,
-    polSenTrackId
-  } = audioIds;
+
+  const isActive = cardData._id === currentlyActiveCardId;
 
   const cardBackGroundColor = {
     backgroundColor: isActive ? "#f0ead5" : "#f7f7f7"
   };
 
-  const handlePlayClick = () => {
-    onSettingTracksToPlay([
-      engWordTrackId,
-      polWordTrackId,
-      engSenTrackId,
-      polSenTrackId
-    ]);
-  };
-
   const showControls = () => {
     return (
       <>
-        {paused ? (
-          <ReplayIcon
-            style={{ fontSize: 40, color: "#999" }}
-            onClick={onResumeTrack}
-          />
+        {isAudioPaused ? (
+          <ReplayIcon className="card__button" onClick={onResumeTrack} />
         ) : (
-          <PauseIcon
-            style={{ fontSize: 40, color: "#999" }}
-            onClick={onPauseTrack}
-          />
+          <PauseIcon className="card__button" onClick={onPauseTrack} />
         )}
-        <StopIcon
-          style={{ fontSize: 40, color: "#999" }}
-          onClick={onStopAudio}
-        />
+        <StopIcon className="card__button" onClick={onStopAudio} />
       </>
     );
   };
 
   const showPlayBtn = () => (
     <PlayCircleOutlineIcon
-      style={{ fontSize: 40, color: "#999" }}
-      onClick={handlePlayClick}
+      className="card__button"
+      onClick={onSettingTracksToPlay}
     />
   );
 
