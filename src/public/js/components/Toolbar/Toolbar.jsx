@@ -13,7 +13,8 @@ export default function Toolbar({
   isSelectStateActive,
   activateSelectState,
   disableSelectState,
-  isNoCardsSelected
+  isNoCardsSelected,
+  showSideNav
 }) {
   const [isComponentShown, setGlobalPlayNavVisibility] = useState(false);
 
@@ -29,7 +30,7 @@ export default function Toolbar({
         <AudioControls />
       ) : (
         <div className="toolbar__nav">
-          <MenuIcon className="toolbar__nav-icon" />
+          <MenuIcon className="toolbar__nav-icon" onClick={showSideNav} />
           <SearchIcon className="toolbar__nav-icon" />
           {isSelectStateActive ? (
             <HighlightOffIcon
