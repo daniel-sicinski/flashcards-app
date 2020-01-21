@@ -3,6 +3,7 @@ import rootReducer from "./reducers/rootReducer";
 import createSagaMiddleware from "redux-saga";
 import watchAudioSaga from "./sagas/audioSaga";
 import watchCardsSaga from "./sagas/cardsSaga";
+import watchPlaylistsSaga from "./sagas/playlistsSaga";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -15,5 +16,6 @@ const store = createStore(
 
 sagaMiddleware.run(watchAudioSaga);
 sagaMiddleware.run(watchCardsSaga);
+sagaMiddleware.run(watchPlaylistsSaga);
 
 export default store;
