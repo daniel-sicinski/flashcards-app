@@ -1,0 +1,15 @@
+.playlist-card {
+  box-shadow: 0 0.2rem 0.2rem rgba(0, 0, 0, 0.15);
+  padding: 1rem;
+  margin-bottom: 1rem;
+
+  &__title {
+    font-size: $default-font-size-mobile;
+  }
+
+  &__amount {
+    color: $color-grey-dark-2;
+    font-style: italic;
+    font-size: $default-font-size;
+  }
+}
