@@ -5,13 +5,13 @@ import AudioManager from "./containers/AudioManager";
 import { fetchCardsStart } from "./store/actions/cardsActions";
 import Navigation from "./containers/Navigation";
 import { Route, Switch } from "react-router-dom";
+import Playlists from "./components/Playlists/PlaylistsContainer";
 
 class App extends Component {
   componentDidMount() {
     this.props.fetchCardsStart();
   }
 
-  Playlists = () => <h1>Playlists!</h1>;
   PlaylistView = () => <h1>Playlist view!</h1>;
 
   render() {
@@ -24,7 +24,7 @@ class App extends Component {
             exact
             component={this.PlaylistView}
           />
-          <Route path="/playlists" exact component={this.Playlists} />
+          <Route path="/playlists" exact component={Playlists} />
         </Switch>
         <Navigation />
         <AudioManager />
