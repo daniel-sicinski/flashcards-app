@@ -44,7 +44,7 @@ export function* getPlaylists() {
 export function* getPlaylist(action) {
   const { playlistId } = action.payload;
 
-  const playlistsData = select(selectPlaylistsData);
+  const playlistsData = yield select(selectPlaylistsData);
   const requestedPlaylist = playlistsData[playlistId];
 
   if (requestedPlaylist) {

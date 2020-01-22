@@ -6,24 +6,19 @@ import { fetchCardsStart } from "./store/actions/cardsActions";
 import Navigation from "./containers/Navigation";
 import { Route, Switch } from "react-router-dom";
 import Playlists from "./components/Playlists/PlaylistsContainer";
+import PlaylistView from "./components/PlaylistView/PlaylistViewContainer";
 
 class App extends Component {
   componentDidMount() {
     this.props.fetchCardsStart();
   }
 
-  PlaylistView = () => <h1>Playlist view!</h1>;
-
   render() {
     return (
       <>
         <Switch>
           <Route path="/" exact component={Cards} />
-          <Route
-            path="/playlists/:playlistId"
-            exact
-            component={this.PlaylistView}
-          />
+          <Route path="/playlists/:playlistId" exact component={PlaylistView} />
           <Route path="/playlists" exact component={Playlists} />
         </Switch>
         <Navigation />
