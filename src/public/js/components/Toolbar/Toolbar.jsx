@@ -9,7 +9,7 @@ import Backdrop from "../Backdrop";
 import AudioControls from "../AudioControls/AudioControlsContainer";
 import MobilePopupNav from "../MobilePopupNav/MobilePopupNav";
 import PlaylistAddCheckIcon from "@material-ui/icons/PlaylistAddCheck";
-import PlaylistNav from "../PlaylistsNav/PlaylistsNav";
+import PlaylistNav from "../PlaylistsNav/PlaylistNavContainer";
 
 export default function Toolbar({
   isGlobalAudioPlay,
