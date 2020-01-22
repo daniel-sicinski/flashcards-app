@@ -7,6 +7,7 @@ import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 import GlobalPlayNav from "../GlobalPlayNav/GlobalPlayNavContainer";
 import Backdrop from "../Backdrop";
 import AudioControls from "../AudioControls/AudioControlsContainer";
+import MobilePopupNav from "../MobilePopupNav/MobilePopupNav";
 
 export default function Toolbar({
   isGlobalAudioPlay,
@@ -48,10 +49,12 @@ export default function Toolbar({
             className="toolbar__nav-icon"
             onClick={handleOnGlobalPlayClick}
           />
-          <GlobalPlayNav
-            isComponentShown={isComponentShown}
-            hideGlobalPlayNav={() => setGlobalPlayNavVisibility(false)}
-          />
+          <MobilePopupNav
+            isPopupShown={isComponentShown}
+            hidePopup={() => setGlobalPlayNavVisibility(false)}
+          >
+            <GlobalPlayNav />
+          </MobilePopupNav>
         </div>
       )}
       <Backdrop
