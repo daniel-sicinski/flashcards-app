@@ -1,12 +1,13 @@
-.cards {
+.cards-wrapper {
   padding: 0 2rem;
   position: relative;
   height: 100vh;
 }
 
-.cards-spinner-box {
+.cards-wrapper__spinner-box {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  color: $color-primary-dark;
 }

@@ -3,7 +3,6 @@
 @import "../scss/base/base";
 
 @import "../js/components/Card/card";
-@import "../js/containers/Cards/cards";
 
 @import "../js/components/Toolbar/toolbar";
 
@@ -15,6 +14,8 @@
 
 @import "../js/containers/Navigation/SideNav/sideNav";
 
-@import "../js/components/Playlists/playlists";
-
 @import "../js/components/Playlists/PlaylistCard/playlistCard";
+
+@import "../js/components/Playlists/PlaylistView/playlistView";
+
+@import "../js/components/CardsWrapper/cardsWrapper";

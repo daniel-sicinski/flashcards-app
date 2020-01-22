@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Card from "../../components/Card/CardContainer";
 import { connect } from "react-redux";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import CardsWrapper from "../../components/CardsWrapper/CardsWrapper";
 
 class Cards extends Component {
   renderCards() {
@@ -12,17 +12,11 @@ class Cards extends Component {
     });
   }
 
-  renderSpinner = () => (
-    <div className="cards-spinner-box">
-      <CircularProgress style={{ color: "#d3b06a" }} />
-    </div>
-  );
-
   render() {
     return (
-      <div className="cards">
-        {this.props.loadingCards ? this.renderSpinner() : this.renderCards()}
-      </div>
+      <CardsWrapper showSpinner={this.props.loadingCards}>
+        {this.renderCards()}
+      </CardsWrapper>
     );
   }
 }

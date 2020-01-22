@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import PlaylistCard from "./PlaylistCard/PlaylistCard";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import CardsWrapper from "../CardsWrapper/CardsWrapper";
 
 export default function Playlists({
   playlists,
@@ -27,15 +27,9 @@ export default function Playlists({
     });
   };
 
-  const renderSpinner = () => (
-    <div className="playlists-spinner-box">
-      <CircularProgress style={{ color: "#d3b06a" }} />
-    </div>
-  );
-
   return (
-    <div className="playlists-container">
-      {loadingPlaylists ? renderSpinner() : renderPlaylists()}
-    </div>
+    <CardsWrapper showSpinner={loadingPlaylists}>
+      {renderPlaylists()}
+    </CardsWrapper>
   );
 }
