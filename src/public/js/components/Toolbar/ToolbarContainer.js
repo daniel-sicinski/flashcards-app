@@ -1,9 +1,11 @@
 import { connect } from "react-redux";
+import { compose } from "redux";
 import Toolbar from "./Toolbar";
 import {
   activateSelectState,
   disableSelectState
 } from "../../store/actions/cardsActions";
+import { withRouter } from "react-router-dom";
 
 const mapStateToProps = state => {
   return {
@@ -20,4 +22,8 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Toolbar);
+const withRedux = connect(mapStateToProps, mapDispatchToProps);
+
+// export default connect(mapStateToProps, mapDispatchToProps)(Toolbar);
+
+export default compose(withRedux, withRouter)(Toolbar);
