@@ -2,6 +2,7 @@
   box-shadow: 0 0.2rem 0.2rem rgba(0, 0, 0, 0.15);
   padding: 1rem;
   margin-bottom: 1rem;
+  cursor: pointer;
 
   &__title {
     font-size: $default-font-size-mobile;
@@ -11,5 +12,12 @@
     color: $color-grey-dark-2;
     font-style: italic;
     font-size: $default-font-size;
+  }
+
+  &__link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
   }
 }
