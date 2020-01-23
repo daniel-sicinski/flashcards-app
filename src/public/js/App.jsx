@@ -19,6 +19,7 @@ class App extends Component {
         <Switch>
           <Route path="/" exact component={Cards} />
           <Route path="/playlists/new" exact component={Cards} />
+          <Route path="/playlists/edit/:playlistId" exact component={Cards} />
           <Route path="/playlists/:playlistId" exact component={PlaylistView} />
           <Route path="/playlists" exact component={Playlists} />
         </Switch>

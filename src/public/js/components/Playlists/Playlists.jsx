@@ -1,14 +1,21 @@
 import React, { useEffect } from "react";
 import PlaylistCard from "./PlaylistCard/PlaylistCard";
 import CardsWrapper from "../CardsWrapper/CardsWrapper";
+import Backdrop from "../Backdrop";
 
 export default function Playlists({
   playlists,
   fetchPlaylists,
-  loadingPlaylists
+  loadingPlaylists,
+  isSelectPlaylistState,
+  disableSelectPlaylistState
 }) {
   useEffect(() => {
     fetchPlaylists();
+
+    return () => {
+      disableSelectPlaylistState();
+    };
   }, []);
 
   const renderPlaylists = () => {
@@ -18,6 +25,7 @@ export default function Playlists({
 
       return (
         <PlaylistCard
+          isSelectState={isSelectPlaylistState}
           playlistName={playlist.name}
           playlistId={_id}
           key={_id}
@@ -28,8 +36,16 @@ export default function Playlists({
   };
 
   return (
-    <CardsWrapper showSpinner={loadingPlaylists}>
-      {renderPlaylists()}
-    </CardsWrapper>
+    <>
+      <CardsWrapper showSpinner={loadingPlaylists}>
+        <div className="playlists">
+          {renderPlaylists()}
+          <Backdrop
+            show={isSelectPlaylistState}
+            hideOnClick={disableSelectPlaylistState}
+          />
+        </div>
+      </CardsWrapper>
+    </>
   );
 }

@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function PlaylistsNav({ activateSelectState, history }) {
+export default function PlaylistsNav({ activateSelectPlaylistState, history }) {
   const openAddNewPlaylistState = () => {
     history.push("/playlists/new");
   };
@@ -9,7 +9,12 @@ export default function PlaylistsNav({ activateSelectState, history }) {
       <div className="playlist-nav__option" onClick={openAddNewPlaylistState}>
         Dodaj playlistę
       </div>
-      <div className="playlist-nav__option">Edytuj playlistę</div>
+      <div
+        className="playlist-nav__option"
+        onClick={activateSelectPlaylistState}
+      >
+        Edytuj playlistę
+      </div>
       <div className="playlist-nav__option">Usuń playlistę</div>
     </>
   );
