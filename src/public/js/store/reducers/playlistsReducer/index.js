@@ -13,11 +13,14 @@ import {
   DELETE_PLAYLIST_ERROR,
   UPDATE_PLAYLIST_START,
   UPDATE_PLAYLIST_SUCCESS,
-  UPDATE_PLAYLIST_ERROR
+  UPDATE_PLAYLIST_ERROR,
+  DISABLE_SELECT_PLAYLIST_STATE,
+  ACTIVATE_SELECT_PLAYLIST_STATE
 } from "../../actions/playlistsActions/actionNames";
 
 const initialState = {
   playlistsData: {},
+  selectPlaylistState: false,
   loading: false,
   error: null
 };
@@ -69,6 +72,16 @@ export default (state = initialState, action) => {
         ...state,
         loading: false,
         error: action.payload.error
+      };
+    case ACTIVATE_SELECT_PLAYLIST_STATE:
+      return {
+        ...state,
+        selectPlaylistState: true
+      };
+    case DISABLE_SELECT_PLAYLIST_STATE:
+      return {
+        ...state,
+        selectPlaylistState: false
       };
     default:
       return state;

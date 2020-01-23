@@ -13,7 +13,9 @@ import {
   DELETE_PLAYLIST_ERROR,
   UPDATE_PLAYLIST_START,
   UPDATE_PLAYLIST_SUCCESS,
-  UPDATE_PLAYLIST_ERROR
+  UPDATE_PLAYLIST_ERROR,
+  ACTIVATE_SELECT_PLAYLIST_STATE,
+  DISABLE_SELECT_PLAYLIST_STATE
 } from "./actionNames";
 
 export const fetchPlaylists = () => {
@@ -146,5 +148,17 @@ export const updatePlaylistError = error => {
     payload: {
       error
     }
+  };
+};
+
+export const activateSelectPlaylistState = () => {
+  return {
+    type: ACTIVATE_SELECT_PLAYLIST_STATE
+  };
+};
+
+export const disableSelectPlaylistState = () => {
+  return {
+    type: DISABLE_SELECT_PLAYLIST_STATE
   };
 };
