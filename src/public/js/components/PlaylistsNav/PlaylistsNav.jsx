@@ -3,7 +3,6 @@ import React from "react";
 export default function PlaylistsNav({ activateSelectState, history }) {
   const openAddNewPlaylistState = () => {
     history.push("/playlists/new");
-    activateSelectState();
   };
   return (
     <>
