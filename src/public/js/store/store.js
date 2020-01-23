@@ -5,17 +5,23 @@ import watchAudioSaga from "./sagas/audioSaga";
 import watchCardsSaga from "./sagas/cardsSaga";
 import watchPlaylistsSaga from "./sagas/playlistsSaga";
 
-const sagaMiddleware = createSagaMiddleware();
+export default (initialState, context = {}) => {
+  const sagaMiddleware = createSagaMiddleware({
+    context
+  });
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const composeEnhancers =
+    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(
-  rootReducer,
-  composeEnhancers(applyMiddleware(sagaMiddleware))
-);
+  const store = createStore(
+    rootReducer,
+    initialState,
+    composeEnhancers(applyMiddleware(sagaMiddleware))
+  );
 
-sagaMiddleware.run(watchAudioSaga);
-sagaMiddleware.run(watchCardsSaga);
-sagaMiddleware.run(watchPlaylistsSaga);
+  sagaMiddleware.run(watchAudioSaga);
+  sagaMiddleware.run(watchCardsSaga);
+  sagaMiddleware.run(watchPlaylistsSaga);
 
-export default store;
+  return store;
+};

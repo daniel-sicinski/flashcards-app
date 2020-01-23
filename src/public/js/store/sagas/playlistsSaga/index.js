@@ -1,4 +1,4 @@
-import { call, put, takeEvery, select } from "redux-saga/effects";
+import { call, put, takeEvery, select, getContext } from "redux-saga/effects";
 import {
   FETCH_PLAYLISTS_START,
   FETCH_PLAYLIST_START,
@@ -66,12 +66,15 @@ export function* getPlaylist(action) {
 
 export function* addPlaylist(action) {
   const { playlistData } = action.payload;
+  const history = yield getContext("routerHistory");
 
   try {
     const response = yield call(postRequest, `/playlists`, playlistData);
     const { newPlaylist } = response.data;
+    const { _id } = newPlaylist;
 
     yield put(addPlaylistSuccess(newPlaylist));
+    history.replace(`/playlists/${_id}`);
   } catch (error) {
     yield put(addPlaylistError(error.message));
   }
