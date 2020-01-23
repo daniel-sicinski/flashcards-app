@@ -10,6 +10,7 @@ import AudioControls from "../AudioControls/AudioControlsContainer";
 import MobilePopupNav from "../MobilePopupNav/MobilePopupNav";
 import PlaylistAddCheckIcon from "@material-ui/icons/PlaylistAddCheck";
 import PlaylistNav from "../PlaylistsNav/PlaylistNavContainer";
+import PlaylistAddEdit from "../PlaylistAddEdit/PlaylistAddEditContainer";
 
 export default function Toolbar({
   isGlobalAudioPlay,
@@ -78,6 +79,8 @@ export default function Toolbar({
         return renderHomePageIcons();
       case "/playlists":
         return renderPlaylistsIcons();
+      case "/playlists/new":
+        return <PlaylistAddEdit />;
       default:
         return null;
     }
