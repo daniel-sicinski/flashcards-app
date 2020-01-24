@@ -7,6 +7,7 @@ import Navigation from "./containers/Navigation";
 import { Route, Switch } from "react-router-dom";
 import Playlists from "./components/Playlists/PlaylistsContainer";
 import PlaylistView from "./components/PlaylistView/PlaylistViewContainer";
+import PlaylistEditView from "./components/PlaylistEditView/PlaylistEditViewContainer";
 
 class App extends Component {
   componentDidMount() {
@@ -19,7 +20,11 @@ class App extends Component {
         <Switch>
           <Route path="/" exact component={Cards} />
           <Route path="/playlists/new" exact component={Cards} />
-          <Route path="/playlists/edit/:playlistId" exact component={Cards} />
+          <Route
+            path="/playlists/edit/:playlistId"
+            exact
+            component={PlaylistEditView}
+          />
           <Route path="/playlists/:playlistId" exact component={PlaylistView} />
           <Route path="/playlists" exact component={Playlists} />
         </Switch>
