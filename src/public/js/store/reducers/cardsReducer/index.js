@@ -6,7 +6,9 @@ import {
   DISABLE_SELECT_STATE,
   SELECT_CARD,
   UNSELECT_CARD,
-  SET_DISPLAYED_CARDS
+  SET_DISPLAYED_CARDS,
+  SET_SELECTED_CARDS,
+  CLEAR_SELECTED_CARDS
 } from "../../actions/cardsActions/actionNames";
 
 const initialState = {
@@ -59,6 +61,16 @@ export default (state = initialState, action) => {
         selectedCardsIds: state.selectedCardsIds.filter(
           id => id !== action.payload.cardId
         )
+      };
+    case SET_SELECTED_CARDS:
+      return {
+        ...state,
+        selectedCardsIds: action.payload.selectedCardsIds
+      };
+    case CLEAR_SELECTED_CARDS:
+      return {
+        ...state,
+        selectedCardsIds: []
       };
     case SET_DISPLAYED_CARDS:
       return {

@@ -6,7 +6,9 @@ import {
   DISABLE_SELECT_STATE,
   SELECT_CARD,
   UNSELECT_CARD,
-  SET_DISPLAYED_CARDS
+  SET_DISPLAYED_CARDS,
+  SET_SELECTED_CARDS,
+  CLEAR_SELECTED_CARDS
 } from "./actionNames";
 
 export const fetchCardsStart = () => {
@@ -57,6 +59,21 @@ export const unselectCard = cardId => {
     payload: {
       cardId
     }
+  };
+};
+
+export const setSelectedCards = selectedCardsIds => {
+  return {
+    type: SET_SELECTED_CARDS,
+    payload: {
+      selectedCardsIds
+    }
+  };
+};
+
+export const clearSelectedCards = () => {
+  return {
+    type: CLEAR_SELECTED_CARDS
   };
 };
 
