@@ -6,6 +6,7 @@ import {
   setDisplayedCards,
   activateSelectState
 } from "../../store/actions/cardsActions";
+import RenderCards from "../../components/RenderCards/RenderCards";
 
 class Cards extends Component {
   componentDidMount() {
@@ -23,18 +24,10 @@ class Cards extends Component {
     }
   }
 
-  renderCards() {
-    return this.props.cardsToDisplay.map(card => {
-      const { _id } = card;
-
-      return <Card cardData={card} cardId={_id} key={_id} />;
-    });
-  }
-
   render() {
     return (
       <CardsWrapper showSpinner={this.props.loadingCards}>
-        {this.renderCards()}
+        <RenderCards cards={this.props.cardsToDisplay} />
       </CardsWrapper>
     );
   }
