@@ -18,7 +18,7 @@ class Cards extends Component {
 
     switch (pathname) {
       case "/":
-        return this.props.setDisplayedCards(Object.keys(this.props.cardsData));
+        return this.props.setDisplayedCards(this.props.cardsIds);
       case "/playlists/new":
         return this.props.activateSelectState();
     }
@@ -27,26 +27,21 @@ class Cards extends Component {
   render() {
     return (
       <CardsWrapper showSpinner={this.props.loadingCards}>
-        <RenderCards cards={this.props.cardsToDisplay} />
+        <RenderCards cards={this.props.cards} />
       </CardsWrapper>
     );
   }
 }
 
 const mapStateToProps = state => {
-  const { cardsData, cardsDisplayed } = state.cards;
+  const { cardsData } = state.cards;
+  console.log(Object.values(cardsData));
   return {
     loadingCards: state.cards.loading,
-    cardsData,
-    // temporary
-    cardsToDisplay: convertCardsIdsToCards(cardsDisplayed, cardsData)
+    cardsIds: Object.keys(cardsData),
+    cards: Object.values(cardsData)
   };
 };
-
-function convertCardsIdsToCards(cardsIds, cardsData) {
-  if (!cardsIds) return [];
-  return cardsIds.map(id => cardsData[id]);
-}
 
 export default connect(mapStateToProps, {
   setDisplayedCards,
