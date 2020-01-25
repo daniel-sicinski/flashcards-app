@@ -82,6 +82,7 @@ export function* addPlaylist(action) {
 
 export function* updatePlaylist(action) {
   const { playlistId, updatedPlaylistData } = action.payload;
+  const history = yield getContext("routerHistory");
 
   try {
     const response = yield call(
@@ -92,6 +93,7 @@ export function* updatePlaylist(action) {
     const { updatedPlaylist } = response.data;
 
     yield put(updatePlaylistSuccess(updatedPlaylist));
+    history.replace(`/playlists/${playlistId}`);
   } catch (error) {
     yield put(updatePlaylistError(error.message));
   }

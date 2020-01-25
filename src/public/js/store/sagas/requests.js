@@ -35,7 +35,7 @@ export const putRequest = async (path, data) => {
     headers: {
       "Content-Type": "application/json"
     },
-    body: data
+    body: JSON.stringify(data)
   });
 
   await checkForResponseError(response);
