@@ -1,12 +1,14 @@
 import { connect } from "react-redux";
 import PlaylistEditView from "./PlaylistEditView";
 import {
-  activateSelectState,
-  disableSelectState,
   setSelectedCards,
   clearSelectedCards
 } from "../../store/actions/cardsActions";
-import { fetchPlaylist } from "../../store/actions/playlistsActions";
+import {
+  fetchPlaylist,
+  setPlaylistForEdit,
+  disablePlaylistEditState
+} from "../../store/actions/playlistsActions";
 import { sortCardsSelected } from "./sortCardsSelected";
 
 const mapStateToProps = (state, ownProps) => {
@@ -23,8 +25,8 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 export default connect(mapStateToProps, {
-  activateSelectState,
-  disableSelectState,
+  setPlaylistForEdit,
+  disablePlaylistEditState,
   fetchPlaylist,
   setSelectedCards,
   clearSelectedCards

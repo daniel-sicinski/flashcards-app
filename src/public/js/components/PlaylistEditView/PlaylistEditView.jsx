@@ -5,8 +5,8 @@ import RenderCards from "../RenderCards/RenderCards";
 
 export default function PlaylistEditView({
   cards,
-  activateSelectState,
-  disableSelectState,
+  setPlaylistForEdit,
+  disablePlaylistEditState,
   setSelectedCards,
   fetchPlaylist,
   playlistCardsIds,
@@ -16,16 +16,15 @@ export default function PlaylistEditView({
 
   useEffect(() => {
     fetchPlaylist(playlistId);
-    activateSelectState();
-
+    setPlaylistForEdit(playlistId);
     return () => {
-      disableSelectState();
+      disablePlaylistEditState();
     };
   }, [playlistId]);
 
   useEffect(() => {
     setSelectedCards(playlistCardsIds);
-
+    console.log("bar");
     return () => {
       clearSelectedCards();
     };
