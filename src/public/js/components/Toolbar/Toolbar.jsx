@@ -74,12 +74,15 @@ export default function Toolbar({
   );
 
   const renderIconsBasedOnPath = () => {
-    switch (history.location.pathname) {
+    const { pathname } = history.location;
+    switch (pathname) {
       case "/":
         return renderHomePageIcons();
       case "/playlists":
         return renderPlaylistsIcons();
       case "/playlists/new":
+        return <PlaylistAddEdit />;
+      case /^\/playlists\/edit/.test(pathname) && pathname:
         return <PlaylistAddEdit />;
       default:
         return null;
