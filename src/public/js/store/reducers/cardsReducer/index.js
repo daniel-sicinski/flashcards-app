@@ -10,6 +10,10 @@ import {
   SET_SELECTED_CARDS,
   CLEAR_SELECTED_CARDS
 } from "../../actions/cardsActions/actionNames";
+import {
+  SET_EDIT_PLAYLIST_STATE,
+  DISABLE_EDIT_PLAYLIST_STATE
+} from "../../actions/playlistsActions/actionNames";
 
 const initialState = {
   cardsData: {},
@@ -39,11 +43,13 @@ export default (state = initialState, action) => {
         loading: false,
         error: action.payload.error
       };
+    case SET_EDIT_PLAYLIST_STATE:
     case ACTIVATE_SELECT_STATE:
       return {
         ...state,
         isSelectStateActive: true
       };
+    case DISABLE_EDIT_PLAYLIST_STATE:
     case DISABLE_SELECT_STATE:
       return {
         ...state,

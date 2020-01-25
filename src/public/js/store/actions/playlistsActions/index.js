@@ -15,7 +15,9 @@ import {
   UPDATE_PLAYLIST_SUCCESS,
   UPDATE_PLAYLIST_ERROR,
   ACTIVATE_SELECT_PLAYLIST_STATE,
-  DISABLE_SELECT_PLAYLIST_STATE
+  DISABLE_SELECT_PLAYLIST_STATE,
+  SET_EDIT_PLAYLIST_STATE,
+  DISABLE_EDIT_PLAYLIST_STATE
 } from "./actionNames";
 
 export const fetchPlaylists = () => {
@@ -123,21 +125,21 @@ export const deletePlaylistError = error => {
   };
 };
 
-export const updatePlaylist = updatedPlaylistData => {
+export const updatePlaylist = (playlistId, updatedPlaylistData) => {
   return {
     type: UPDATE_PLAYLIST_START,
     payload: {
+      playlistId,
       updatedPlaylistData
     }
   };
 };
 
-export const updatePlaylistSuccess = (playlistId, updatedPlaylistData) => {
+export const updatePlaylistSuccess = playlist => {
   return {
     type: UPDATE_PLAYLIST_SUCCESS,
     payload: {
-      playlistId,
-      updatedPlaylistData
+      playlist
     }
   };
 };
@@ -160,5 +162,20 @@ export const activateSelectPlaylistState = () => {
 export const disableSelectPlaylistState = () => {
   return {
     type: DISABLE_SELECT_PLAYLIST_STATE
+  };
+};
+
+export const setPlaylistForEdit = playlistId => {
+  return {
+    type: SET_EDIT_PLAYLIST_STATE,
+    payload: {
+      playlistId
+    }
+  };
+};
+
+export const disablePlaylistEditState = () => {
+  return {
+    type: DISABLE_EDIT_PLAYLIST_STATE
   };
 };
