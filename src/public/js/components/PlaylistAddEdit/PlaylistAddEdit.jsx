@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import DoneIcon from "@material-ui/icons/Done";
 import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
@@ -7,20 +7,42 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 export default function PlaylistAddEdit({
   addPlaylist,
-  disableSelectState,
   waitingForRequest,
-  selectedCardsIds
+  selectedCardsIds,
+  editedPlaylist,
+  updatePlaylist,
+  disablePlaylistEditState
 }) {
   const [modalOpened, setModalVisibility] = useState(false);
   const [playlistName, setPlaylistName] = useState("");
+
+  useEffect(() => {
+    if (editedPlaylist) {
+      setPlaylistName(editedPlaylist.name);
+    }
+  }, [editedPlaylist]);
+
+  useEffect(() => {
+    return () => {
+      disablePlaylistEditState();
+    };
+  }, []);
 
   const isSelectedCard = selectedCardsIds.length > 0;
 
   const handleOnSubmit = e => {
     e.preventDefault();
 
-    addPlaylist(playlistName);
-    disableSelectState();
+    const playlistData = {
+      name: playlistName,
+      cardsIds: selectedCardsIds
+    };
+
+    if (editedPlaylist) {
+      updatePlaylist(editedPlaylist._id, playlistData);
+    } else {
+      addPlaylist(playlistData);
+    }
   };
 
   const handleDoneButton = () => {
@@ -47,7 +69,9 @@ export default function PlaylistAddEdit({
               value={playlistName}
               onChange={e => setPlaylistName(e.target.value)}
             />
-            <Button type="submit">Dodaj playlistę</Button>
+            <Button type="submit">
+              {editedPlaylist ? "Zaktualizuj" : "Dodaj"}
+            </Button>
           </form>
         )}
       </Modal>

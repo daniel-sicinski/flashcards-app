@@ -24,7 +24,6 @@ export default function PlaylistEditView({
 
   useEffect(() => {
     setSelectedCards(playlistCardsIds);
-    console.log("bar");
     return () => {
       clearSelectedCards();
     };
