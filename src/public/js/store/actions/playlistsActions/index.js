@@ -14,7 +14,8 @@ import {
   UPDATE_PLAYLIST_START,
   UPDATE_PLAYLIST_SUCCESS,
   UPDATE_PLAYLIST_ERROR,
-  ACTIVATE_SELECT_PLAYLIST_STATE,
+  ACTIVATE_SELECT_PLAYLIST_EDIT_STATE,
+  ACTIVATE_SELECT_PLAYLIST_DELETE_STATE,
   DISABLE_SELECT_PLAYLIST_STATE,
   SET_EDIT_PLAYLIST_STATE,
   DISABLE_EDIT_PLAYLIST_STATE
@@ -153,9 +154,15 @@ export const updatePlaylistError = error => {
   };
 };
 
-export const activateSelectPlaylistState = () => {
+export const activateSelectPlaylistEditState = () => {
   return {
-    type: ACTIVATE_SELECT_PLAYLIST_STATE
+    type: ACTIVATE_SELECT_PLAYLIST_EDIT_STATE
+  };
+};
+
+export const activateSelectPlaylistDeleteState = () => {
+  return {
+    type: ACTIVATE_SELECT_PLAYLIST_DELETE_STATE
   };
 };
 

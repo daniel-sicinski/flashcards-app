@@ -15,14 +15,16 @@ import {
   UPDATE_PLAYLIST_SUCCESS,
   UPDATE_PLAYLIST_ERROR,
   DISABLE_SELECT_PLAYLIST_STATE,
-  ACTIVATE_SELECT_PLAYLIST_STATE,
+  ACTIVATE_SELECT_PLAYLIST_EDIT_STATE,
+  ACTIVATE_SELECT_PLAYLIST_DELETE_STATE,
   SET_EDIT_PLAYLIST_STATE,
   DISABLE_EDIT_PLAYLIST_STATE
 } from "../../actions/playlistsActions/actionNames";
 
 const initialState = {
   playlistsData: {},
-  selectPlaylistState: false,
+  selectPlaylistEditState: false,
+  selectPlaylistDeleteState: false,
   editedPlaylistId: null,
   loading: false,
   error: null
@@ -76,15 +78,21 @@ export default (state = initialState, action) => {
         loading: false,
         error: action.payload.error
       };
-    case ACTIVATE_SELECT_PLAYLIST_STATE:
+    case ACTIVATE_SELECT_PLAYLIST_EDIT_STATE:
       return {
         ...state,
-        selectPlaylistState: true
+        selectPlaylistEditState: true
+      };
+    case ACTIVATE_SELECT_PLAYLIST_DELETE_STATE:
+      return {
+        ...state,
+        selectPlaylistDeleteState: true
       };
     case DISABLE_SELECT_PLAYLIST_STATE:
       return {
         ...state,
-        selectPlaylistState: false
+        selectPlaylistEditState: false,
+        selectPlaylistDeleteState: false
       };
     case SET_EDIT_PLAYLIST_STATE:
       return {
