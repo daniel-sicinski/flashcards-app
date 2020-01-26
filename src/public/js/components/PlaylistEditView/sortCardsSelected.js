@@ -1,5 +1,5 @@
 export const sortCardsSelected = (cards, selectedCardsIds) => {
-  if (selectedCardsIds.length === 0) return [];
+  if (selectedCardsIds.length === 0) return cards;
 
   const cardsCopy = [...cards];
 
