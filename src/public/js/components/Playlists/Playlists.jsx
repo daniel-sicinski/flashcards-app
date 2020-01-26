@@ -7,8 +7,10 @@ export default function Playlists({
   playlists,
   fetchPlaylists,
   loadingPlaylists,
-  isSelectPlaylistState,
-  disableSelectPlaylistState
+  isSelectPlaylistEditState,
+  isSelectPlaylistDeleteState,
+  disableSelectPlaylistState,
+  deletePlaylist
 }) {
   useEffect(() => {
     fetchPlaylists();
@@ -25,11 +27,13 @@ export default function Playlists({
 
       return (
         <PlaylistCard
-          isSelectState={isSelectPlaylistState}
+          isSelectEdit={isSelectPlaylistEditState}
+          isSelectDelete={isSelectPlaylistDeleteState}
           playlistName={playlist.name}
           playlistId={_id}
           key={_id}
           playlistCount={playlistCount}
+          handleDeletePlaylist={deletePlaylist}
         />
       );
     });
@@ -41,7 +45,7 @@ export default function Playlists({
         <div className="playlists">
           {renderPlaylists()}
           <Backdrop
-            show={isSelectPlaylistState}
+            show={isSelectPlaylistEditState || isSelectPlaylistDeleteState}
             hideOnClick={disableSelectPlaylistState}
           />
         </div>

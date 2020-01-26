@@ -2,14 +2,14 @@ import { connect } from "react-redux";
 import { compose } from "redux";
 import { withRouter } from "react-router-dom";
 import PlaylistNav from "./PlaylistsNav";
-import { activateSelectPlaylistState } from "../../store/actions/playlistsActions";
+import {
+  activateSelectPlaylistEditState,
+  activateSelectPlaylistDeleteState
+} from "../../store/actions/playlistsActions";
 
-const mapDispatchToProps = dispatch => {
-  return {
-    activateSelectPlaylistState: () => dispatch(activateSelectPlaylistState())
-  };
-};
-
-const withStore = connect(null, mapDispatchToProps);
+const withStore = connect(null, {
+  activateSelectPlaylistEditState,
+  activateSelectPlaylistDeleteState
+});
 
 export default compose(withStore, withRouter)(PlaylistNav);

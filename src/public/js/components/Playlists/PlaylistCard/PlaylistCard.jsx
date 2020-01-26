@@ -5,19 +5,37 @@ export default function PlaylistCard({
   playlistName,
   playlistId,
   playlistCount,
-  isSelectState
+  isSelectEdit,
+  isSelectDelete,
+  handleDeletePlaylist
 }) {
-  console.log(isSelectState);
-  const playlistCardClasses = isSelectState
-    ? ["playlist-card", "playlist-card--select"]
-    : ["playlist-card"];
+  const playlistCardClasses =
+    isSelectEdit || isSelectDelete
+      ? ["playlist-card", "playlist-card--select"]
+      : ["playlist-card"];
 
-  const linkPath = isSelectState
-    ? `/playlists/edit/${playlistId}`
-    : `/playlists/${playlistId}`;
+  let linkPath;
+
+  if (isSelectEdit) {
+    linkPath = `/playlists/edit/${playlistId}`;
+  } else if (isSelectDelete) {
+    linkPath = `/playlists`;
+  } else {
+    linkPath = `/playlists/${playlistId}`;
+  }
+
+  const onDeletePlaylistClick = () => {
+    if (isSelectDelete) {
+      handleDeletePlaylist(playlistId);
+    }
+  };
 
   return (
-    <Link to={linkPath} className="playlist-card__link">
+    <Link
+      to={linkPath}
+      className="playlist-card__link"
+      onClick={onDeletePlaylistClick}
+    >
       <div className={playlistCardClasses.join(" ")}>
         <p className="playlist-card__title">{playlistName}</p>
         <span className="playlist-card__amount">Karty: {playlistCount}</span>
