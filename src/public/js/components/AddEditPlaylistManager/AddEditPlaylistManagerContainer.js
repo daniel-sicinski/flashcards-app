@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import PlaylistAddEdit from "./PlaylistAddEdit";
+import AddEditPlaylistManager from "./AddEditPlaylistManager";
 import {
   addPlaylist,
   updatePlaylist,
@@ -20,4 +20,4 @@ export default connect(mapStateToProps, {
   addPlaylist,
   updatePlaylist,
   disablePlaylistEditState
-})(PlaylistAddEdit);
+})(AddEditPlaylistManager);
