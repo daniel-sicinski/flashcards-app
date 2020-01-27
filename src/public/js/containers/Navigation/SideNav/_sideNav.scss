@@ -1,0 +1,29 @@
+.side-nav {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  bottom: 7rem;
+  left: -23rem;
+  width: 22rem;
+  background-color: $color-grey-light-1;
+  box-shadow: 2px -2px 5px rgba(0, 0, 0, 0.15);
+  z-index: $sideNav-z-index;
+
+  &--show {
+    left: 0;
+  }
+
+  &__link:link,
+  &__link:visited,
+  &__link:hover,
+  &__link:active {
+    display: block;
+    padding: 2rem 1rem;
+    font-size: $default-font-size-mobile;
+    color: $color-black;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+  }
+}

@@ -1,10 +1,11 @@
 $color-primary: #ffd581;
 $color-primary-dark: #d3b06a;
+$color-select: #f0ead5;
 
 $color-grey-light-1: #f7f7f7;
 $color-grey-light-2: #eee;
 
-$color-grey-dark: #777;
+$color-grey-dark: #c0c0c0;
 $color-grey-dark-2: #999;
 $color-grey-dark-3: #333;
 
@@ -17,5 +18,8 @@ $default-font-size: 1.6rem;
 $default-font-size-mobile: 1.8rem;
 
 $toolbar-bottom-z-index: 1;
+$sideNav-z-index: 3;
 $global-play-nav-z-index: 3;
+$modal-z-index: 3;
+$playlist-card: 3;
 $backdrop-z-index: 2;

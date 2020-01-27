@@ -3,7 +3,6 @@
 @import "../scss/base/base";
 
 @import "../js/components/Card/card";
-@import "../js/containers/Cards/cards";
 
 @import "../js/components/Toolbar/toolbar";
 
@@ -12,3 +11,23 @@
 @import "../js/components/GlobalPlayNav/globalPlayNav";
 
 @import "../js/components/Backdrop/backdrop";
+
+@import "../js/containers/Navigation/SideNav/sideNav";
+
+@import "../js/components/Playlists/PlaylistCard/playlistCard";
+
+@import "../js/components/CardsWrapper/cardsWrapper";
+
+@import "../js/components/MobilePopupNav/mobilePopupNav";
+
+@import "../js/components/PlaylistsNav/playlistsNav";
+
+@import "../js/components/Modal/Modal";
+
+@import "../js/components/AddEditPlaylistManager//addEditPlaylistManager";
+
+@import "../js/components/InputField/inputField";
+
+@import "../js/components/Button/button";
+
+@import "../js/components/Playlists/playlists";

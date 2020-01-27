@@ -1,0 +1,31 @@
+.playlist-card {
+  box-shadow: 0 0.2rem 0.2rem rgba(0, 0, 0, 0.15);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &--select {
+    background-color: $color-select;
+    transform: scale(1.03);
+  }
+
+  &__title {
+    font-size: $default-font-size-mobile;
+  }
+
+  &__amount {
+    color: $color-grey-dark-2;
+    font-style: italic;
+    font-size: $default-font-size;
+  }
+
+  &__link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    position: relative;
+    z-index: $playlist-card;
+  }
+}

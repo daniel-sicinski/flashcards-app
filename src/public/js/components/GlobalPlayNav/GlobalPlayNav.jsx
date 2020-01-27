@@ -1,16 +1,8 @@
 import React from "react";
 
-export default function GlobalPlayNav({
-  isComponentShown,
-  hideGlobalPlayNav,
-  playSelectedTracks
-}) {
-  const classes = isComponentShown
-    ? ["global-play-nav", "global-play-nav--show"]
-    : ["global-play-nav"];
-
+export default function GlobalPlayNav({ playSelectedTracks }) {
   return (
-    <div className={classes.join(" ")} onClick={hideGlobalPlayNav}>
+    <>
       <div
         className="global-play-nav__option"
         onClick={() => playSelectedTracks("all")}
@@ -29,6 +21,6 @@ export default function GlobalPlayNav({
       >
         Odtwórz zdania
       </div>
-    </div>
+    </>
   );
 }

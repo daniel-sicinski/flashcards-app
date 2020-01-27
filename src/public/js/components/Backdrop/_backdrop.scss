@@ -10,4 +10,8 @@
   &--show {
     display: block;
   }
+
+  &--darken {
+    background-color: rgba(0, 0, 0, 0.18);
+  }
 }

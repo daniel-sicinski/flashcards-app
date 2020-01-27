@@ -1,43 +1,49 @@
 import React, { Component } from "react";
 import Card from "../../components/Card/CardContainer";
 import { connect } from "react-redux";
-import CircularProgress from "@material-ui/core/CircularProgress";
+import CardsWrapper from "../../components/CardsWrapper/CardsWrapper";
+import {
+  setDisplayedCards,
+  activateSelectState
+} from "../../store/actions/cardsActions";
+import RenderCards from "../../components/RenderCards/RenderCards";
 
 class Cards extends Component {
-  renderCards() {
-    return this.props.cardsToDisplay.map(card => {
-      const { _id } = card;
-
-      return <Card cardData={card} cardId={_id} key={_id} />;
-    });
+  componentDidMount() {
+    this.dispatchActionBasedOnPath();
   }
 
-  renderSpinner = () => (
-    <div className="cards-spinner-box">
-      <CircularProgress style={{ color: "#d3b06a" }} />
-    </div>
-  );
+  dispatchActionBasedOnPath() {
+    const { pathname } = this.props.history.location;
+
+    switch (pathname) {
+      case "/":
+        return this.props.setDisplayedCards(this.props.cardsIds);
+      case "/playlists/new":
+        return this.props.activateSelectState();
+    }
+  }
 
   render() {
     return (
-      <div className="cards">
-        {this.props.loadingCards ? this.renderSpinner() : this.renderCards()}
-      </div>
+      <CardsWrapper showSpinner={this.props.loadingCards}>
+        <RenderCards cards={this.props.cards} />
+      </CardsWrapper>
     );
   }
 }
 
 const mapStateToProps = state => {
-  const { cardsData, cardsDisplayed } = state.cards;
+  const { cardsData } = state.cards;
+  console.log(Object.values(cardsData));
   return {
     loadingCards: state.cards.loading,
-    // temporary
-    cardsToDisplay: convertCardsIdsToCards(cardsDisplayed, cardsData)
+    cardsIds: Object.keys(cardsData),
+    cards: Object.values(cardsData)
   };
 };
 
-function convertCardsIdsToCards(cardsIds, cardsData) {
-  return cardsIds.map(id => cardsData[id]);
-}
-
-export default connect(mapStateToProps)(Cards);
+export default connect(mapStateToProps, {
+  setDisplayedCards,
+  activateSelectState
+})(Cards);

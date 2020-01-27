@@ -1,0 +1,15 @@
+.mobile-popup-nav {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  bottom: 7rem;
+  right: -17rem;
+  width: 16rem;
+  background-color: $color-grey-light-1;
+  box-shadow: -2px -2px 5px rgba(0, 0, 0, 0.15);
+  z-index: $global-play-nav-z-index;
+
+  &--show {
+    right: 0;
+  }
+}
