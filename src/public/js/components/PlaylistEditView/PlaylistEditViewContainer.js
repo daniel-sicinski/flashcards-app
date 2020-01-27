@@ -20,6 +20,7 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     playlistCardsIds,
+    loadingCards: state.cards.loading,
     cards: sortCardsSelected(cards, selectedCardsIds)
   };
 };
