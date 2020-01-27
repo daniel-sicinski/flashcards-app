@@ -101,11 +101,13 @@ export function* updatePlaylist(action) {
 
 export function* deletePlaylist(action) {
   const { playlistId } = action.payload;
+  const history = yield getContext("routerHistory");
 
   try {
     yield call(deleteRequest, `/playlists/${playlistId}`);
 
     yield put(deletePlaylistSuccess(playlistId));
+    history.replace("/playlists");
   } catch (error) {
     yield put(deletePlaylistError(error.message));
   }

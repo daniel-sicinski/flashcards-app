@@ -4,12 +4,14 @@ import { withRouter } from "react-router-dom";
 import PlaylistNav from "./PlaylistsNav";
 import {
   activateSelectPlaylistEditState,
-  activateSelectPlaylistDeleteState
+  activateSelectPlaylistDeleteState,
+  deletePlaylist
 } from "../../store/actions/playlistsActions";
 
 const withStore = connect(null, {
   activateSelectPlaylistEditState,
-  activateSelectPlaylistDeleteState
+  activateSelectPlaylistDeleteState,
+  deletePlaylist
 });
 
-export default compose(withStore, withRouter)(PlaylistNav);
+export default compose(withRouter, withStore)(PlaylistNav);

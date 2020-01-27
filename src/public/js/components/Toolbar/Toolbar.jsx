@@ -12,6 +12,8 @@ import PlaylistAddCheckIcon from "@material-ui/icons/PlaylistAddCheck";
 import PlaylistNav from "../PlaylistsNav/PlaylistNavContainer";
 import PlaylistAddEdit from "../PlaylistAddEdit/PlaylistAddEditContainer";
 
+import { Route } from "react-router-dom";
+
 export default function Toolbar({
   isGlobalAudioPlay,
   isSelectStateActive,
@@ -21,11 +23,11 @@ export default function Toolbar({
   showSideNav,
   history
 }) {
-  const [isPopupShown, setPopupVisibility] = useState(false);
-  console.log(history.location.pathname);
+  const [isAudioPopupShown, setAudioPopupVisibility] = useState(false);
+  const [isPlaylistPopupShown, setPlaylistPopupVisibility] = useState(false);
 
   const handleOnGlobalPlayClick = () => {
-    setPopupVisibility(true);
+    setAudioPopupVisibility(true);
 
     if (isSelectStateActive && isNoCardsSelected) disableSelectState();
   };
@@ -50,8 +52,8 @@ export default function Toolbar({
         onClick={handleOnGlobalPlayClick}
       />
       <MobilePopupNav
-        isPopupShown={isPopupShown}
-        hidePopup={() => setPopupVisibility(false)}
+        isPopupShown={isAudioPopupShown}
+        hidePopup={() => setAudioPopupVisibility(false)}
       >
         <GlobalPlayNav />
       </MobilePopupNav>
@@ -62,16 +64,44 @@ export default function Toolbar({
     <div>
       <PlaylistAddCheckIcon
         className="toolbar__nav-icon"
-        onClick={() => setPopupVisibility(true)}
+        onClick={() => setPlaylistPopupVisibility(true)}
       />
       <MobilePopupNav
-        isPopupShown={isPopupShown}
-        hidePopup={() => setPopupVisibility(false)}
+        isPopupShown={isPlaylistPopupShown}
+        hidePopup={() => setPlaylistPopupVisibility(false)}
       >
         <PlaylistNav />
       </MobilePopupNav>
     </div>
   );
+
+  const PlaylistViewIcons = () => {
+    return (
+      <>
+        <SearchIcon className="toolbar__nav-icon" />
+        <PlaylistAddCheckIcon
+          className="toolbar__nav-icon"
+          onClick={() => setPlaylistPopupVisibility(true)}
+        />
+        <MobilePopupNav
+          isPopupShown={isPlaylistPopupShown}
+          hidePopup={() => setPlaylistPopupVisibility(false)}
+        >
+          <PlaylistNav />
+        </MobilePopupNav>
+        <PlayCircleFilledIcon
+          className="toolbar__nav-icon"
+          onClick={handleOnGlobalPlayClick}
+        />
+        <MobilePopupNav
+          isPopupShown={isAudioPopupShown}
+          hidePopup={() => setAudioPopupVisibility(false)}
+        >
+          <GlobalPlayNav />
+        </MobilePopupNav>
+      </>
+    );
+  };
 
   const renderIconsBasedOnPath = () => {
     const { pathname } = history.location;
@@ -84,9 +114,16 @@ export default function Toolbar({
         return <PlaylistAddEdit />;
       case /^\/playlists\/edit/.test(pathname) && pathname:
         return <PlaylistAddEdit />;
+      // case /^\/playlists\/.+$/.test(pathname) && pathname:
+      //   return <PlaylistViewIcons />;
       default:
         return null;
     }
+  };
+
+  const hidePopups = () => {
+    setAudioPopupVisibility(false);
+    setPlaylistPopupVisibility(false);
   };
 
   return (
@@ -97,11 +134,12 @@ export default function Toolbar({
         <div className="toolbar__nav">
           <MenuIcon className="toolbar__nav-icon" onClick={showSideNav} />
           {renderIconsBasedOnPath()}
+          <Route path="/playlists/:playlistId" component={PlaylistViewIcons} />
         </div>
       )}
       <Backdrop
-        show={isPopupShown}
-        hideOnClick={() => setPopupVisibility(false)}
+        show={isAudioPopupShown || isPlaylistPopupShown}
+        hideOnClick={hidePopups}
       />
     </div>
   );
