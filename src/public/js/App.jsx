@@ -9,11 +9,25 @@ import Playlists from "./components/Playlists/PlaylistsContainer";
 import PlaylistView from "./components/PlaylistView/PlaylistViewContainer";
 import PlaylistEditView from "./components/PlaylistEditView/PlaylistEditViewContainer";
 import NewPlaylistView from "./components/NewPlaylistView/NewPlaylistViewContainer";
+import { setDeviceType } from "./store/actions/UIActions";
+import { MIN_DESKTOP_WIDTH } from "./config";
 
 class App extends Component {
   componentDidMount() {
     this.props.fetchCardsStart();
+
+    this.handleDeviceType();
+    window.addEventListener("resize", this.handleDeviceType);
   }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.handleDeviceType);
+  }
+
+  handleDeviceType = () => {
+    const isDesktop = window.innerWidth > MIN_DESKTOP_WIDTH;
+    setDeviceType(isDesktop);
+  };
 
   render() {
     return (
@@ -36,4 +50,4 @@ class App extends Component {
   }
 }
 
-export default connect(null, { fetchCardsStart })(App);
+export default connect(null, { fetchCardsStart, setDeviceType })(App);
