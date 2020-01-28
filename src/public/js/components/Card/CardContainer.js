@@ -12,14 +12,15 @@ const mapStateToProps = (state, ownProps) => {
   const { data, index } = ownProps;
   const card = data[index];
   const cardId = card._id;
-  // const { cardId } = ownProps;
+
   return {
     isAudioPaused: state.audio.paused,
     isActive: cardId === state.audio.currentlyActiveCardId,
     isGlobalAudioPlay: state.audio.isGlobalAudioPlay,
     loadingAudio: state.audio.loading,
     isSelectStateActive: state.cards.isSelectStateActive,
-    isCardSelected: state.cards.selectedCardsIds.includes(cardId)
+    isCardSelected: state.cards.selectedCardsIds.includes(cardId),
+    isDesktop: state.ui.isDesktop
   };
 };
 
