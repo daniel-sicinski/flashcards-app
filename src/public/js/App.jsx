@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import AllCardsView from "./components/AllCardsView/AllCardsViewContainer";
 import AudioManager from "./containers/AudioManager";
 import { fetchCardsStart } from "./store/actions/cardsActions";
-import Navigation from "./containers/Navigation";
+import Navigation from "./components/Navigation/Navigation";
 import { Route, Switch } from "react-router-dom";
 import Playlists from "./components/Playlists/PlaylistsContainer";
 import PlaylistView from "./components/PlaylistView/PlaylistViewContainer";

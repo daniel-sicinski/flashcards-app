@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Toolbar from "../../components/Toolbar/ToolbarContainer";
+import Toolbar from "../Toolbar/ToolbarContainer";
 import SideNav from "./SideNav/SideNav";
-import Backdrop from "../../components/Backdrop";
+import Backdrop from "../Backdrop";
 
 export default function Navigation() {
   const [isSideNavVisible, setSideNavVisibility] = useState(false);
