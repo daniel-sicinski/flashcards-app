@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Toolbar from "../Toolbar/ToolbarContainer";
 import SideNav from "./SideNav/SideNav";
 import Backdrop from "../Backdrop";
 
-export default function Navigation() {
+export default function Navigation({ isDesktop }) {
   const [isSideNavVisible, setSideNavVisibility] = useState(false);
-  return (
+
+  useEffect(() => {
+    console.log(isDesktop);
+    isDesktop ? setSideNavVisibility(true) : setSideNavVisibility(false);
+  }, [isDesktop]);
+
+  const MobileNav = () => (
     <>
       <SideNav
         isSideNavVisible={isSideNavVisible}
@@ -18,4 +24,12 @@ export default function Navigation() {
       />
     </>
   );
+
+  const DesktopNav = () => (
+    <>
+      <SideNav isSideNavVisible={isSideNavVisible} />
+    </>
+  );
+
+  return <>{isDesktop ? <DesktopNav /> : <MobileNav />}</>;
 }

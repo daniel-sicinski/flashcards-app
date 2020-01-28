@@ -10,14 +10,17 @@
   box-shadow: 2px -2px 5px rgba(0, 0, 0, 0.15);
   z-index: $sideNav-z-index;
 
+  @include respond(desktop) {
+    width: 28rem;
+    bottom: 0;
+  }
+
   &--show {
     left: 0;
   }
 
   &__link:link,
-  &__link:visited,
-  &__link:hover,
-  &__link:active {
+  &__link:visited {
     display: block;
     padding: 2rem 1rem;
     font-size: $default-font-size-mobile;
@@ -25,5 +28,13 @@
     text-decoration: none;
     text-transform: uppercase;
     text-align: center;
+    transition: all 0.3s;
+  }
+
+  &__link:hover,
+  &__link:active {
+    @include respond(desktop) {
+      background-color: $color-select;
+    }
   }
 }

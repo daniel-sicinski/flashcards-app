@@ -1,7 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function SideNav({ isSideNavVisible, hideSideNavOnClick }) {
+export default function SideNav({
+  isSideNavVisible,
+  hideSideNavOnClick = () => {}
+}) {
   const classes = isSideNavVisible
     ? ["side-nav", "side-nav--show"]
     : ["side-nav"];
