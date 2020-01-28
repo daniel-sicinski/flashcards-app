@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Toolbar from "../Toolbar/ToolbarContainer";
 import SideNav from "./SideNav/SideNav";
 import Backdrop from "../Backdrop";
+import Navbar from "./Navbar/Navbar";
 
 export default function Navigation({ isDesktop }) {
   const [isSideNavVisible, setSideNavVisibility] = useState(false);
@@ -27,6 +28,7 @@ export default function Navigation({ isDesktop }) {
 
   const DesktopNav = () => (
     <>
+      <Navbar />
       <SideNav isSideNavVisible={isSideNavVisible} />
     </>
   );
