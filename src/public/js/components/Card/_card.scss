@@ -6,6 +6,10 @@
 
   &__left-side {
     flex: 4;
+
+    @include respond(desktop) {
+      flex: 7;
+    }
   }
 
   &__right-side {
@@ -56,6 +60,7 @@
   &__button {
     font-size: 4rem !important;
     color: $color-grey-dark-2;
+    cursor: pointer;
   }
 
   &__radio-btn svg {
