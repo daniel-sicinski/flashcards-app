@@ -9,7 +9,10 @@ import {
 import { selectCard, unselectCard } from "../../store/actions/cardsActions";
 
 const mapStateToProps = (state, ownProps) => {
-  const { cardId } = ownProps;
+  const { data, index } = ownProps;
+  const card = data[index];
+  const cardId = card._id;
+  // const { cardId } = ownProps;
   return {
     isAudioPaused: state.audio.paused,
     isActive: cardId === state.audio.currentlyActiveCardId,
@@ -21,7 +24,10 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  const tracksToPlay = Object.values(ownProps.cardData.audioIds);
+  const { data, index } = ownProps;
+  const card = data[index];
+  // const tracksToPlay = Object.values(ownProps.cardData.audioIds);
+  const tracksToPlay = Object.values(card.audioIds);
 
   return {
     onSettingTracksToPlay: () => dispatch(setTracksToPlay(tracksToPlay)),

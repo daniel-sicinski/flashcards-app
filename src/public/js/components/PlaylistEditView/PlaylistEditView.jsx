@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CardsWrapper from "../CardsWrapper/CardsWrapper";
-import RenderCards from "../RenderCards/RenderCards";
+import RenderCards from "../RenderCards/RenderCardsContainer";
 
 export default function PlaylistEditView({
   cards,
@@ -10,7 +10,8 @@ export default function PlaylistEditView({
   setSelectedCards,
   fetchPlaylist,
   playlistCardsIds,
-  clearSelectedCards
+  clearSelectedCards,
+  loadingCards
 }) {
   const { playlistId } = useParams();
 
@@ -30,7 +31,7 @@ export default function PlaylistEditView({
   }, [playlistCardsIds]);
 
   return (
-    <CardsWrapper>
+    <CardsWrapper showSpinner={loadingCards}>
       <RenderCards cards={cards} />
     </CardsWrapper>
   );

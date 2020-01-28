@@ -6,10 +6,12 @@ import StopIcon from "@material-ui/icons/Stop";
 import ReplayIcon from "@material-ui/icons/Replay";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Radio from "@material-ui/core/Radio";
+import { CARDS_GUTTER, CARDS_PADDING_TOP } from "../../config";
 
 export default function Card({
-  cardData,
-  cardId,
+  data,
+  index,
+  style,
   onSettingTracksToPlay,
   onPauseTrack,
   onStopAudio,
@@ -23,8 +25,11 @@ export default function Card({
   onSelectCard,
   onUnselectCard
 }) {
+  const cardData = data[index];
+  const cardId = cardData._id;
   const { expressions } = cardData;
   const { engWord, polWord, engSen, polSen } = expressions;
+  const cardWidth = window.innerWidth;
 
   const cardBackGroundColor = {
     backgroundColor: isActive ? "#f0ead5" : "#f7f7f7"
@@ -83,8 +88,15 @@ export default function Card({
   return (
     <div
       className="card"
-      style={cardBackGroundColor}
       onClick={handleSelectChange}
+      style={{
+        ...style,
+        ...cardBackGroundColor,
+        left: style.left + CARDS_GUTTER,
+        top: style.top + CARDS_PADDING_TOP,
+        width: cardWidth - 2 * CARDS_GUTTER,
+        height: style.height - CARDS_GUTTER
+      }}
     >
       <div className="card__left-side">
         <div className="card__words">
