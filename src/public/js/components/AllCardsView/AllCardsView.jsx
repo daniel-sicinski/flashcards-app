@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import CardsWrapper from "../CardsWrapper/CardsWrapper";
-import RenderCards from "../RenderCards/RenderCards";
+import RenderCards from "../RenderCards/RenderCardsContainer";
 
 export default function AllCardsView({
   cards,

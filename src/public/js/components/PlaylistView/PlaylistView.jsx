@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CardsWrapper from "../CardsWrapper/CardsWrapper";
 import Card from "../Card/CardContainer";
-import RenderCards from "../RenderCards/RenderCards";
+import RenderCards from "../RenderCards/RenderCardsContainer";
 
 export default function PlaylistView({ fetchPlaylist, cards }) {
   const { playlistId } = useParams();
