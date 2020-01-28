@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 export default function SideNav({
   isSideNavVisible,
@@ -11,24 +11,49 @@ export default function SideNav({
 
   return (
     <nav className={classes.join(" ")} onClick={hideSideNavOnClick}>
-      <Link to={"/"} className="side-nav__link">
+      <NavLink
+        to={"/"}
+        exact
+        activeClassName="side-nav__link--active"
+        className="side-nav__link"
+      >
         Wszystkie karty
-      </Link>
-      <Link to={"/playlists"} className="side-nav__link">
+      </NavLink>
+      <NavLink
+        to={"/playlists"}
+        activeClassName="side-nav__link--active"
+        className="side-nav__link"
+      >
         Playlisty
-      </Link>
-      <Link to={"/"} className="side-nav__link">
+      </NavLink>
+      <NavLink
+        to={"/categories"}
+        activeClassName="side-nav__link--active"
+        className="side-nav__link"
+      >
         Kategorie
-      </Link>
-      <Link to={"/"} className="side-nav__link">
+      </NavLink>
+      <NavLink
+        to={"/tests"}
+        activeClassName="side-nav__link--active"
+        className="side-nav__link"
+      >
         Testy
-      </Link>
-      <Link to={"/"} className="side-nav__link">
+      </NavLink>
+      <NavLink
+        to={"/account"}
+        activeClassName="side-nav__link--active"
+        className="side-nav__link"
+      >
         Twoje konto
-      </Link>
-      <Link to={"/"} className="side-nav__link">
+      </NavLink>
+      <NavLink
+        to={"/settings"}
+        activeClassName="side-nav__link--active"
+        className="side-nav__link"
+      >
         Ustawienia
-      </Link>
+      </NavLink>
     </nav>
   );
 }

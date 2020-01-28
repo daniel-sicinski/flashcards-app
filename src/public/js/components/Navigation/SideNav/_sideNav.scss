@@ -37,4 +37,8 @@
       background-color: $color-select;
     }
   }
+
+  &__link--active {
+    background-color: $color-select;
+  }
 }
