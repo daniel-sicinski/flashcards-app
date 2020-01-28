@@ -5,9 +5,20 @@
   cursor: pointer;
   transition: all 0.2s;
 
+  &:hover {
+    @include respond(desktop) {
+      background-color: $color-select;
+      transform: scale(1.01);
+    }
+  }
+
   &--select {
     background-color: $color-select;
     transform: scale(1.03);
+
+    @include respond(desktop) {
+      transform: scale(1.01);
+    }
   }
 
   &__title {
