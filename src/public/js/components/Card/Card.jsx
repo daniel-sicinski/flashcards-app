@@ -46,7 +46,7 @@ export default function Card({
     ? CARDS_PADDING_TOP_DESKTOP
     : CARDS_PADDING_TOP;
   const cardWidth = isDesktop
-    ? window.innerWidth - SIDE_PADDING_DESKTOP - 20
+    ? window.innerWidth - 2 * SIDE_PADDING_DESKTOP
     : window.innerWidth - 2 * SIDE_PADDING;
 
   const handleSelectChange = () => {

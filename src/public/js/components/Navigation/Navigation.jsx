@@ -3,6 +3,7 @@ import Toolbar from "../Toolbar/ToolbarContainer";
 import SideNav from "./SideNav/SideNav";
 import Backdrop from "../Backdrop";
 import Navbar from "./Navbar/Navbar";
+import DesktopToolbar from "./DesktopToolbar/DesktopToolbar";
 
 export default function Navigation({ isDesktop }) {
   const [isSideNavVisible, setSideNavVisibility] = useState(false);
@@ -30,6 +31,7 @@ export default function Navigation({ isDesktop }) {
     <>
       <Navbar />
       <SideNav isSideNavVisible={isSideNavVisible} />
+      <DesktopToolbar />
     </>
   );
 
