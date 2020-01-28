@@ -88,10 +88,10 @@ export default function Card({
   return (
     <div
       className="card"
-      style={cardBackGroundColor}
       onClick={handleSelectChange}
       style={{
         ...style,
+        ...cardBackGroundColor,
         left: style.left + CARDS_GUTTER,
         top: style.top + CARDS_PADDING_TOP,
         width: cardWidth - 2 * CARDS_GUTTER,
