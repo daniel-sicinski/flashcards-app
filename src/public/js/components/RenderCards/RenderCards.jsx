@@ -24,8 +24,10 @@ function RenderCards({
   }, [isGlobalAudioPlay]);
 
   useEffect(() => {
-    listRef.current.scrollToItem(cardIndex, "center");
-    setCardIndex(cardIndex => cardIndex + 1);
+    if (isGlobalAudioPlay) {
+      listRef.current.scrollToItem(cardIndex, "center");
+      setCardIndex(cardIndex => cardIndex + 1);
+    }
   }, [currentlyActiveCardId]);
 
   const innerElementType = forwardRef(({ style, ...rest }, ref) => {
