@@ -6,6 +6,7 @@ import PlaylistAddCheckIcon from "@material-ui/icons/PlaylistAddCheck";
 import PlaylistNav from "../../PlaylistsNav/PlaylistNavContainer";
 import GlobalPlayNav from "../../GlobalPlayNav/GlobalPlayNavContainer";
 import MobilePopupNav from "../../MobilePopupNav/MobilePopupNav";
+import ButtonFab from "../../ButtonFab/ButtonFab";
 
 export default function PlaylistViewControls({
   isPlaylistPopupShown,
@@ -16,21 +17,29 @@ export default function PlaylistViewControls({
 }) {
   return (
     <>
-      <SearchIcon className="toolbar__nav-icon" />
-      <PlaylistAddCheckIcon
-        className="toolbar__nav-icon"
-        onClick={() => setPlaylistPopupVisibility(true)}
-      />
+      <ButtonFab>
+        <SearchIcon className="toolbar__nav-icon" />
+      </ButtonFab>
+      <ButtonFab>
+        <PlaylistAddCheckIcon
+          className="toolbar__nav-icon"
+          onClick={() => setPlaylistPopupVisibility(true)}
+        />
+      </ButtonFab>
+
       <MobilePopupNav
         isPopupShown={isPlaylistPopupShown}
         hidePopup={() => setPlaylistPopupVisibility(false)}
       >
         <PlaylistNav />
       </MobilePopupNav>
-      <PlayCircleFilledIcon
-        className="toolbar__nav-icon"
-        onClick={handleOnGlobalPlayClick}
-      />
+      <ButtonFab>
+        <PlayCircleFilledIcon
+          className="toolbar__nav-icon"
+          onClick={handleOnGlobalPlayClick}
+        />
+      </ButtonFab>
+
       <MobilePopupNav
         isPopupShown={isAudioPopupShown}
         hidePopup={() => setAudioPopupVisibility(false)}

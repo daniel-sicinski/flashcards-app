@@ -4,6 +4,7 @@ import PauseIcon from "@material-ui/icons/Pause";
 import StopIcon from "@material-ui/icons/Stop";
 import SkipNextIcon from "@material-ui/icons/SkipNext";
 import SkipPreviousIcon from "@material-ui/icons/SkipPrevious";
+import ButtonFab from "../ButtonFab/ButtonFab";
 
 export default function AudioControls({
   onSkipPrevious,
@@ -20,34 +21,41 @@ export default function AudioControls({
 
   return (
     <div className="audio-controls">
-      <SkipPreviousIcon
+      {/* <SkipPreviousIcon
         onClick={isAudioLoading ? () => {} : onSkipPrevious}
         className="audio-controls__control audio-controls__control--skip"
         style={buttonColorStyle}
-      />
+      /> */}
       {isAudioPaused ? (
-        <PlayArrowIcon
-          onClick={isAudioLoading ? () => {} : onResume}
-          className="audio-controls__control"
-          style={buttonColorStyle}
-        />
+        <ButtonFab>
+          <PlayArrowIcon
+            onClick={isAudioLoading ? () => {} : onResume}
+            className="audio-controls__control"
+            style={buttonColorStyle}
+          />
+        </ButtonFab>
       ) : (
-        <PauseIcon
-          onClick={isAudioLoading ? () => {} : onPause}
+        <ButtonFab>
+          <PauseIcon
+            onClick={isAudioLoading ? () => {} : onPause}
+            className="audio-controls__control"
+            style={buttonColorStyle}
+          />
+        </ButtonFab>
+      )}
+      <ButtonFab>
+        <StopIcon
+          onClick={isAudioLoading ? () => {} : onStop}
           className="audio-controls__control"
           style={buttonColorStyle}
         />
-      )}
-      <StopIcon
-        onClick={isAudioLoading ? () => {} : onStop}
-        className="audio-controls__control"
-        style={buttonColorStyle}
-      />
-      <SkipNextIcon
+      </ButtonFab>
+
+      {/* <SkipNextIcon
         onClick={isAudioLoading ? () => {} : onSkipNext}
         className="audio-controls__control audio-controls__control--skip"
         style={buttonColorStyle}
-      />
+      /> */}
     </div>
   );
 }

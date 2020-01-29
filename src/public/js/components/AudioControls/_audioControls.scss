@@ -1,6 +1,6 @@
 .audio-controls {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
 
   @include respond(desktop) {
@@ -8,7 +8,7 @@
   }
 
   &__control {
-    font-size: 40px !important;
+    font-size: $icon-font-size !important;
     margin-right: 1.5rem;
 
     &--skip {

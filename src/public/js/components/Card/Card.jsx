@@ -13,6 +13,7 @@ import {
   CARDS_PADDING_TOP,
   CARDS_PADDING_TOP_DESKTOP
 } from "../../config";
+import ButtonFab from "../ButtonFab/ButtonFab";
 
 export default function Card({
   data,
@@ -59,20 +60,28 @@ export default function Card({
     return (
       <>
         {isAudioPaused ? (
-          <ReplayIcon className="card__button" onClick={onResumeTrack} />
+          <ButtonFab>
+            <ReplayIcon className="card__button" onClick={onResumeTrack} />
+          </ButtonFab>
         ) : (
-          <PauseIcon className="card__button" onClick={onPauseTrack} />
+          <ButtonFab>
+            <PauseIcon className="card__button" onClick={onPauseTrack} />
+          </ButtonFab>
         )}
-        <StopIcon className="card__button" onClick={onStopAudio} />
+        <ButtonFab>
+          <StopIcon className="card__button" onClick={onStopAudio} />
+        </ButtonFab>
       </>
     );
   };
 
   const showPlayBtn = () => (
-    <PlayCircleOutlineIcon
-      className="card__button"
-      onClick={onSettingTracksToPlay}
-    />
+    <ButtonFab>
+      <PlayCircleOutlineIcon
+        className="card__button"
+        onClick={onSettingTracksToPlay}
+      />
+    </ButtonFab>
   );
 
   const showRadioBtn = () => (

@@ -3,6 +3,7 @@ import PlaylistAddCheckIcon from "@material-ui/icons/PlaylistAddCheck";
 
 import PlaylistNav from "../../PlaylistsNav/PlaylistNavContainer";
 import MobilePopupNav from "../../MobilePopupNav/MobilePopupNav";
+import ButtonFab from "../../ButtonFab/ButtonFab";
 
 export default function PlaylistsControls({
   isPlaylistPopupShown,
@@ -10,10 +11,13 @@ export default function PlaylistsControls({
 }) {
   return (
     <div>
-      <PlaylistAddCheckIcon
-        className="toolbar__nav-icon"
-        onClick={() => setPlaylistPopupVisibility(true)}
-      />
+      <ButtonFab>
+        <PlaylistAddCheckIcon
+          className="toolbar__nav-icon"
+          onClick={() => setPlaylistPopupVisibility(true)}
+        />
+      </ButtonFab>
+
       <MobilePopupNav
         isPopupShown={isPlaylistPopupShown}
         hidePopup={() => setPlaylistPopupVisibility(false)}

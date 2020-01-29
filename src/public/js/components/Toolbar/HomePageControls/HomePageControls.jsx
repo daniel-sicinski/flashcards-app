@@ -6,6 +6,7 @@ import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
 
 import GlobalPlayNav from "../../GlobalPlayNav/GlobalPlayNavContainer";
 import MobilePopupNav from "../../MobilePopupNav/MobilePopupNav";
+import ButtonFab from "../../ButtonFab/ButtonFab";
 
 export default function HomePageControls({
   activateSelectState,
@@ -17,23 +18,31 @@ export default function HomePageControls({
 }) {
   return (
     <>
-      <SearchIcon className="toolbar__nav-icon" />
+      <ButtonFab>
+        <SearchIcon className="toolbar__nav-icon" />
+      </ButtonFab>
       {isSelectStateActive ? (
-        <HighlightOffIcon
-          className="toolbar__nav-icon"
-          onClick={disableSelectState}
-        />
+        <ButtonFab>
+          <HighlightOffIcon
+            className="toolbar__nav-icon"
+            onClick={disableSelectState}
+          />
+        </ButtonFab>
       ) : (
-        <AddCircleOutlineIcon
-          className="toolbar__nav-icon"
-          onClick={activateSelectState}
-        />
+        <ButtonFab>
+          <AddCircleOutlineIcon
+            className="toolbar__nav-icon"
+            onClick={activateSelectState}
+          />
+        </ButtonFab>
       )}
+      <ButtonFab>
+        <PlayCircleFilledIcon
+          className="toolbar__nav-icon"
+          onClick={handleOnGlobalPlayClick}
+        />
+      </ButtonFab>
 
-      <PlayCircleFilledIcon
-        className="toolbar__nav-icon"
-        onClick={handleOnGlobalPlayClick}
-      />
       <MobilePopupNav
         isPopupShown={isAudioPopupShown}
         hidePopup={() => setAudioPopupVisibility(false)}

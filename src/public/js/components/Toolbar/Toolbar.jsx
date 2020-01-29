@@ -6,6 +6,7 @@ import AddEditPlaylistManager from "../AddEditPlaylistManager/AddEditPlaylistMan
 import HomePageControls from "./HomePageControls/HomePageControls";
 import PlaylistViewControls from "./PlaylistViewControls/PlaylistViewControls";
 import PlaylistsControls from "./PlaylistsControls/PlaylistsControls";
+import ButtonFab from "../ButtonFab/ButtonFab";
 
 import { Route, Switch } from "react-router-dom";
 
@@ -34,7 +35,9 @@ export default function Toolbar({
         <AudioControls />
       ) : (
         <div className="toolbar__nav">
-          <MenuIcon className="toolbar__nav-icon" onClick={showSideNav} />
+          <ButtonFab>
+            <MenuIcon className="toolbar__nav-icon" onClick={showSideNav} />
+          </ButtonFab>
           <Switch>
             <Route
               path="/"
