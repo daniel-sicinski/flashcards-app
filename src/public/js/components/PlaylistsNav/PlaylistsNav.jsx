@@ -1,4 +1,5 @@
 import React from "react";
+import NavOption from "../NavOption/NavOption";
 
 export default function PlaylistsNav({
   activateSelectPlaylistEditState,
@@ -14,9 +15,7 @@ export default function PlaylistsNav({
   const { pathname } = history.location;
 
   const addPlaylist = (
-    <div className="playlist-nav__option" onClick={openAddNewPlaylistState}>
-      Dodaj playlistę
-    </div>
+    <NavOption onClickCb={openAddNewPlaylistState}>Dodaj playlistę</NavOption>
   );
 
   const handleOnDeletePlaylistClick = () => {
@@ -42,18 +41,12 @@ export default function PlaylistsNav({
   return (
     <>
       {pathname === "/playlists" && addPlaylist}
-      <div
-        className="playlist-nav__option"
-        onClick={handleOnUpdatePlaylistClick}
-      >
+      <NavOption onClickCb={handleOnUpdatePlaylistClick}>
         Edytuj playlistę
-      </div>
-      <div
-        className="playlist-nav__option"
-        onClick={handleOnDeletePlaylistClick}
-      >
+      </NavOption>
+      <NavOption onClickCb={handleOnDeletePlaylistClick}>
         Usuń playlistę
-      </div>
+      </NavOption>
     </>
   );
 }

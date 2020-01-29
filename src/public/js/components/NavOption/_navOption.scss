@@ -1,0 +1,16 @@
+.nav-option {
+  padding: 2rem 1rem;
+  font-size: $default-font-size-mobile;
+  text-align: center;
+
+  &:hover {
+    @include respond(desktop) {
+      background-color: $color-select;
+      cursor: pointer;
+    }
+  }
+
+  &--disabled {
+    color: $color-grey-dark;
+  }
+}
