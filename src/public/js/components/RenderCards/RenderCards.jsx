@@ -1,20 +1,18 @@
 import React, { forwardRef, useEffect, useState, useRef } from "react";
 import Card from "../Card/CardContainer";
 import { FixedSizeList as List } from "react-window";
-import { CARDS_PADDING_TOP, CARD_HEIGHT } from "../../config";
+import {
+  CARDS_PADDING_TOP,
+  CARDS_PADDING_TOP_DESKTOP,
+  CARD_HEIGHT
+} from "../../config";
 
-const innerElementType = forwardRef(({ style, ...rest }, ref) => (
-  <div
-    ref={ref}
-    style={{
-      ...style,
-      height: style.height + 2 * CARDS_PADDING_TOP
-    }}
-    {...rest}
-  />
-));
-
-function RenderCards({ cards, isGlobalAudioPlay, currentlyActiveCardId }) {
+function RenderCards({
+  cards,
+  isGlobalAudioPlay,
+  currentlyActiveCardId,
+  isDesktop
+}) {
   if (!cards) return null;
 
   const listRef = useRef(null);
@@ -29,6 +27,22 @@ function RenderCards({ cards, isGlobalAudioPlay, currentlyActiveCardId }) {
     listRef.current.scrollToItem(cardIndex, "center");
     setCardIndex(cardIndex => cardIndex + 1);
   }, [currentlyActiveCardId]);
+
+  const innerElementType = forwardRef(({ style, ...rest }, ref) => {
+    const paddingTop = isDesktop
+      ? CARDS_PADDING_TOP_DESKTOP
+      : CARDS_PADDING_TOP;
+    return (
+      <div
+        ref={ref}
+        style={{
+          ...style,
+          height: style.height + 2 * paddingTop
+        }}
+        {...rest}
+      />
+    );
+  });
 
   const listWidth = window.innerWidth;
   const listHeight = window.innerHeight;
@@ -48,6 +62,7 @@ function RenderCards({ cards, isGlobalAudioPlay, currentlyActiveCardId }) {
       itemData={cards}
       itemKey={itemKey}
       innerElementType={innerElementType}
+      isDesktop={isDesktop}
       ref={listRef}
     >
       {Card}

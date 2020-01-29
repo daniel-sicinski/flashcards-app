@@ -12,7 +12,8 @@ const mapStateToProps = state => {
   return {
     selectedCardsIds: state.cards.selectedCardsIds,
     waitingForRequest: state.playlists.loading,
-    editedPlaylist: state.playlists.playlistsData[editedPlaylistId]
+    editedPlaylist: state.playlists.playlistsData[editedPlaylistId],
+    isDesktop: state.ui.isDesktop
   };
 };
 

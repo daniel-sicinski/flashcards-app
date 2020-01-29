@@ -1,0 +1,70 @@
+import React from "react";
+import { Route, Switch } from "react-router-dom";
+import AudioControls from "../../AudioControls/AudioControlsContainer";
+import GlobalPlayNav from "../../GlobalPlayNav/GlobalPlayNavContainer";
+import PlaylistNav from "../../PlaylistsNav/PlaylistNavContainer";
+import AddEditPlaylistManager from "../../AddEditPlaylistManager/AddEditPlaylistManagerContainer";
+import SelectCardsControl from "./SelectCardsControl/SelectCardsControl";
+
+export default function DesktopToolbar({
+  isGlobalAudioPlay,
+  isSelectStateActive,
+  // isNoCardsSelected,
+  activateSelectState,
+  disableSelectState
+}) {
+  return (
+    <div className="desktop-toolbar">
+      <Switch>
+        <Route
+          path="/"
+          exact
+          render={() => (
+            <>
+              {isGlobalAudioPlay ? (
+                <AudioControls />
+              ) : (
+                <>
+                  <GlobalPlayNav />
+                  <SelectCardsControl
+                    isSelectStateActive={isSelectStateActive}
+                    activateSelectState={activateSelectState}
+                    disableSelectState={disableSelectState}
+                  />
+                </>
+              )}
+            </>
+          )}
+        />
+        <Route path="/playlists/new" exact component={AddEditPlaylistManager} />
+        <Route
+          path="/playlists/edit/:playlistId"
+          exact
+          component={AddEditPlaylistManager}
+        />
+        <Route
+          path="/playlists/:playlistId"
+          exact
+          render={() => (
+            <>
+              {isGlobalAudioPlay ? (
+                <AudioControls />
+              ) : (
+                <>
+                  <GlobalPlayNav />
+                  <PlaylistNav />
+                  <SelectCardsControl
+                    isSelectStateActive={isSelectStateActive}
+                    activateSelectState={activateSelectState}
+                    disableSelectState={disableSelectState}
+                  />
+                </>
+              )}
+            </>
+          )}
+        />
+        <Route path="/playlists" exact component={PlaylistNav} />
+      </Switch>
+    </div>
+  );
+}

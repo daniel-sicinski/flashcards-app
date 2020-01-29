@@ -1,26 +1,18 @@
 import React from "react";
+import NavOption from "../NavOption/NavOption";
 
 export default function GlobalPlayNav({ playSelectedTracks }) {
   return (
     <>
-      <div
-        className="global-play-nav__option"
-        onClick={() => playSelectedTracks("all")}
-      >
+      <NavOption onClickCb={() => playSelectedTracks("all")}>
         Odtwórz wszystkie
-      </div>
-      <div
-        className="global-play-nav__option"
-        onClick={() => playSelectedTracks("words")}
-      >
+      </NavOption>
+      <NavOption onClickCb={() => playSelectedTracks("words")}>
         Odtwórz słówka
-      </div>
-      <div
-        className="global-play-nav__option"
-        onClick={() => playSelectedTracks("sentences")}
-      >
+      </NavOption>
+      <NavOption onClickCb={() => playSelectedTracks("sentences")}>
         Odtwórz zdania
-      </div>
+      </NavOption>
     </>
   );
 }

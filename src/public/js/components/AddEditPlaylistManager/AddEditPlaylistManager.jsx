@@ -4,6 +4,7 @@ import Button from "../Button/Button";
 import Modal from "../Modal/Modal";
 import InputField from "../InputField/InputField";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import NavOption from "../NavOption/NavOption";
 
 export default function PlaylistAddEdit({
   addPlaylist,
@@ -11,7 +12,8 @@ export default function PlaylistAddEdit({
   selectedCardsIds,
   editedPlaylist,
   updatePlaylist,
-  disablePlaylistEditState
+  disablePlaylistEditState,
+  isDesktop
 }) {
   const [modalOpened, setModalVisibility] = useState(false);
   const [playlistName, setPlaylistName] = useState("");
@@ -75,11 +77,17 @@ export default function PlaylistAddEdit({
           </form>
         )}
       </Modal>
-      <DoneIcon
-        style={{ color: isSelectedCard ? "#999" : "#c0c0c0" }}
-        className="playlistAddEdit__icon"
-        onClick={handleDoneButton}
-      />
+      {isDesktop ? (
+        <NavOption onClickCb={handleDoneButton} isDisabled={!isSelectedCard}>
+          Przejdź dalej
+        </NavOption>
+      ) : (
+        <DoneIcon
+          style={{ color: isSelectedCard ? "#999" : "#c0c0c0" }}
+          className="playlistAddEdit__icon"
+          onClick={handleDoneButton}
+        />
+      )}
     </>
   );
 }

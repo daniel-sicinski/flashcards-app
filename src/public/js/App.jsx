@@ -3,17 +3,31 @@ import { connect } from "react-redux";
 import AllCardsView from "./components/AllCardsView/AllCardsViewContainer";
 import AudioManager from "./containers/AudioManager";
 import { fetchCardsStart } from "./store/actions/cardsActions";
-import Navigation from "./containers/Navigation";
+import Navigation from "./components/Navigation/NavigationContainer";
 import { Route, Switch } from "react-router-dom";
 import Playlists from "./components/Playlists/PlaylistsContainer";
 import PlaylistView from "./components/PlaylistView/PlaylistViewContainer";
 import PlaylistEditView from "./components/PlaylistEditView/PlaylistEditViewContainer";
 import NewPlaylistView from "./components/NewPlaylistView/NewPlaylistViewContainer";
+import { setDeviceType } from "./store/actions/UIActions";
+import { MIN_DESKTOP_WIDTH } from "./config";
 
 class App extends Component {
   componentDidMount() {
     this.props.fetchCardsStart();
+
+    this.handleDeviceType();
+    window.addEventListener("resize", this.handleDeviceType);
   }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.handleDeviceType);
+  }
+
+  handleDeviceType = () => {
+    const isDesktop = window.innerWidth > MIN_DESKTOP_WIDTH;
+    this.props.setDeviceType(isDesktop);
+  };
 
   render() {
     return (
@@ -36,4 +50,4 @@ class App extends Component {
   }
 }
 
-export default connect(null, { fetchCardsStart })(App);
+export default connect(null, { fetchCardsStart, setDeviceType })(App);

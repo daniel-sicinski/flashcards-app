@@ -1,0 +1,1 @@
+export const SET_DEVICE_TYPE = "SET_DEVICE_TYPE";

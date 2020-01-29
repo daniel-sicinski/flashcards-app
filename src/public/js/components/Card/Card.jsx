@@ -6,7 +6,13 @@ import StopIcon from "@material-ui/icons/Stop";
 import ReplayIcon from "@material-ui/icons/Replay";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Radio from "@material-ui/core/Radio";
-import { CARDS_GUTTER, CARDS_PADDING_TOP } from "../../config";
+import {
+  CARDS_GUTTER,
+  SIDE_PADDING_DESKTOP,
+  SIDE_PADDING,
+  CARDS_PADDING_TOP,
+  CARDS_PADDING_TOP_DESKTOP
+} from "../../config";
 
 export default function Card({
   data,
@@ -23,17 +29,25 @@ export default function Card({
   isSelectStateActive,
   isCardSelected,
   onSelectCard,
-  onUnselectCard
+  onUnselectCard,
+  isDesktop
 }) {
   const cardData = data[index];
   const cardId = cardData._id;
   const { expressions } = cardData;
   const { engWord, polWord, engSen, polSen } = expressions;
-  const cardWidth = window.innerWidth;
 
   const cardBackGroundColor = {
     backgroundColor: isActive ? "#f0ead5" : "#f7f7f7"
   };
+
+  const cardsSidePadding = isDesktop ? SIDE_PADDING_DESKTOP : SIDE_PADDING;
+  const cardsPaddingTop = isDesktop
+    ? CARDS_PADDING_TOP_DESKTOP
+    : CARDS_PADDING_TOP;
+  const cardWidth = isDesktop
+    ? window.innerWidth - 2 * SIDE_PADDING_DESKTOP
+    : window.innerWidth - 2 * SIDE_PADDING;
 
   const handleSelectChange = () => {
     if (!isSelectStateActive) return;
@@ -92,9 +106,9 @@ export default function Card({
       style={{
         ...style,
         ...cardBackGroundColor,
-        left: style.left + CARDS_GUTTER,
-        top: style.top + CARDS_PADDING_TOP,
-        width: cardWidth - 2 * CARDS_GUTTER,
+        left: style.left + cardsSidePadding,
+        top: style.top + cardsPaddingTop,
+        width: cardWidth,
         height: style.height - CARDS_GUTTER
       }}
     >

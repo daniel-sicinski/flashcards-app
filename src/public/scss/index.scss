@@ -1,4 +1,5 @@
 @import "../scss/abstracts/variables";
+@import "../scss/abstracts/mixins";
 @import "../scss/base/typography";
 @import "../scss/base/base";
 
@@ -8,19 +9,15 @@
 
 @import "../js/components/AudioControls/audioControls";
 
-@import "../js/components/GlobalPlayNav/globalPlayNav";
-
 @import "../js/components/Backdrop/backdrop";
 
-@import "../js/containers/Navigation/SideNav/sideNav";
+@import "../js/components/Navigation/SideNav/sideNav";
 
 @import "../js/components/Playlists/PlaylistCard/playlistCard";
 
 @import "../js/components/CardsWrapper/cardsWrapper";
 
 @import "../js/components/MobilePopupNav/mobilePopupNav";
-
-@import "../js/components/PlaylistsNav/playlistsNav";
 
 @import "../js/components/Modal/Modal";
 
@@ -31,3 +28,9 @@
 @import "../js/components/Button/button";
 
 @import "../js/components/Playlists/playlists";
+
+@import "../js/components/Navigation/Navbar/navbar";
+
+@import "../js/components/Navigation/DesktopToolbar/desktopToolbar";
+
+@import "../js/components/NavOption/navOption";
