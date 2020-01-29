@@ -5,13 +5,14 @@ import {
   fetchCardsError,
   setDisplayedCards
 } from "../../actions/cardsActions";
-import { cardsRequest, mapArrayToObjectByIds } from "../utils";
+import { mapArrayToObjectByIds } from "../utils";
+import { getRequest } from "../requests";
 
 export function* getCards() {
   try {
-    const cardsData = yield call(cardsRequest);
+    const cardsData = yield call(getRequest, "/cards");
 
-    const cardsDataObject = mapArrayToObjectByIds(cardsData, "_id");
+    const cardsDataObject = mapArrayToObjectByIds(cardsData.data.cards, "_id");
 
     yield put(fetchCardsSuccess(cardsDataObject));
     yield put(setDisplayedCards(Object.keys(cardsDataObject)));
