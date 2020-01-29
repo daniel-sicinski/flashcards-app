@@ -14,7 +14,11 @@
 
   &__right-side {
     flex: 1;
-    text-align: center;
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
   }
 
   &__words {
@@ -58,7 +62,7 @@
   }
 
   &__button {
-    font-size: 4rem !important;
+    font-size: $icon-font-size !important;
     color: $color-grey-dark-2;
     cursor: pointer;
   }

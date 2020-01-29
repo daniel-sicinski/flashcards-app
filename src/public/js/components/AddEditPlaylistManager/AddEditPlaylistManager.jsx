@@ -5,6 +5,7 @@ import Modal from "../Modal/Modal";
 import InputField from "../InputField/InputField";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import NavOption from "../NavOption/NavOption";
+import ButtonFab from "../ButtonFab/ButtonFab";
 
 export default function PlaylistAddEdit({
   addPlaylist,
@@ -82,11 +83,13 @@ export default function PlaylistAddEdit({
           Przejdź dalej
         </NavOption>
       ) : (
-        <DoneIcon
-          style={{ color: isSelectedCard ? "#999" : "#c0c0c0" }}
-          className="playlistAddEdit__icon"
-          onClick={handleDoneButton}
-        />
+        <ButtonFab>
+          <DoneIcon
+            style={{ color: isSelectedCard ? "#999" : "#c0c0c0" }}
+            className="playlistAddEdit__icon"
+            onClick={handleDoneButton}
+          />
+        </ButtonFab>
       )}
     </>
   );

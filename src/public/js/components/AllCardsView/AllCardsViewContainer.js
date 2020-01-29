@@ -1,6 +1,9 @@
 import { connect } from "react-redux";
 import AllCardsView from "./AllCardsView";
-import { setDisplayedCards } from "../../store/actions/cardsActions";
+import {
+  setDisplayedCards,
+  disableSelectState
+} from "../../store/actions/cardsActions";
 
 const mapStateToProps = state => {
   const { cardsData } = state.cards;
@@ -12,4 +15,7 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { setDisplayedCards })(AllCardsView);
+export default connect(mapStateToProps, {
+  setDisplayedCards,
+  disableSelectState
+})(AllCardsView);

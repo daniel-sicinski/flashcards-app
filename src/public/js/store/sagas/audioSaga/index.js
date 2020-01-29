@@ -23,7 +23,7 @@ import {
   playTrack,
   gapFinished
 } from "../../actions/audioActions";
-import { audioRequest } from "../utils";
+import { audioRequest } from "../requests";
 
 const selectTrackRefs = state => state.audio.trackRefs;
 const selectPlaybackGap = state => state.audio.playbackGap;
