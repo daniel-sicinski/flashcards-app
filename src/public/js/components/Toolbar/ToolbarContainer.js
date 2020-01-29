@@ -1,6 +1,9 @@
 import { connect } from "react-redux";
 import Toolbar from "./Toolbar";
-import { activateSelectState } from "../../store/actions/cardsActions";
+import {
+  activateSelectState,
+  disableSelectState
+} from "../../store/actions/cardsActions";
 
 const mapStateToProps = state => {
   return {
@@ -10,5 +13,6 @@ const mapStateToProps = state => {
 };
 
 export default connect(mapStateToProps, {
-  activateSelectState
+  activateSelectState,
+  disableSelectState
 })(Toolbar);

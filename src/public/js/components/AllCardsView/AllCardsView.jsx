@@ -6,10 +6,15 @@ export default function AllCardsView({
   cards,
   cardsIds,
   loadingCards,
-  setDisplayedCards
+  setDisplayedCards,
+  disableSelectState
 }) {
   useEffect(() => {
     setDisplayedCards(cardsIds);
+
+    return () => {
+      disableSelectState();
+    };
   }, []);
 
   return (
