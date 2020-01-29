@@ -14,7 +14,6 @@ export default function Toolbar({
   isSelectStateActive,
   activateSelectState,
   disableSelectState,
-  isNoCardsSelected,
   showSideNav
 }) {
   const [isAudioPopupShown, setAudioPopupVisibility] = useState(false);
@@ -22,8 +21,6 @@ export default function Toolbar({
 
   const handleOnGlobalPlayClick = () => {
     setAudioPopupVisibility(true);
-
-    if (isSelectStateActive && isNoCardsSelected) disableSelectState();
   };
 
   const hidePopups = () => {

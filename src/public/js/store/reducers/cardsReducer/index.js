@@ -14,6 +14,7 @@ import {
   SET_EDIT_PLAYLIST_STATE,
   DISABLE_EDIT_PLAYLIST_STATE
 } from "../../actions/playlistsActions/actionNames";
+import { SET_TRACKS_TO_PLAY } from "../../actions/audioActions/actionNames";
 
 const initialState = {
   cardsData: {},
@@ -82,6 +83,12 @@ export default (state = initialState, action) => {
       return {
         ...state,
         cardsDisplayed: action.payload.displayedCardsIds
+      };
+    case SET_TRACKS_TO_PLAY:
+      const isSelectStateActive = state.selectedCardsIds.length > 0;
+      return {
+        ...state,
+        isSelectStateActive
       };
     default:
       return state;
