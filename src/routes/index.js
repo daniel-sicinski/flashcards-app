@@ -1,5 +1,7 @@
 const playlistsRoutes = require("./playlistsRoutes");
+const cardsRoutes = require("./cardsRoutes");
 
 module.exports = {
-  playlistsRoutes
+  playlistsRoutes,
+  cardsRoutes
 };

@@ -3,54 +3,14 @@ const path = require("path");
 const fs = require("fs");
 
 const { playlistsRoutes } = require("./routes");
+const { cardsRoutes } = require("./routes");
 
 const app = express();
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "..", "dist")));
 app.use("/api/v1/playlists", playlistsRoutes);
-
-const initialCardData = {};
-
-(function generateInitialCardData() {
-  csvData = fs.readFileSync(
-    path.join(__dirname, "temp_data", "result_1_100.csv"),
-    "utf-8"
-  );
-  const dataRows = csvData.split("\n");
-  dataRows.slice(1).forEach((row, index) => {
-    index = index + 1;
-    const cardData = {};
-    const expressions = row.split(",");
-    const audioIdIndex = index < 10 ? `000${index}` : `00${index}`;
-
-    cardData._id = audioIdIndex;
-    cardData.expressions = {
-      engWord: expressions[0],
-      polWord: expressions[1],
-      engSen: expressions[2],
-      polSen: expressions[3]
-    };
-
-    cardData.audioIds = {
-      engWordTrackId: "s" + audioIdIndex,
-      polWordTrackId: "p" + audioIdIndex,
-      engSenTrackId: "z" + audioIdIndex,
-      polSenTrackId: "t" + audioIdIndex
-    };
-
-    initialCardData[audioIdIndex] = cardData;
-  });
-})();
-
-app.get("/api/v1/cards", (req, res) => {
-  res.status(200).json({
-    status: "success",
-    data: {
-      cards: initialCardData
-    }
-  });
-});
+app.use("/api/v1/cards", cardsRoutes);
 
 app.get("/api/v1/audioTrack/:audioId", (req, res) => {
   const { audioId } = req.params;
