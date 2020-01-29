@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import AllCardsView from "./components/AllCardsView/AllCardsViewContainer";
-import AudioManager from "./containers/AudioManager";
+import AudioManager from "./components/AudioManager/AudioManager";
 import { fetchCardsStart } from "./store/actions/cardsActions";
 import Navigation from "./components/Navigation/NavigationContainer";
 import { Route, Switch } from "react-router-dom";
