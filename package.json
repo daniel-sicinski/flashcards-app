@@ -4,9 +4,18 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "server": "node ./server.js",
+    "server:watch": "nodemon ./server.js",
     "webpack:watch": "webpack --config webpack.dev.js --watch",
     "webpack:build": "webpack --config webpack.prod.js",
+    "styles:compile:dev": "node-sass ./src/public/scss/index.scss ./dist/main.css",
+    "styles:watch": "npm run styles:compile:dev && npm run styles:compile:dev -- --watch",
+    "styles:compile:prod": "node-sass ./src/public/scss/index.scss ./dist/main.comp.css",
+    "prefix:css": "postcss --use autoprefixer -b \"last 10 versions\" ./dist/main.comp.css -o ./dist/main.prefix.css",
+    "compress:css": "node-sass ./dist/main.prefix.css ./dist/main.css --output-style compressed",
+    "styles:build": "npm-run-all -s styles:compile:prod prefix:css compress:css",
     "start:dev": "npm-run-all --parallel server:watch webpack:watch styles:watch",
+    "start": "npm-run-all --parallel server webpack:build styles:build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -30,13 +39,17 @@
     "@babel/core": "^7.8.0",
     "@babel/plugin-proposal-class-properties": "^7.8.0",
     "@babel/preset-react": "^7.8.0",
+    "autoprefixer": "^9.7.4",
     "babel-loader": "^8.0.6",
+    "clean-webpack-plugin": "^3.0.0",
     "dotenv": "^8.2.0",
     "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.13.0",
     "nodemon": "^2.0.2",
     "npm-run-all": "^4.1.5",
+    "postcss-cli": "^7.1.0",
     "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
     "webpack-merge": "^4.2.2"
   }
 }
