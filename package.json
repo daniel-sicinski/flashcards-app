@@ -20,7 +20,7 @@
     "styles:build": "npm-run-all -s styles:compile:prod prefix:css compress:css",
     "start:dev": "npm-run-all --parallel server:watch webpack:watch styles:watch",
     "start": "npm run server",
-    "build": "npm-run-all --parallel webpack:build styles:build",
+    "build": "npm-run-all -s webpack:build styles:build",
     "heroku-postbuild": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
