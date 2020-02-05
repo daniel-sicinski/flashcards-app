@@ -1,25 +1,20 @@
 module.exports = api => {
   const isTestEnv = api.env("test");
-  let targets;
+  const presets = [["@babel/preset-react"]];
 
   if (isTestEnv) {
-    targets = {
-      node: "current"
-    };
-  } else {
-    targets = "> 0.25%, not dead";
+    presets.push([
+      "@babel/preset-env",
+      {
+        targets: {
+          node: "current"
+        }
+      }
+    ]);
   }
 
   return {
     plugins: ["@babel/plugin-proposal-class-properties"],
-    presets: [
-      [
-        "@babel/preset-env",
-        {
-          targets
-        }
-      ],
-      ["@babel/preset-react"]
-    ]
+    presets
   };
 };
