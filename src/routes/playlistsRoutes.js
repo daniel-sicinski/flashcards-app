@@ -2,10 +2,12 @@ const { Router } = require("express");
 const { playlistService } = require("../lib/services");
 const validatePlaylist = require("../lib/services/playlistService/validatePlaylist");
 const catchException = require("../lib/utils/catchException");
+const userIsLoggedIn = require("../lib/utils/userIsLoggedIn");
 const router = Router();
 
 router.get(
   "/",
+  userIsLoggedIn,
   catchException(async (req, res) => {
     const playlists = await playlistService.getPlaylists();
 
@@ -20,6 +22,7 @@ router.get(
 
 router.get(
   "/:playlistId",
+  userIsLoggedIn,
   catchException(async (req, res) => {
     const { playlistId } = req.params;
 
@@ -36,6 +39,7 @@ router.get(
 
 router.post(
   "/",
+  userIsLoggedIn,
   validatePlaylist,
   catchException(async (req, res) => {
     const { name, cardsIds } = req.body;
@@ -53,6 +57,7 @@ router.post(
 
 router.put(
   "/:playlistId",
+  userIsLoggedIn,
   validatePlaylist,
   catchException(async (req, res) => {
     const { playlistId } = req.params;
@@ -75,6 +80,7 @@ router.put(
 
 router.delete(
   "/:playlistId",
+  userIsLoggedIn,
   catchException(async (req, res) => {
     const { playlistId } = req.params;
 
