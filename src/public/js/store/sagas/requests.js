@@ -1,4 +1,4 @@
-const API_BASE_URL = "/api/v1";
+export const API_BASE_URL = "/api/v1";
 
 const checkForResponseError = async response => {
   if (!response.ok) {
@@ -55,6 +55,9 @@ export const audioRequest = async trackId => {
   const response = await fetch(`/api/v1/audioTrack/${trackId}`, {
     responseType: "blob"
   });
+
+  await checkForResponseError(response);
+
   const resBlob = await response.blob();
   return resBlob;
 };

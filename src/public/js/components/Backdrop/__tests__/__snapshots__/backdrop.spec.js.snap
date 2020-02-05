@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Backdrop Sanity tests for Backdrop matches the snapshot 1`] = `"<div class=\\"backdrop  \\"></div>"`;
+
+exports[`Backdrop Sanity tests for Backdrop matches the snapshot 2`] = `"<div class=\\"backdrop backdrop--show \\"></div>"`;
+
+exports[`Backdrop Sanity tests for Backdrop matches the snapshot 3`] = `"<div class=\\"backdrop  backdrop--darken\\"></div>"`;
+
+exports[`Backdrop Sanity tests for Backdrop matches the snapshot 4`] = `"<div class=\\"backdrop backdrop--show backdrop--darken\\"></div>"`;
