@@ -28,4 +28,24 @@ router.get(
   })
 );
 
+router.post(
+  "/login",
+  validateUserRequest,
+  catchException(async (req, res) => {
+    const { userName, password } = req.body;
+
+    const user = await userService.login(userName, password);
+    req.session.userId = user._id;
+    res.status(200).json(userView(user));
+  })
+);
+
+router.get(
+  "/logout",
+  catchException(async (req, res) => {
+    await req.session.destroy();
+    res.status(204).end();
+  })
+);
+
 module.exports = router;
