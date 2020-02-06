@@ -9,7 +9,8 @@ router.get(
   "/",
   userIsLoggedIn,
   catchException(async (req, res) => {
-    const playlists = await playlistService.getPlaylists();
+    const { userId } = req.session;
+    const playlists = await playlistService.getPlaylists(userId);
 
     res.status(200).json({
       status: "success",
@@ -25,8 +26,9 @@ router.get(
   userIsLoggedIn,
   catchException(async (req, res) => {
     const { playlistId } = req.params;
+    const { userId } = req.session;
 
-    const playlist = await playlistService.getPlaylist(playlistId);
+    const playlist = await playlistService.getPlaylist(playlistId, userId);
 
     res.status(200).json({
       status: "success",
@@ -43,8 +45,13 @@ router.post(
   validatePlaylist,
   catchException(async (req, res) => {
     const { name, cardsIds } = req.body;
+    const { userId } = req.session;
 
-    const newPlaylist = await playlistService.addPlaylist(name, cardsIds);
+    const newPlaylist = await playlistService.addPlaylist(
+      name,
+      cardsIds,
+      userId
+    );
 
     res.status(201).json({
       status: "success",

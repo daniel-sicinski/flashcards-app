@@ -1,5 +1,5 @@
 export const mapArrayToObjectByIds = (array, idProp) => {
-  if (array.length === 0) return;
+  if (array.length === 0) return {};
 
   if (!idProp) {
     throw new Error("idProp should be provided");
