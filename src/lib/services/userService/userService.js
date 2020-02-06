@@ -28,7 +28,7 @@ class UserService {
     const user = await this.getUserByUserName(userName);
 
     if (user) {
-      throw new StatusError("This user name is already taken.", 400);
+      throw new StatusError("Ta nazwa użytkownika jest już zajęta.", 400);
     }
 
     const hashedPassword = await bcrypt.hash(password, SALT_ROUNDS);
