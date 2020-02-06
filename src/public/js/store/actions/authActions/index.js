@@ -1,10 +1,12 @@
 import {
   IS_USER_LOGGED_IN,
   REGISTER_USER_START,
-  REGISTER_USER_ERROR,
+  AUTH_REQUEST_ERROR,
   LOG_IN_USER,
   LOG_OUT_USER,
-  DISMISS_AUTH_ERROR
+  DISMISS_AUTH_ERROR,
+  LOGOUT_REQUEST_START,
+  LOGIN_REQUEST_START
 } from "./actionNames";
 
 export const checkUserAuthStatus = () => {
@@ -17,9 +19,31 @@ export const registerUserStart = (userName, password) => {
   return {
     type: REGISTER_USER_START,
     payload: {
-      userName,
-      password
+      path: "/users",
+      authData: {
+        userName,
+        password
+      }
     }
+  };
+};
+
+export const loginRequestStart = (userName, password) => {
+  return {
+    type: LOGIN_REQUEST_START,
+    payload: {
+      path: "/login",
+      authData: {
+        userName,
+        password
+      }
+    }
+  };
+};
+
+export const logoutRequestStart = () => {
+  return {
+    type: LOGOUT_REQUEST_START
   };
 };
 
@@ -38,9 +62,9 @@ export const logOutUser = () => {
   };
 };
 
-export const registerUserError = error => {
+export const authRequestError = error => {
   return {
-    type: REGISTER_USER_ERROR,
+    type: AUTH_REQUEST_ERROR,
     payload: {
       error
     }

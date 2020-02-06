@@ -1,9 +1,15 @@
 import { call, put, takeEvery, getContext } from "redux-saga/effects";
-import { logInUser, registerUserError } from "../../actions/authActions";
-import { postRequest } from "../requests";
+import {
+  logInUser,
+  authRequestError,
+  logOutUser
+} from "../../actions/authActions";
+import { postRequest, getRequest } from "../requests";
 import {
   IS_USER_LOGGED_IN,
-  REGISTER_USER_START
+  REGISTER_USER_START,
+  LOGIN_REQUEST_START,
+  LOGOUT_REQUEST_START
 } from "../../actions/authActions/actionNames";
 
 function* getUserAuthStatus() {
@@ -35,9 +41,11 @@ function* getUserAuthStatus() {
   }
 }
 
-function* registerUser(action) {
+function* authenticateUser(action) {
+  const { authData, path } = action.payload;
+
   try {
-    const { userName } = yield call(postRequest, `/users`, action.payload);
+    const { userName } = yield call(postRequest, path, authData);
 
     yield localStorage.setItem("userName", userName);
 
@@ -46,11 +54,28 @@ function* registerUser(action) {
     const history = yield getContext("routerHistory");
     history.replace(`/`);
   } catch (error) {
-    yield put(registerUserError(error.message));
+    yield put(authRequestError(error.message));
+  }
+}
+
+function* logoutUser() {
+  try {
+    yield call(getRequest, "/logout");
+
+    yield localStorage.removeItem("userName");
+
+    yield put(logOutUser());
+
+    const history = yield getContext("routerHistory");
+    history.replace(`/login`);
+  } catch (error) {
+    yield put(authRequestError(error.message));
   }
 }
 
 export default function* watchAuthSaga() {
   yield takeEvery(IS_USER_LOGGED_IN, getUserAuthStatus);
-  yield takeEvery(REGISTER_USER_START, registerUser);
+  yield takeEvery(REGISTER_USER_START, authenticateUser);
+  yield takeEvery(LOGIN_REQUEST_START, authenticateUser);
+  yield takeEvery(LOGOUT_REQUEST_START, logoutUser);
 }

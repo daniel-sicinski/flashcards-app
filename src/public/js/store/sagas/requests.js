@@ -12,7 +12,9 @@ export const getRequest = async path => {
 
   await checkForResponseError(response);
 
-  return await response.json();
+  if (response.status !== 204) {
+    return response.json();
+  }
 };
 
 export const postRequest = async (path, data) => {
