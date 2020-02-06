@@ -1,0 +1,30 @@
+.authView {
+  background-image: linear-gradient(
+    140deg,
+    rgba(255, 213, 129, 1) 0%,
+    rgba(167, 154, 127, 1) 100%
+  );
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__card {
+    width: 80%;
+    max-width: 80%;
+    min-height: 63rem;
+    padding: 3rem 2rem;
+    border-radius: 0.3rem;
+    box-shadow: 0 1.5rem 4rem rgba($color-black, 0.15);
+    background-color: $color-grey-light-1;
+
+    @include respond(desktop) {
+      max-width: 40%;
+      padding: 3rem 7rem;
+    }
+  }
+
+  &__error-message {
+    margin-bottom: 2rem;
+  }
+}
