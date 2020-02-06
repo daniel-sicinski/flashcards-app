@@ -81,12 +81,14 @@ export default (state = initialState, action) => {
     case ACTIVATE_SELECT_PLAYLIST_EDIT_STATE:
       return {
         ...state,
-        selectPlaylistEditState: true
+        selectPlaylistEditState: true,
+        selectPlaylistDeleteState: false
       };
     case ACTIVATE_SELECT_PLAYLIST_DELETE_STATE:
       return {
         ...state,
-        selectPlaylistDeleteState: true
+        selectPlaylistDeleteState: true,
+        selectPlaylistEditState: false
       };
     case DISABLE_SELECT_PLAYLIST_STATE:
       return {
