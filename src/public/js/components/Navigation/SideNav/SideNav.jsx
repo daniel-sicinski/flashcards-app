@@ -41,7 +41,7 @@ export default function SideNav({
         Testy
       </NavLink>
       <NavLink
-        to={"/account"}
+        to={"/user"}
         activeClassName="side-nav__link--active"
         className="side-nav__link"
       >

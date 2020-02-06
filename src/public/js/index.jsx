@@ -1,15 +1,17 @@
 import React from "react";
 import ReactDom from "react-dom";
 import App from "./App";
-import { Provider } from "react-redux";
-import store from "./store/store";
 import { BrowserRouter as Router } from "react-router-dom";
 import ProviderWithRouter from "./ProviderWithRouter";
+import { ThemeProvider } from "@material-ui/core/styles";
+import { customStyleTheme } from "./customStyleTheme";
 
 ReactDom.render(
   <Router>
     <ProviderWithRouter>
-      <App />
+      <ThemeProvider theme={customStyleTheme}>
+        <App />
+      </ThemeProvider>
     </ProviderWithRouter>
   </Router>,
   document.getElementById("root")

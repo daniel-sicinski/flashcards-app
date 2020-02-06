@@ -8,18 +8,19 @@ class PlaylistService {
     this.deletePlaylist = this.deletePlaylist.bind(this);
   }
 
-  getPlaylists() {
-    return this.PlaylistModel.find({});
+  getPlaylists(userId) {
+    return this.PlaylistModel.find({ userId });
   }
 
-  getPlaylist(id) {
-    return this.PlaylistModel.findById(id);
+  getPlaylist(playlistId, userId) {
+    return this.PlaylistModel.find({ _id: playlistId, userId });
   }
 
-  async addPlaylist(name, cardsIds) {
+  async addPlaylist(name, cardsIds, userId) {
     const playlist = await new this.PlaylistModel({
       name,
-      cardsIds
+      cardsIds,
+      userId
     }).save();
 
     return playlist;

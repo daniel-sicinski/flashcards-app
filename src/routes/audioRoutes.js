@@ -1,11 +1,13 @@
 const { Router } = require("express");
 const catchException = require("../lib/utils/catchException");
+const userIsLoggedIn = require("../lib/utils/userIsLoggedIn");
 const router = Router();
 const path = require("path");
 const fs = require("fs");
 
 router.get(
   "/:audioId",
+  userIsLoggedIn,
   catchException((req, res) => {
     const { audioId } = req.params;
 

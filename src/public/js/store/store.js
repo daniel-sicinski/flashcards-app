@@ -4,6 +4,7 @@ import createSagaMiddleware from "redux-saga";
 import watchAudioSaga from "./sagas/audioSaga";
 import watchCardsSaga from "./sagas/cardsSaga";
 import watchPlaylistsSaga from "./sagas/playlistsSaga";
+import watchAuthSaga from "./sagas/authSaga";
 
 export default (initialState, context = {}) => {
   const sagaMiddleware = createSagaMiddleware({
@@ -22,6 +23,7 @@ export default (initialState, context = {}) => {
   sagaMiddleware.run(watchAudioSaga);
   sagaMiddleware.run(watchCardsSaga);
   sagaMiddleware.run(watchPlaylistsSaga);
+  sagaMiddleware.run(watchAuthSaga);
 
   return store;
 };

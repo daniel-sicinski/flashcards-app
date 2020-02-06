@@ -1,0 +1,11 @@
+.register {
+  &__form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  &__to-login {
+    margin-top: 5rem;
+  }
+}

@@ -72,7 +72,7 @@ export default function PlaylistAddEdit({
               value={playlistName}
               onChange={e => setPlaylistName(e.target.value)}
             />
-            <Button type="submit">
+            <Button type="submit" variant="contained" color="primary">
               {editedPlaylist ? "Zaktualizuj" : "Dodaj"}
             </Button>
           </form>

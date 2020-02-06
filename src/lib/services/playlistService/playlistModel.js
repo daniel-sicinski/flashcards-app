@@ -13,7 +13,8 @@ const playlistSchema = new Schema({
   createdAt: {
     type: Date,
     default: Date.now
-  }
+  },
+  userId: { type: String, required: true }
 });
 
 module.exports = mongoose.model("Playlist", playlistSchema);
