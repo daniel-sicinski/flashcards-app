@@ -8,6 +8,7 @@ import Playlists from "../Playlists/PlaylistsContainer";
 import PlaylistView from "../PlaylistView/PlaylistViewContainer";
 import PlaylistEditView from "../PlaylistEditView/PlaylistEditViewContainer";
 import NewPlaylistView from "../NewPlaylistView/NewPlaylistViewContainer";
+import UserPanelView from "../UserPanelView/UserPanelViewContainer";
 import Spinner from "../Spinner/Spinner";
 
 export default function AppContainer({
@@ -43,6 +44,7 @@ export default function AppContainer({
               component={PlaylistView}
             />
             <Route path="/playlists" exact component={Playlists} />
+            <Route path="/user" exact component={UserPanelView} />
           </Switch>
           <Navigation />
           <AudioManager />
