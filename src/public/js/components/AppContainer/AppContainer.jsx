@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Route, Switch } from "react-router-dom";
 
 import AllCardsView from "../AllCardsView/AllCardsViewContainer";
@@ -10,6 +10,7 @@ import PlaylistEditView from "../PlaylistEditView/PlaylistEditViewContainer";
 import NewPlaylistView from "../NewPlaylistView/NewPlaylistViewContainer";
 import UserPanelView from "../UserPanelView/UserPanelViewContainer";
 import Spinner from "../Spinner/Spinner";
+import PWAInstallHandler from "../PWAInstallHandler/PWAInstallHandlerContainer";
 
 export default function AppContainer({
   userName,
@@ -48,6 +49,7 @@ export default function AppContainer({
           </Switch>
           <Navigation />
           <AudioManager />
+          <PWAInstallHandler />
         </>
       ) : (
         <Spinner />

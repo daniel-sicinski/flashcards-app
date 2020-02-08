@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import { setDeviceType } from "./store/actions/UIActions";
+import { setDeviceType, setDeferredPrompt } from "./store/actions/UIActions";
 import { MIN_DESKTOP_WIDTH } from "./config";
 import Register from "./components/Register/RegisterContainer";
 import Login from "./components/Login/LoginContainer";
@@ -11,15 +11,27 @@ class App extends Component {
   componentDidMount() {
     this.handleDeviceType();
     window.addEventListener("resize", this.handleDeviceType);
+
+    window.addEventListener(
+      "beforeinstallprompt",
+      this.handleBeforeInstallPrompt
+    );
   }
 
   componentWillUnmount() {
     window.removeEventListener("resize", this.handleDeviceType);
+    window.removeEventListener("resize", this.handleBeforeInstallPrompt);
   }
 
   handleDeviceType = () => {
     const isDesktop = window.innerWidth > MIN_DESKTOP_WIDTH;
     this.props.setDeviceType(isDesktop);
+  };
+
+  handleBeforeInstallPrompt = e => {
+    e.preventDefault();
+    this.props.setDeferredPrompt(e);
+    return;
   };
 
   render() {
@@ -35,4 +47,4 @@ class App extends Component {
   }
 }
 
-export default connect(null, { setDeviceType })(App);
+export default connect(null, { setDeviceType, setDeferredPrompt })(App);

@@ -39,6 +39,10 @@ module.exports = {
       {
         from: path.join(__dirname, "src", "assets", "icons"),
         to: path.join(__dirname, "dist", "assets", "icons")
+      },
+      {
+        from: path.join(__dirname, "serviceWorker.js"),
+        to: path.join(__dirname, "dist")
       }
     ])
   ]

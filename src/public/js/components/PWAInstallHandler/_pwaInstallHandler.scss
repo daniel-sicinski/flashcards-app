@@ -1,0 +1,11 @@
+.pwaInstallHandler {
+  &__message {
+    margin-bottom: 2rem;
+  }
+
+  &__btn-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+}

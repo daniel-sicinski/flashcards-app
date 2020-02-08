@@ -6,6 +6,10 @@ import ProviderWithRouter from "./ProviderWithRouter";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { customStyleTheme } from "./customStyleTheme";
 
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./serviceWorker.js");
+}
+
 ReactDom.render(
   <Router>
     <ProviderWithRouter>
