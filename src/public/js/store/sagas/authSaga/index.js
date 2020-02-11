@@ -28,15 +28,13 @@ function* getUserAuthStatus() {
       history.replace(`/register`);
     }
   } catch (error) {
-    console.log("No connection error");
-    console.log(error);
-
     const userName = yield localStorage.getItem("userName");
 
     if (userName) {
       yield put(logInUser(userName));
     } else {
-      // offline and not logged in > redirect to dedicated offline page or standard /register?
+      const history = yield getContext("routerHistory");
+      history.replace(`/offline`);
     }
   }
 }

@@ -7,7 +7,7 @@ import { generateInputErrorsObject } from "../../utils/generateInputErrorsObject
 import FormInputValidator from "../../utils/FormInputValidator";
 import AuthViewLayout from "../AuthViewLayout/AuthViewLayout";
 
-export default function Register({ loginRequestStart, requestingLogin }) {
+export default function Login({ loginRequestStart, requestingLogin }) {
   const [inputErrors, setInputErrors] = useState(
     generateInputErrorsObject("userName", "password")
   );

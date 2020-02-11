@@ -7,6 +7,7 @@ import Register from "./components/Register/RegisterContainer";
 import Login from "./components/Login/LoginContainer";
 import AppContainer from "./components/AppContainer/AppContainerContainer";
 import GlobalErrorHandler from "./components/GlobalErrorHandler/GlobalErrorHandlerContainer";
+import OfflinePage from "./components/OfflinePage/OfflinePage";
 
 class App extends Component {
   componentDidMount() {
@@ -41,6 +42,7 @@ class App extends Component {
         <Switch>
           <Route path="/register" exact component={Register} />
           <Route path="/login" exact component={Login} />
+          <Route path="/offline" exact component={OfflinePage} />
           <Route component={AppContainer} />
         </Switch>
         <GlobalErrorHandler />
