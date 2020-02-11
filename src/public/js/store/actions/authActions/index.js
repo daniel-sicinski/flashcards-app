@@ -46,11 +46,11 @@ export const logoutRequestStart = () => {
   };
 };
 
-export const logInUser = userName => {
+export const logInUser = user => {
   return {
     type: LOG_IN_USER,
     payload: {
-      userName
+      user
     }
   };
 };

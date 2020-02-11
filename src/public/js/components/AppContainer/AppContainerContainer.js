@@ -6,7 +6,7 @@ import { checkUserAuthStatus } from "../../store/actions/authActions";
 
 const mapStateToProps = state => {
   return {
-    userName: state.auth.userName
+    user: state.auth.user
   };
 };
 

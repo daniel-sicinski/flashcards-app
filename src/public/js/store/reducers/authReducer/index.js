@@ -9,7 +9,7 @@ import {
 import { CLEAR_ERROR_MESSAGE } from "../../actions/UIActions/actionNames";
 
 const initialState = {
-  userName: null,
+  user: null,
   loading: false,
   error: null
 };
@@ -27,7 +27,7 @@ export default (state = initialState, action) => {
     case LOG_IN_USER:
       return {
         ...state,
-        userName: action.payload.userName,
+        user: action.payload.user,
         loading: false,
         error: null
       };
@@ -35,7 +35,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        userName: null
+        user: null
       };
     case AUTH_REQUEST_ERROR:
       return {

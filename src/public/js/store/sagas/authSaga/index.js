@@ -11,27 +11,29 @@ import {
   LOGIN_REQUEST_START,
   LOGOUT_REQUEST_START
 } from "../../actions/authActions/actionNames";
+import User from "../../reducers/authReducer/User";
 
 function* getUserAuthStatus() {
   try {
     const response = yield call(fetch, "/api/v1/users/is-logged");
 
     if (response.status === 200) {
-      const { userName } = yield response.json();
-      yield put(logInUser(userName));
+      const { userName, userId } = yield response.json();
+      const user = new User(userName, userId);
+      yield put(logInUser(user));
 
-      yield localStorage.setItem("userName", userName);
+      yield localStorage.setItem("user", JSON.stringify(user));
     } else if (response.status === 401) {
-      yield localStorage.removeItem("userName");
+      yield localStorage.removeItem("user");
 
       const history = yield getContext("routerHistory");
       history.replace(`/register`);
     }
   } catch (error) {
-    const userName = yield localStorage.getItem("userName");
+    const user = yield localStorage.getItem("user");
 
-    if (userName) {
-      yield put(logInUser(userName));
+    if (user) {
+      yield put(logInUser(JSON.parse(user)));
     } else {
       const history = yield getContext("routerHistory");
       history.replace(`/offline`);
@@ -43,11 +45,11 @@ function* authenticateUser(action) {
   const { authData, path } = action.payload;
 
   try {
-    const { userName } = yield call(postRequest, path, authData);
+    const user = yield call(postRequest, path, authData);
 
-    yield localStorage.setItem("userName", userName);
+    yield localStorage.setItem("user", JSON.stringify(user));
 
-    yield put(logInUser(userName));
+    yield put(logInUser(user));
 
     const history = yield getContext("routerHistory");
     history.replace(`/`);
@@ -60,7 +62,7 @@ function* logoutUser() {
   try {
     yield call(getRequest, "/logout");
 
-    yield localStorage.removeItem("userName");
+    yield localStorage.removeItem("user");
 
     yield put(logOutUser());
 

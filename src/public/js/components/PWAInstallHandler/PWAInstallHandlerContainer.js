@@ -4,7 +4,7 @@ import PWAInstallHandler from "./PWAInstallHandler";
 
 const mapStateToProps = state => {
   return {
-    showModal: state.auth.userName && state.ui.PWAInstallDeferredPrompt,
+    showModal: state.auth.user && state.ui.PWAInstallDeferredPrompt,
     deferredPrompt: state.ui.PWAInstallDeferredPrompt
   };
 };

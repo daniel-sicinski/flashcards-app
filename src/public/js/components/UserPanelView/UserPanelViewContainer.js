@@ -4,7 +4,7 @@ import UserPanelView from "./UserPanelView";
 
 const mapStateToProps = state => {
   return {
-    userName: state.auth.userName
+    user: state.auth.user
   };
 };
 

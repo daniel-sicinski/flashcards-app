@@ -13,7 +13,7 @@ import Spinner from "../Spinner/Spinner";
 import PWAInstallHandler from "../PWAInstallHandler/PWAInstallHandlerContainer";
 
 export default function AppContainer({
-  userName,
+  user,
   fetchCardsStart,
   checkUserAuthStatus
 }) {
@@ -22,14 +22,14 @@ export default function AppContainer({
   }, []);
 
   useEffect(() => {
-    if (userName) {
+    if (user) {
       fetchCardsStart();
     }
-  }, [userName]);
+  }, [user]);
 
   return (
     <>
-      {userName ? (
+      {user ? (
         <>
           <Switch>
             <Route path="/" exact component={AllCardsView} />
