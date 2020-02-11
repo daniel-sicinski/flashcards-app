@@ -17,10 +17,10 @@ export default function PWAInstallHandler({
 
   return (
     <Modal showModal={showModal} closeModal={clearDeferredPrompt}>
-      <p className="pwaInstallHandler__message">
-        Czy chcesz dodać aplikację do ekranu głównego?
-      </p>
-      <div className="pwaInstallHandler__btn-container">
+      <div className="modal__body">
+        <p>Czy chcesz dodać aplikację do ekranu głównego?</p>
+      </div>
+      <div className="modal__controls">
         <Button
           variant="contained"
           color="primary"

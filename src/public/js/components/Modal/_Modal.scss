@@ -14,4 +14,14 @@
   padding: 2rem 3rem;
   box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.15);
   z-index: $modal-z-index;
+
+  &__body {
+    margin-bottom: 2rem;
+  }
+
+  &__controls {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+  }
 }
