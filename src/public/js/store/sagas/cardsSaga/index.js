@@ -1,3 +1,5 @@
+import localforage from "localforage";
+import IndexedDBService from "../IndexedDBService";
 import { call, put, takeEvery } from "redux-saga/effects";
 import { FETCH_CARDS_START } from "../../actions/cardsActions/actionNames";
 import {
@@ -8,11 +10,20 @@ import {
 import { mapArrayToObjectByIds } from "../utils";
 import { getRequest } from "../requests";
 
-export function* getCards() {
-  try {
-    const cardsData = yield call(getRequest, "/cards");
+const dbService = new IndexedDBService(localforage);
 
-    const cardsDataObject = mapArrayToObjectByIds(cardsData.data.cards, "_id");
+export function* getCards() {
+  let cardsData;
+  try {
+    cardsData = yield call(dbService.getData, "cardsData");
+
+    if (!cardsData) {
+      const responseJson = yield call(getRequest, "/cards");
+      cardsData = responseJson.data.cards;
+      yield call(dbService.saveData, "cardsData", cardsData);
+    }
+
+    const cardsDataObject = mapArrayToObjectByIds(cardsData, "_id");
 
     yield put(fetchCardsSuccess(cardsDataObject));
     yield put(setDisplayedCards(Object.keys(cardsDataObject)));

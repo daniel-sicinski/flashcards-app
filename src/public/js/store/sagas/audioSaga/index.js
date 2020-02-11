@@ -1,3 +1,5 @@
+import localforage from "localforage";
+import IndexedDBService from "../IndexedDBService";
 import {
   call,
   put,
@@ -29,9 +31,12 @@ const selectTrackRefs = state => state.audio.trackRefs;
 const selectPlaybackGap = state => state.audio.playbackGap;
 const selectIsLastTrack = state => state.audio.tracksToPlay.length === 1;
 
+const dbService = new IndexedDBService(localforage);
+
 export function* getTrack(action) {
   const { trackId } = action.payload;
   const trackRefs = yield select(selectTrackRefs);
+  let audioBlob;
 
   const requestedTrackRef = trackRefs[trackId];
 
@@ -39,15 +44,21 @@ export function* getTrack(action) {
     yield put(playTrack(requestedTrackRef));
   } else {
     try {
-      yield put(fetchTrackStart());
+      audioBlob = yield call(dbService.getData, trackId);
 
-      const audioBlob = yield call(audioRequest, trackId);
+      if (!audioBlob) {
+        yield put(fetchTrackStart());
+        audioBlob = yield call(audioRequest, trackId);
+        yield call(dbService.saveData, trackId, audioBlob);
+      }
 
       const trackRef = window.URL.createObjectURL(audioBlob);
 
       yield put(fetchTrackSuccess(trackId, trackRef));
       yield put(playTrack(trackRef));
     } catch (e) {
+      console.log("Error message from audio saga:");
+      console.log(e.message);
       yield put(fetchTrackError(e.message));
     }
   }
