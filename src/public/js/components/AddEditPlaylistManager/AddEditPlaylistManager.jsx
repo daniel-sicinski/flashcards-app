@@ -66,7 +66,7 @@ export default function PlaylistAddEdit({
         ) : (
           <form noValidate autoComplete="off" onSubmit={handleOnSubmit}>
             <InputField
-              inputType="text"
+              type="text"
               id="playlist_name"
               label="Podaj nazwę playlisty"
               value={playlistName}

@@ -24,8 +24,6 @@ const handleRequest = async request => {
     default:
       return fetch(request);
   }
-  // user routes:
-  // logout => may be need to do backgroundSync in that > remove userName from LS and on resumed connect > send logout request automatically
 };
 
 self.addEventListener("install", e => {
