@@ -1,18 +1,13 @@
 import { connect } from "react-redux";
 import Login from "./Login";
-import {
-  loginRequestStart,
-  dismissAuthError
-} from "../../store/actions/authActions";
+import { loginRequestStart } from "../../store/actions/authActions";
 
 const mapStateToProps = state => {
   return {
-    requestingLogin: state.auth.loading,
-    loginError: state.auth.error
+    requestingLogin: state.auth.loading
   };
 };
 
 export default connect(mapStateToProps, {
-  loginRequestStart,
-  dismissAuthError
+  loginRequestStart
 })(Login);

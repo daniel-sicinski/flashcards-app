@@ -6,6 +6,7 @@ import { MIN_DESKTOP_WIDTH } from "./config";
 import Register from "./components/Register/RegisterContainer";
 import Login from "./components/Login/LoginContainer";
 import AppContainer from "./components/AppContainer/AppContainerContainer";
+import GlobalErrorHandler from "./components/GlobalErrorHandler/GlobalErrorHandlerContainer";
 
 class App extends Component {
   componentDidMount() {
@@ -42,6 +43,7 @@ class App extends Component {
           <Route path="/login" exact component={Login} />
           <Route component={AppContainer} />
         </Switch>
+        <GlobalErrorHandler />
       </>
     );
   }

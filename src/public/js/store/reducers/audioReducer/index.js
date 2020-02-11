@@ -11,6 +11,7 @@ import {
   RESUME_TRACK,
   GAP_FINISHED
 } from "../../actions/audioActions/actionNames";
+import { CLEAR_ERROR_MESSAGE } from "../../actions/UIActions/actionNames";
 
 const initialState = {
   trackRefs: {},
@@ -97,6 +98,11 @@ export default (state = initialState, action) => {
         currentlyPlayedTrackRef: null,
         currentlyActiveCardId: null,
         isGlobalAudioPlay: false
+      };
+    case CLEAR_ERROR_MESSAGE:
+      return {
+        ...state,
+        error: null
       };
     default:
       return state;
