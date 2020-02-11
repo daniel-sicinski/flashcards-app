@@ -3,13 +3,13 @@ import {
   AUTH_REQUEST_ERROR,
   LOG_IN_USER,
   LOG_OUT_USER,
-  DISMISS_AUTH_ERROR,
   LOGOUT_REQUEST_START,
   LOGIN_REQUEST_START
 } from "../../actions/authActions/actionNames";
+import { CLEAR_ERROR_MESSAGE } from "../../actions/UIActions/actionNames";
 
 const initialState = {
-  userName: null,
+  user: null,
   loading: false,
   error: null
 };
@@ -27,7 +27,7 @@ export default (state = initialState, action) => {
     case LOG_IN_USER:
       return {
         ...state,
-        userName: action.payload.userName,
+        user: action.payload.user,
         loading: false,
         error: null
       };
@@ -35,7 +35,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        userName: null
+        user: null
       };
     case AUTH_REQUEST_ERROR:
       return {
@@ -43,7 +43,7 @@ export default (state = initialState, action) => {
         loading: false,
         error: action.payload.error
       };
-    case DISMISS_AUTH_ERROR:
+    case CLEAR_ERROR_MESSAGE:
       return {
         ...state,
         error: null

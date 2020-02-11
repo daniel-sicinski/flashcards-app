@@ -9,9 +9,7 @@ import AuthViewLayout from "../AuthViewLayout/AuthViewLayout";
 
 export default function Register({
   registerUserStart,
-  dismissAuthError,
-  requestingRegistration,
-  registrationError
+  requestingRegistration
 }) {
   const [inputErrors, setInputErrors] = useState(
     generateInputErrorsObject("userName", "password", "passwordConfirm")
@@ -36,10 +34,7 @@ export default function Register({
   };
 
   return (
-    <AuthViewLayout
-      authError={registrationError}
-      dismissAuthError={dismissAuthError}
-    >
+    <AuthViewLayout>
       {requestingRegistration ? (
         <Spinner />
       ) : (

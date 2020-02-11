@@ -1,5 +1,10 @@
 const path = require("path");
+
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ManifestPlugin = require("webpack-manifest-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
+
+const manifestSeed = require("./manifestSeed")();
 
 module.exports = {
   entry: path.join(__dirname, "src", "public", "js", "index.jsx"),
@@ -26,6 +31,19 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, "src", "views", "index.html")
-    })
+    }),
+    new ManifestPlugin({
+      seed: manifestSeed
+    }),
+    new CopyPlugin([
+      {
+        from: path.join(__dirname, "src", "assets", "icons"),
+        to: path.join(__dirname, "dist", "assets", "icons")
+      },
+      {
+        from: path.join(__dirname, "serviceWorker.js"),
+        to: path.join(__dirname, "dist")
+      }
+    ])
   ]
 };

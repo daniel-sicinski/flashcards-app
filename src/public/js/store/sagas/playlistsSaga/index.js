@@ -1,3 +1,4 @@
+import localforage from "localforage";
 import { call, put, takeEvery, select, getContext } from "redux-saga/effects";
 import {
   FETCH_PLAYLISTS_START,
@@ -26,19 +27,38 @@ import {
   deleteRequest
 } from "../requests";
 import { mapArrayToObjectByIds } from "../utils";
+import IndexedDBService from "../IndexedDBService";
 
 const selectPlaylistsData = state => state.playlists.playlistsData;
+const selectUserData = state => state.auth.user;
+
+const dbService = new IndexedDBService(localforage);
 
 export function* getPlaylists() {
+  const user = yield select(selectUserData);
+  console.log("from playlistSaga: ");
+  const userPlaylists = yield call(
+    dbService.getData,
+    `playlists-${user.userId}`
+  );
+
+  const playlistsObject = mapArrayToObjectByIds(userPlaylists || [], "_id");
+
+  yield put(fetchPlaylistsSuccess(playlistsObject));
+
   try {
     const response = yield call(getRequest, "/playlists");
     const { playlists } = response.data;
+
+    yield call(dbService.saveData, `playlists-${user.userId}`, playlists);
 
     const playlistsObject = mapArrayToObjectByIds(playlists, "_id");
 
     yield put(fetchPlaylistsSuccess(playlistsObject));
   } catch (error) {
-    yield put(fetchPlaylistsError(error.message));
+    if (!userPlaylists) {
+      yield put(fetchPlaylistsError(error.message));
+    }
   }
 }
 
@@ -46,12 +66,27 @@ export function* getPlaylist(action) {
   const { playlistId } = action.payload;
 
   const playlistsData = yield select(selectPlaylistsData);
-  const requestedPlaylist = playlistsData[playlistId];
+  const user = yield select(selectUserData);
+
+  let requestedPlaylist = playlistsData[playlistId];
 
   if (requestedPlaylist) {
     yield put(fetchPlaylistSuccess(requestedPlaylist));
     yield put(setDisplayedCards(requestedPlaylist.cardsIds));
   } else {
+    const userPlaylists = yield call(
+      dbService.getData,
+      `playlists-${user.userId}`
+    );
+    requestedPlaylist = userPlaylists.find(
+      playlist => playlist._id === playlistId
+    );
+
+    if (requestedPlaylist) {
+      yield put(fetchPlaylistSuccess(requestedPlaylist));
+      yield put(setDisplayedCards(requestedPlaylist.cardsIds));
+    }
+
     try {
       const response = yield call(getRequest, `/playlists/${playlistId}`);
       const { playlist } = response.data;
@@ -59,7 +94,9 @@ export function* getPlaylist(action) {
       yield put(fetchPlaylistSuccess(playlist));
       yield put(setDisplayedCards(playlist.cardsIds));
     } catch (error) {
-      yield put(fetchPlaylistError(error.message));
+      if (!requestedPlaylist) {
+        yield put(fetchPlaylistError(error.message));
+      }
     }
   }
 }

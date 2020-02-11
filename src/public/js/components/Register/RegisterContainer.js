@@ -1,18 +1,13 @@
 import { connect } from "react-redux";
 import Register from "./Register";
-import {
-  registerUserStart,
-  dismissAuthError
-} from "../../store/actions/authActions";
+import { registerUserStart } from "../../store/actions/authActions";
 
 const mapStateToProps = state => {
   return {
-    requestingRegistration: state.auth.loading,
-    registrationError: state.auth.error
+    requestingRegistration: state.auth.loading
   };
 };
 
 export default connect(mapStateToProps, {
-  registerUserStart,
-  dismissAuthError
+  registerUserStart
 })(Register);

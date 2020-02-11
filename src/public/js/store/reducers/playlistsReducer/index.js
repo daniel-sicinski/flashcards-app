@@ -20,6 +20,7 @@ import {
   SET_EDIT_PLAYLIST_STATE,
   DISABLE_EDIT_PLAYLIST_STATE
 } from "../../actions/playlistsActions/actionNames";
+import { CLEAR_ERROR_MESSAGE } from "../../actions/UIActions/actionNames";
 
 const initialState = {
   playlistsData: {},
@@ -105,6 +106,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         editedPlaylistId: null
+      };
+    case CLEAR_ERROR_MESSAGE:
+      return {
+        ...state,
+        error: null
       };
     default:
       return state;

@@ -4,7 +4,6 @@ import {
   AUTH_REQUEST_ERROR,
   LOG_IN_USER,
   LOG_OUT_USER,
-  DISMISS_AUTH_ERROR,
   LOGOUT_REQUEST_START,
   LOGIN_REQUEST_START
 } from "./actionNames";
@@ -47,11 +46,11 @@ export const logoutRequestStart = () => {
   };
 };
 
-export const logInUser = userName => {
+export const logInUser = user => {
   return {
     type: LOG_IN_USER,
     payload: {
-      userName
+      user
     }
   };
 };
@@ -68,11 +67,5 @@ export const authRequestError = error => {
     payload: {
       error
     }
-  };
-};
-
-export const dismissAuthError = () => {
-  return {
-    type: DISMISS_AUTH_ERROR
   };
 };
