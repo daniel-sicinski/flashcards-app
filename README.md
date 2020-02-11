@@ -15,14 +15,14 @@ https://stormy-beyond-12223.herokuapp.com/
 * reviewing a list of English/Polish expressions (in a form of cards)
 * playling audio for each card, for all cards and for selected cards
 * creating, updating, deleting, and reviewing playlists of selected cards
+* authentication and individual accounts
+* PWA - installability, ability to use most of the app features offline
 
 ## Future functionalities
 
 * cards search feature
 * reviewing all cards grouped by category
-* adding authentication and individual accounts
 * ability to change settings of audio playback (i.e. longer breakes between played tracks)
-* providing native-like experience for mobile version (i.e. ability to use app offline)
 * adding some kind of tests for practicing expressions
 
 ## Technologies used
