@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import CardsWrapper from "../CardsWrapper/CardsWrapper";
 import RenderCards from "../RenderCards/RenderCardsContainer";
 
-export default function AllCardsView({
+function AllCardsView({
   cards,
   cardsIds,
   loadingCards,
@@ -15,7 +15,7 @@ export default function AllCardsView({
     return () => {
       disableSelectState();
     };
-  }, []);
+  }, [cardsIds]);
 
   return (
     <CardsWrapper showSpinner={loadingCards}>
@@ -23,3 +23,5 @@ export default function AllCardsView({
     </CardsWrapper>
   );
 }
+
+export default React.memo(AllCardsView);

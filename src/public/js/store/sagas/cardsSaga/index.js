@@ -26,7 +26,6 @@ export function* getCards() {
     const cardsDataObject = mapArrayToObjectByIds(cardsData, "_id");
 
     yield put(fetchCardsSuccess(cardsDataObject));
-    yield put(setDisplayedCards(Object.keys(cardsDataObject)));
   } catch (e) {
     yield put(fetchCardsError(e));
   }
