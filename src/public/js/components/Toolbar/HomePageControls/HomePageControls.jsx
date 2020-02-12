@@ -7,6 +7,7 @@ import PlayCircleFilledIcon from "@material-ui/icons/PlayCircleFilled";
 import GlobalPlayNav from "../../GlobalPlayNav/GlobalPlayNavContainer";
 import MobilePopupNav from "../../MobilePopupNav/MobilePopupNav";
 import ButtonFab from "../../ButtonFab/ButtonFab";
+import Searchbar from "../../Searchbar/Searchbar";
 
 export default function HomePageControls({
   activateSelectState,
@@ -14,12 +15,17 @@ export default function HomePageControls({
   isSelectStateActive,
   handleOnGlobalPlayClick,
   isAudioPopupShown,
-  setAudioPopupVisibility
+  setAudioPopupVisibility,
+  isSearchbarPopupShown,
+  setSearchbarPopupVisibility
 }) {
   return (
     <>
       <ButtonFab>
-        <SearchIcon className="toolbar__nav-icon" />
+        <SearchIcon
+          className="toolbar__nav-icon"
+          onClick={() => setSearchbarPopupVisibility(true)}
+        />
       </ButtonFab>
       {isSelectStateActive ? (
         <ButtonFab>
@@ -48,6 +54,12 @@ export default function HomePageControls({
         hidePopup={() => setAudioPopupVisibility(false)}
       >
         <GlobalPlayNav />
+      </MobilePopupNav>
+      <MobilePopupNav
+        isPopupShown={isSearchbarPopupShown}
+        style={{ width: "100%", right: "-100%", padding: "1rem 3rem" }}
+      >
+        <Searchbar formSubmitted={() => setSearchbarPopupVisibility(false)} />
       </MobilePopupNav>
     </>
   );

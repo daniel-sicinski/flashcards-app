@@ -7,19 +7,31 @@ import PlaylistNav from "../../PlaylistsNav/PlaylistNavContainer";
 import GlobalPlayNav from "../../GlobalPlayNav/GlobalPlayNavContainer";
 import MobilePopupNav from "../../MobilePopupNav/MobilePopupNav";
 import ButtonFab from "../../ButtonFab/ButtonFab";
+import Searchbar from "../../Searchbar/Searchbar";
 
 export default function PlaylistViewControls({
   isPlaylistPopupShown,
   setPlaylistPopupVisibility,
   isAudioPopupShown,
   setAudioPopupVisibility,
-  handleOnGlobalPlayClick
+  handleOnGlobalPlayClick,
+  setSearchbarPopupVisibility,
+  isSearchbarPopupShown
 }) {
   return (
     <>
       <ButtonFab>
-        <SearchIcon className="toolbar__nav-icon" />
+        <SearchIcon
+          className="toolbar__nav-icon"
+          onClick={() => setSearchbarPopupVisibility(true)}
+        />
       </ButtonFab>
+      <MobilePopupNav
+        isPopupShown={isSearchbarPopupShown}
+        style={{ width: "100%", right: "-100%", padding: "1rem 3rem" }}
+      >
+        <Searchbar formSubmitted={() => setSearchbarPopupVisibility(false)} />
+      </MobilePopupNav>
       <ButtonFab>
         <PlaylistAddCheckIcon
           className="toolbar__nav-icon"

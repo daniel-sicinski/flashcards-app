@@ -19,6 +19,7 @@ export default function Toolbar({
 }) {
   const [isAudioPopupShown, setAudioPopupVisibility] = useState(false);
   const [isPlaylistPopupShown, setPlaylistPopupVisibility] = useState(false);
+  const [isSearchbarPopupShown, setSearchbarPopupVisibility] = useState(false);
 
   const handleOnGlobalPlayClick = () => {
     setAudioPopupVisibility(true);
@@ -27,6 +28,7 @@ export default function Toolbar({
   const hidePopups = () => {
     setAudioPopupVisibility(false);
     setPlaylistPopupVisibility(false);
+    setSearchbarPopupVisibility(false);
   };
 
   return (
@@ -50,6 +52,8 @@ export default function Toolbar({
                   handleOnGlobalPlayClick={handleOnGlobalPlayClick}
                   isAudioPopupShown={isAudioPopupShown}
                   setAudioPopupVisibility={setAudioPopupVisibility}
+                  isSearchbarPopupShown={isSearchbarPopupShown}
+                  setSearchbarPopupVisibility={setSearchbarPopupVisibility}
                 />
               )}
             />
@@ -73,6 +77,8 @@ export default function Toolbar({
                   isAudioPopupShown={isAudioPopupShown}
                   setAudioPopupVisibility={setAudioPopupVisibility}
                   handleOnGlobalPlayClick={handleOnGlobalPlayClick}
+                  isSearchbarPopupShown={isSearchbarPopupShown}
+                  setSearchbarPopupVisibility={setSearchbarPopupVisibility}
                 />
               )}
             />
@@ -90,7 +96,9 @@ export default function Toolbar({
         </div>
       )}
       <Backdrop
-        show={isAudioPopupShown || isPlaylistPopupShown}
+        show={
+          isAudioPopupShown || isPlaylistPopupShown || isSearchbarPopupShown
+        }
         hideOnClick={hidePopups}
       />
     </div>
