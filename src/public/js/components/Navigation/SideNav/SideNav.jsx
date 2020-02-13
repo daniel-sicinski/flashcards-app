@@ -34,11 +34,11 @@ export default function SideNav({
         Kategorie
       </NavLink>
       <NavLink
-        to={"/tests"}
+        to={"/flashcards"}
         activeClassName="side-nav__link--active"
         className="side-nav__link"
       >
-        Testy
+        Fiszki
       </NavLink>
       <NavLink
         to={"/user"}
