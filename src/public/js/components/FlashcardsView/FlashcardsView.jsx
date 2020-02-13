@@ -23,6 +23,9 @@ const AutoRotatingCarouselHOC = isDesktop => {
         borderRadius: "0",
         boxShadow: "none"
       },
+      "& div[class^=AutoRotatingCarousel-footer]": {
+        display: "none"
+      },
       "& div[class^=AutoRotatingCarousel-content]": isDesktop
         ? carouselDesktopStyling
         : carouselMobileStyling
