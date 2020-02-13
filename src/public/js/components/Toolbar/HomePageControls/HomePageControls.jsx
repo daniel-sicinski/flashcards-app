@@ -57,7 +57,7 @@ export default function HomePageControls({
       </MobilePopupNav>
       <MobilePopupNav
         isPopupShown={isSearchbarPopupShown}
-        style={{ width: "100%", right: "-100%" }}
+        style={{ width: "100%" }}
       >
         <Searchbar formSubmitted={() => setSearchbarPopupVisibility(false)} />
       </MobilePopupNav>
