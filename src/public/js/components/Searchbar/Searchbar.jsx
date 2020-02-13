@@ -7,7 +7,15 @@ function Searchbar({ formSubmitted = () => {}, history, location }) {
     e.preventDefault();
 
     formSubmitted();
-    history.push(`${location.pathname}?s=${e.target.searchText.value}`);
+
+    const searchTextValue = e.target.searchText.value;
+    setTimeout(
+      searchTextValue => {
+        history.push(`${location.pathname}?s=${searchTextValue}`);
+      },
+      800,
+      searchTextValue
+    );
   };
 
   return (
