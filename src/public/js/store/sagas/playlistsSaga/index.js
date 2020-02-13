@@ -19,7 +19,6 @@ import {
   deletePlaylistSuccess,
   deletePlaylistError
 } from "../../actions/playlistsActions";
-import { setDisplayedCards } from "../../actions/cardsActions";
 import {
   getRequest,
   postRequest,
@@ -72,7 +71,6 @@ export function* getPlaylist(action) {
 
   if (requestedPlaylist) {
     yield put(fetchPlaylistSuccess(requestedPlaylist));
-    yield put(setDisplayedCards(requestedPlaylist.cardsIds));
   } else {
     const userPlaylists = yield call(
       dbService.getData,
@@ -84,7 +82,6 @@ export function* getPlaylist(action) {
 
     if (requestedPlaylist) {
       yield put(fetchPlaylistSuccess(requestedPlaylist));
-      yield put(setDisplayedCards(requestedPlaylist.cardsIds));
     }
 
     try {
@@ -92,7 +89,6 @@ export function* getPlaylist(action) {
       const { playlist } = response.data;
 
       yield put(fetchPlaylistSuccess(playlist));
-      yield put(setDisplayedCards(playlist.cardsIds));
     } catch (error) {
       if (!requestedPlaylist) {
         yield put(fetchPlaylistError(error.message));
