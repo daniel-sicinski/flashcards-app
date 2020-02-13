@@ -12,6 +12,7 @@ import UserPanelView from "../UserPanelView/UserPanelViewContainer";
 import Spinner from "../Spinner/Spinner";
 import PWAInstallHandler from "../PWAInstallHandler/PWAInstallHandlerContainer";
 import FlashcardsView from "../FlashcardsView/FlashcardsViewContainer";
+import FlashcardsSelectView from "../FlashcardsSelectView/FlashcardsSelectViewContainer";
 
 export default function AppContainer({
   user,
@@ -47,7 +48,11 @@ export default function AppContainer({
             />
             <Route path="/playlists" exact component={Playlists} />
             <Route path="/user" exact component={UserPanelView} />
-            <Route path="/flashcards" exact component={FlashcardsView} />
+            <Route
+              path="/flashcardsSelect"
+              exact
+              component={FlashcardsSelectView}
+            />
           </Switch>
           <Navigation />
           <AudioManager />

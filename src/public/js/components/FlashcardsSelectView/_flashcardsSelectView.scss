@@ -1,0 +1,14 @@
+.flashcardsSelect {
+  &--mobile {
+    padding: 2rem;
+  }
+
+  &--desktop {
+    padding: 10rem 30rem;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: inherit;
+  }
+}

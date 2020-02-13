@@ -34,7 +34,7 @@ export default function SideNav({
         Kategorie
       </NavLink>
       <NavLink
-        to={"/flashcards"}
+        to={"/flashcardsSelect"}
         activeClassName="side-nav__link--active"
         className="side-nav__link"
       >
