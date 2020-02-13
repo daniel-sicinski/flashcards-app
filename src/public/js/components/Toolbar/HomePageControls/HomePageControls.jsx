@@ -23,28 +23,28 @@ export default function HomePageControls({
     <>
       <ButtonFab>
         <SearchIcon
-          className="toolbar__nav-icon"
+          className="mobile-icon"
           onClick={() => setSearchbarPopupVisibility(true)}
         />
       </ButtonFab>
       {isSelectStateActive ? (
         <ButtonFab>
           <HighlightOffIcon
-            className="toolbar__nav-icon"
+            className="mobile-icon"
             onClick={disableSelectState}
           />
         </ButtonFab>
       ) : (
         <ButtonFab>
           <AddCircleOutlineIcon
-            className="toolbar__nav-icon"
+            className="mobile-icon"
             onClick={activateSelectState}
           />
         </ButtonFab>
       )}
       <ButtonFab>
         <PlayCircleFilledIcon
-          className="toolbar__nav-icon"
+          className="mobile-icon"
           onClick={handleOnGlobalPlayClick}
         />
       </ButtonFab>

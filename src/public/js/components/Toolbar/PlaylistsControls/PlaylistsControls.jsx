@@ -13,7 +13,7 @@ export default function PlaylistsControls({
     <div>
       <ButtonFab>
         <PlaylistAddCheckIcon
-          className="toolbar__nav-icon"
+          className="mobile-icon"
           onClick={() => setPlaylistPopupVisibility(true)}
         />
       </ButtonFab>
