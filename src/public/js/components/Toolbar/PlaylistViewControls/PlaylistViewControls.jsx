@@ -22,7 +22,7 @@ export default function PlaylistViewControls({
     <>
       <ButtonFab>
         <SearchIcon
-          className="toolbar__nav-icon"
+          className="mobile-icon"
           onClick={() => setSearchbarPopupVisibility(true)}
         />
       </ButtonFab>
@@ -34,7 +34,7 @@ export default function PlaylistViewControls({
       </MobilePopupNav>
       <ButtonFab>
         <PlaylistAddCheckIcon
-          className="toolbar__nav-icon"
+          className="mobile-icon"
           onClick={() => setPlaylistPopupVisibility(true)}
         />
       </ButtonFab>
@@ -47,7 +47,7 @@ export default function PlaylistViewControls({
       </MobilePopupNav>
       <ButtonFab>
         <PlayCircleFilledIcon
-          className="toolbar__nav-icon"
+          className="mobile-icon"
           onClick={handleOnGlobalPlayClick}
         />
       </ButtonFab>

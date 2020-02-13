@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { fetchPlaylists } from "../../store/actions/playlistsActions";
-import { convertObjectToArray } from "./convertObjectToArray";
+import { convertObjectToArray } from "../../utils/convertObjectToArray";
 import {
   disableSelectPlaylistState,
   deletePlaylist

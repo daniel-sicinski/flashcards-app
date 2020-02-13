@@ -6,11 +6,11 @@ import PlaylistNav from "../../PlaylistsNav/PlaylistNavContainer";
 import AddEditPlaylistManager from "../../AddEditPlaylistManager/AddEditPlaylistManagerContainer";
 import SelectCardsControl from "./SelectCardsControl/SelectCardsControl";
 import Searchbar from "../../Searchbar/Searchbar";
+import FlashcardsToolbar from "../../FlashcardsToolbar/FlashcardsToolbarContainer";
 
 export default function DesktopToolbar({
   isGlobalAudioPlay,
   isSelectStateActive,
-  // isNoCardsSelected,
   activateSelectState,
   disableSelectState
 }) {
@@ -67,6 +67,7 @@ export default function DesktopToolbar({
           )}
         />
         <Route path="/playlists" exact component={PlaylistNav} />
+        <Route path="/flashcards" component={FlashcardsToolbar} />
       </Switch>
     </div>
   );

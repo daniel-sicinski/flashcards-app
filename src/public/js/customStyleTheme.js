@@ -7,5 +7,12 @@ export const customStyleTheme = createMuiTheme({
       light: "#ffe0a1",
       dark: "#d3b06a"
     }
+  },
+  typography: {
+    fontFamily: "'Roboto Condensed', 'sans-serif'",
+    body1: {
+      fontSize: "1.8rem",
+      fontFamily: "'Roboto Condensed', 'sans-serif'"
+    }
   }
 });

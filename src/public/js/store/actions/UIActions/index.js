@@ -2,7 +2,8 @@ import {
   SET_DEVICE_TYPE,
   CLEAR_DEFERRED_PROMPT,
   SET_DEFERRED_PROMPT,
-  CLEAR_ERROR_MESSAGE
+  CLEAR_ERROR_MESSAGE,
+  INVERT_SLIDES
 } from "./actionNames";
 
 export const setDeviceType = isDesktop => {
@@ -32,5 +33,11 @@ export const clearDeferredPrompt = isDesktop => {
 export const clearErrorMessage = () => {
   return {
     type: CLEAR_ERROR_MESSAGE
+  };
+};
+
+export const invertSlides = () => {
+  return {
+    type: INVERT_SLIDES
   };
 };
