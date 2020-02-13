@@ -7,6 +7,7 @@ import HomePageControls from "./HomePageControls/HomePageControls";
 import PlaylistViewControls from "./PlaylistViewControls/PlaylistViewControls";
 import PlaylistsControls from "./PlaylistsControls/PlaylistsControls";
 import ButtonFab from "../ButtonFab/ButtonFab";
+import FlashcardsToolbar from "../FlashcardsToolbar/FlashcardsToolbarContainer";
 
 import { Route, Switch } from "react-router-dom";
 
@@ -38,7 +39,7 @@ export default function Toolbar({
       ) : (
         <div className="toolbar__nav">
           <ButtonFab>
-            <MenuIcon className="toolbar__nav-icon" onClick={showSideNav} />
+            <MenuIcon className="mobile-icon" onClick={showSideNav} />
           </ButtonFab>
           <Switch>
             <Route
@@ -92,6 +93,7 @@ export default function Toolbar({
                 />
               )}
             />
+            <Route path="/flashcards" component={FlashcardsToolbar} />
           </Switch>
         </div>
       )}
