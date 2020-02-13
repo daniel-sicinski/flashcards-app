@@ -9,7 +9,6 @@ export default function Navigation({ isDesktop }) {
   const [isSideNavVisible, setSideNavVisibility] = useState(false);
 
   useEffect(() => {
-    console.log(isDesktop);
     isDesktop ? setSideNavVisibility(true) : setSideNavVisibility(false);
   }, [isDesktop]);
 

@@ -1,4 +1,5 @@
 import React from "react";
+import Slide from "@material-ui/core/Slide";
 
 export default function MobilePopupNav({
   children,
@@ -6,17 +7,15 @@ export default function MobilePopupNav({
   hidePopup,
   style
 }) {
-  const classes = isPopupShown
-    ? ["mobile-popup-nav", "mobile-popup-nav--show"]
-    : ["mobile-popup-nav"];
-
   return (
-    <div
-      className={classes.join(" ")}
-      style={{ ...style }}
-      onClick={hidePopup ? hidePopup : () => {}}
-    >
-      {children}
-    </div>
+    <Slide direction="left" in={isPopupShown} mountOnEnter unmountOnExit>
+      <div
+        className="mobile-popup-nav"
+        style={{ ...style }}
+        onClick={hidePopup ? hidePopup : () => {}}
+      >
+        {children}
+      </div>
+    </Slide>
   );
 }

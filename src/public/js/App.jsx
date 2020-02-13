@@ -38,7 +38,7 @@ class App extends Component {
 
   render() {
     return (
-      <>
+      <div>
         <Switch>
           <Route path="/register" exact component={Register} />
           <Route path="/login" exact component={Login} />
@@ -46,7 +46,7 @@ class App extends Component {
           <Route component={AppContainer} />
         </Switch>
         <GlobalErrorHandler />
-      </>
+      </div>
     );
   }
 }
