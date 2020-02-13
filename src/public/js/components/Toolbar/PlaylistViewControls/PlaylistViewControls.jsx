@@ -28,7 +28,7 @@ export default function PlaylistViewControls({
       </ButtonFab>
       <MobilePopupNav
         isPopupShown={isSearchbarPopupShown}
-        style={{ width: "100%", right: "-100%", padding: "1rem 3rem" }}
+        style={{ width: "100%", right: "-100%" }}
       >
         <Searchbar formSubmitted={() => setSearchbarPopupVisibility(false)} />
       </MobilePopupNav>

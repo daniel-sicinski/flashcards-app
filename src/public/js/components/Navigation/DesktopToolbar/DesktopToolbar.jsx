@@ -5,6 +5,7 @@ import GlobalPlayNav from "../../GlobalPlayNav/GlobalPlayNavContainer";
 import PlaylistNav from "../../PlaylistsNav/PlaylistNavContainer";
 import AddEditPlaylistManager from "../../AddEditPlaylistManager/AddEditPlaylistManagerContainer";
 import SelectCardsControl from "./SelectCardsControl/SelectCardsControl";
+import Searchbar from "../../Searchbar/Searchbar";
 
 export default function DesktopToolbar({
   isGlobalAudioPlay,
@@ -25,6 +26,7 @@ export default function DesktopToolbar({
                 <AudioControls />
               ) : (
                 <>
+                  <Searchbar />
                   <GlobalPlayNav />
                   <SelectCardsControl
                     isSelectStateActive={isSelectStateActive}
@@ -51,6 +53,7 @@ export default function DesktopToolbar({
                 <AudioControls />
               ) : (
                 <>
+                  <Searchbar />
                   <GlobalPlayNav />
                   <PlaylistNav />
                   <SelectCardsControl
