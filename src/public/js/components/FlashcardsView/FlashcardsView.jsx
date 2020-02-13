@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { AutoRotatingCarousel } from "material-auto-rotating-carousel";
 import { withStyles } from "@material-ui/core/styles";
 import FlashcardSlide from "../FlashcardSlide/FlashcardSlide";
@@ -30,8 +30,37 @@ const AutoRotatingCarouselHOC = isDesktop => {
   })(AutoRotatingCarousel);
 };
 
-export default function FlashcardsView({ isDesktop }) {
+export default function FlashcardsView({
+  isDesktop,
+  flashcards,
+  invertedSlides,
+  fetchPlaylists
+}) {
+  useEffect(() => {
+    fetchPlaylists();
+  }, []);
+
   const CustomAutoRotatingCarousel = AutoRotatingCarouselHOC(isDesktop);
+
+  const renderFlashcards = () => {
+    return flashcards.map(card => {
+      const {
+        expressions: { polWord, polSen, engWord, engSen },
+        _id
+      } = card;
+      return (
+        <FlashcardSlide
+          invertedSlides={invertedSlides}
+          key={_id}
+          polWord={polWord}
+          polSen={polSen}
+          engWord={engWord}
+          engSen={engSen}
+        />
+      );
+    });
+  };
+
   return (
     <CustomAutoRotatingCarousel
       mobile={!isDesktop}
@@ -39,9 +68,7 @@ export default function FlashcardsView({ isDesktop }) {
       autoplay={false}
       style={{ zIndex: "auto !important" }}
     >
-      <FlashcardSlide></FlashcardSlide>
-      <FlashcardSlide></FlashcardSlide>
-      <FlashcardSlide></FlashcardSlide>
+      {renderFlashcards()}
     </CustomAutoRotatingCarousel>
   );
 }

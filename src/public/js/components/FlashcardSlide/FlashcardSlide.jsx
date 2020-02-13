@@ -16,12 +16,28 @@ const CustomSlide = withStyles({
   }
 })(Slide);
 
-export default function FlashcardSlide() {
+export default function FlashcardSlide({
+  polWord,
+  polSen,
+  engWord,
+  engSen,
+  invertedSlides
+}) {
   const [cardFlipped, setCardFlip] = useState(false);
 
   const innerCardClasses = cardFlipped
     ? ["slide__card-inner", "slide__card-inner--flipped"]
     : ["slide__card-inner"];
+
+  const frontExpressions = {
+    word: invertedSlides ? polWord : engWord,
+    sentence: invertedSlides ? polSen : engSen
+  };
+
+  const backExpressions = {
+    word: invertedSlides ? engWord : polWord,
+    sentence: invertedSlides ? engSen : polSen
+  };
 
   const slideContent = (
     <div className="slide__content">
@@ -31,18 +47,14 @@ export default function FlashcardSlide() {
       >
         <div className={innerCardClasses.join(" ")}>
           <div className="slide__card-front">
-            <span className="slide__word">Słowo</span>
+            <span className="slide__word">{frontExpressions.word}</span>
             <Divider style={{ width: "100%", margin: "2rem 0" }} />
-            <p className="slide__sentence">
-              To będzie jakieś zdanie na temat słowa u góry.
-            </p>
+            <p className="slide__sentence">{frontExpressions.sentence}</p>
           </div>
           <div className="slide__card-back">
-            <span className="slide__word">Word</span>
+            <span className="slide__word">{backExpressions.word}</span>
             <Divider style={{ width: "100%", margin: "2rem 0" }} />
-            <p className="slide__sentence">
-              This will be some sentence about the word that is above.
-            </p>
+            <p className="slide__sentence">{backExpressions.sentence}</p>
           </div>
         </div>
       </div>

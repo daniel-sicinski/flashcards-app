@@ -53,6 +53,7 @@ export default function AppContainer({
               exact
               component={FlashcardsSelectView}
             />
+            <Route path="/flashcards" component={FlashcardsView} />
           </Switch>
           <Navigation />
           <AudioManager />
