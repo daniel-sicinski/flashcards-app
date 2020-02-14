@@ -5,11 +5,11 @@ import { withStyles } from "@material-ui/core/styles";
 
 const CustomSlide = withStyles({
   root: {
-    "& div[class^=Slide-mediaBackground]": {
+    "& > div:first-child": {
       height: "100%",
       backgroundColor: "transparent"
     },
-    "& div[class^=Slide-text]": {
+    "& > div:nth-of-type(2)": {
       width: "0",
       height: "0"
     }
